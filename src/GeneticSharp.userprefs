@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{3B5D7E7E-28B3-490E-AFF0-A231F246A963}|Default">
+  <MonoDevelop.Ide.ItemProperties.GeneticSharp.Runner.ConsoleApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.GeneticSharp.Runner.GtkApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GeneticSharp.Runner.GtkApp\MainWindow.cs">
+    <Files>
+      <File FileName="GeneticSharp.Runner.GtkApp\MainWindow.cs" Line="253" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+</Properties>
