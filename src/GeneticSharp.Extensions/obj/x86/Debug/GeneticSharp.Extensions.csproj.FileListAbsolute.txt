@@ -1,0 +1,13 @@
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Extensions.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Extensions.pdb
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Extensions.xml
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Domain.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\NCalc.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Domain.pdb
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Domain.xml
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\obj\x86\Debug\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\obj\x86\Debug\GeneticSharp.Extensions.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Extensions\obj\x86\Debug\GeneticSharp.Extensions.pdb

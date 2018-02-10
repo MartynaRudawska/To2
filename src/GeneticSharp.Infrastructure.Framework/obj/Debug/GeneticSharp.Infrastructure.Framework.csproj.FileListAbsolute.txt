@@ -1,0 +1,6 @@
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.dll
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.pdb
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.dll
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.pdb

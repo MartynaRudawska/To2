@@ -1,0 +1,9 @@
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\bin\x86\Debug\GeneticSharp.Domain.dll
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\bin\x86\Debug\GeneticSharp.Domain.pdb
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\bin\x86\Debug\GeneticSharp.Domain.xml
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\obj\x86\Debug\GeneticSharp.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\obj\x86\Debug\GeneticSharp.Domain.dll
+C:\Users\Ania\Documents\TO\GeneticSharp.Domain\obj\x86\Debug\GeneticSharp.Domain.pdb

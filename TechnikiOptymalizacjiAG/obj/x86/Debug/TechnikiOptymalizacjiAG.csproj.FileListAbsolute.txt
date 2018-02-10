@@ -1,0 +1,5 @@
+C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\bin\x86\Debug\TechnikiOptymalizacjiAG.exe.config
+C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\obj\x86\Debug\TechnikiOptymalizacjiAG.csprojResolveAssemblyReference.cache
+C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\obj\x86\Debug\TechnikiOptymalizacjiAG.TechnikiOptymalizacjiAGMainWindow.resources
+C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\obj\x86\Debug\TechnikiOptymalizacjiAG.Properties.Resources.resources
+C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\obj\x86\Debug\TechnikiOptymalizacjiAG.csproj.GenerateResource.Cache

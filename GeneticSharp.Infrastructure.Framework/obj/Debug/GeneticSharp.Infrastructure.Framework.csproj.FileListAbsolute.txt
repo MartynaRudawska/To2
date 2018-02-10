@@ -1,0 +1,13 @@
+E:\sourcefiles\repozytoria\TO\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
+E:\sourcefiles\repozytoria\TO\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.dll
+E:\sourcefiles\repozytoria\TO\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.pdb
+E:\sourcefiles\repozytoria\TO\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\TO\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.dll
+E:\sourcefiles\repozytoria\TO\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.pdb
+=======
+C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.csprojResolveAssemblyReference.cache
+C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.pdb

@@ -1,0 +1,12 @@
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\bin\Release\GeneticSharp.Extensions.xml
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\bin\Release\GeneticSharp.Extensions.dll
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\bin\Release\GeneticSharp.Extensions.pdb
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\bin\Release\GeneticSharp.Domain.dll
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\bin\Release\GeneticSharp.Infrastructure.Framework.dll
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\bin\Release\NCalc.dll
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\bin\Release\GeneticSharp.Infrastructure.Framework.pdb
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\bin\Release\GeneticSharp.Infrastructure.Framework.xml
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.csproj.CoreCompileInputs.cache
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.dll
+E:\sourcefiles\repozytoria\GeneticSharp\src\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.pdb

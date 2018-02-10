@@ -1,0 +1,11 @@
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\bin\x86\Debug\GeneticSharp.Infrastructure.Threading.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\bin\x86\Debug\GeneticSharp.Infrastructure.Threading.pdb
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\bin\x86\Debug\GeneticSharp.Infrastructure.Threading.xml
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\bin\x86\Debug\SmartThreadPool.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\bin\x86\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\bin\x86\Debug\SmartThreadPool.pdb
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\obj\x86\Debug\GeneticSharp.Infrastructure.Threading.csprojResolveAssemblyReference.cache
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\obj\x86\Debug\GeneticSharp.Infrastructure.Threading.dll
+C:\Users\Ania\Documents\TO\src\GeneticSharp.Infrastructure.Threading\obj\x86\Debug\GeneticSharp.Infrastructure.Threading.pdb
