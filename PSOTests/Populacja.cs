@@ -132,13 +132,13 @@ namespace PSOTests
 
         public static Populacja copy()
         {
-            Populacja item = new Populacja();
+            //Populacja item = new Populacja();
             
-            item.maxX = max;
-            item.minX = minX;
-            item.populationSize =this.populationSize;
-            item.type = type;
-            item.dim = dim;
+            //item.maxX = maxX;
+            //item.minX = minX;
+            //item.populationSize =this.populationSize;
+            //item.type = type;
+            //item.dim = dim;
             return new Populacja(new Tuple<double, double>(minX, maxX), populationSize, numParticles, maxEpochs, PostacFunkcji, type);//Tuple<double, double, int, int, string, int, int, type>((minX, maxX, numParticles, maxEpochs, PostacFunkcji, populationSize, dim, type);
         }
 

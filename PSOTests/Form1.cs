@@ -453,7 +453,7 @@ namespace PSOTests
                 population.GeneratePopulation(dim);
                 population.ObliczPopulFitness(Funkcje.FunctionName.type);
 
-                List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);//numberIterations, inertiaw
+                //List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);//numberIterations, inertiaw
                 tmp.Remove(tmp.Last());
                 tab[i] = tmp.Min((x => x.NajlepszaFitness));  //tablica wartości wyników-z tego obliczyc % sukcesów
                 wynik += tab[i];
@@ -548,7 +548,7 @@ namespace PSOTests
                 var plot2 = scena.Add(new ILPlotCube()
                 {
                     ScreenRect = new RectangleF(0, 0.66f, 1, 0.3f),
-                    Childs = { new ILLinePlot(GLOBAL.T, markerStyle: MarkerStyle.Diamond, lineColor: Color.Black) },
+                    Children = { new ILLinePlot(GLOBAL.T, markerStyle: MarkerStyle.Diamond, lineColor: Color.Black) },
 
                 });
 

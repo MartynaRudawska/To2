@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.FunctionSelectionCombo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ParticleQuantityUpDown = new System.Windows.Forms.NumericUpDown();
@@ -35,9 +36,9 @@
             this.MaxEpochUpDown = new System.Windows.Forms.NumericUpDown();
             this.StartBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.ilgraf = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.resetB = new System.Windows.Forms.Button();
+            this.ilgraf = new ILNumerics.Drawing.ILPanel();
             ((System.ComponentModel.ISupportInitialize)(this.ParticleQuantityUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MaxEpochUpDown)).BeginInit();
             this.SuspendLayout();
@@ -137,16 +138,6 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Maksymalna ilość iteracji";
             // 
-            // ilgraf
-            // 
-            this.ilgraf.AutoScroll = true;
-            this.ilgraf.AutoSize = true;
-            this.ilgraf.BackColor = System.Drawing.Color.White;
-            this.ilgraf.Location = new System.Drawing.Point(16, 287);
-            this.ilgraf.Name = "ilgraf";
-            this.ilgraf.Size = new System.Drawing.Size(474, 295);
-            this.ilgraf.TabIndex = 11;
-            // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(508, 287);
@@ -164,14 +155,27 @@
             this.resetB.Text = "Reset";
             this.resetB.UseVisualStyleBackColor = true;
             // 
+            // ilgraf
+            // 
+            this.ilgraf.Driver = ILNumerics.Drawing.RendererTypes.OpenGL;
+            this.ilgraf.Editor = null;
+            this.ilgraf.Location = new System.Drawing.Point(16, 287);
+            this.ilgraf.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ilgraf.Name = "ilgraf";
+            this.ilgraf.Rectangle = ((System.Drawing.RectangleF)(resources.GetObject("ilgraf.Rectangle")));
+            this.ilgraf.ShowUIControls = false;
+            this.ilgraf.Size = new System.Drawing.Size(472, 295);
+            this.ilgraf.TabIndex = 14;
+            this.ilgraf.Timeout = ((uint)(0u));
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 594);
+            this.Controls.Add(this.ilgraf);
             this.Controls.Add(this.resetB);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.ilgraf);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.StartBtn);
             this.Controls.Add(this.MaxEpochUpDown);
@@ -198,9 +202,9 @@
         private System.Windows.Forms.NumericUpDown MaxEpochUpDown;
         private System.Windows.Forms.Button StartBtn;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel ilgraf;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button resetB;
+        private ILNumerics.Drawing.ILPanel ilgraf;
     }
 }
 
