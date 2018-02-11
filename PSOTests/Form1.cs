@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Data;
 using System.Text;
-using PSOTests.Funkcje;
+//using PSOTests.Funkcje;
 
 namespace PSOTests
 {
@@ -19,36 +19,47 @@ namespace PSOTests
     {
         PSO optymalizacja;
         private static ILScene scena;
-        private bool _threadPaused = false;
-        private bool thesame = false;
         private Thread animace;
         private ILArray<float> data;
-        private double maxX { get; set; }
-        private double minX { get; set; }
-        private short ileCzastek;
-        private short maxEpochs;
-        private string funkcja;
-        private int nrIteracji = 50;
         private Populacja population { get; set; }
         private ILSurface surface;
         private Populacja populationestore { get; set; }
+        private Populacja modelpopulation;
+
+
+        private double maxX { get; set; }
+        private double minX { get; set; }
+
+        private short ileCzastek;
+        private short maxEpochs;
+        private string funkcja;
+
+        private bool _threadPaused = false;
+        private bool thesame = false;
+        private double c1 = 1.49445;
+        private double c2 = 1.49445;
         private int i = 0;
         private int j = 0;
-        private float[] avfitness = new float[1];
-        private float[] avbfitness = new float[1];
-        private float[] avvelocity = new float[1];
         private int dim = 2;
         private int modelpopulationSize = 1000;
         private int testnumber = 100;
-        private double error = 0.005;
         private int PopulationSize = 20;
         private int numberIterations = 50;
+        private int nrIteracji = 50;
         private double inertiaw = 0.75;
-        private Populacja modelpopulation;
-        private System.Windows.Forms.Button thesamepopulation;
+        private double error = 0.005;
+
+        private float[] avfitness = new float[1];
+        private float[] avbfitness = new float[1];
+        private float[] avvelocity = new float[1];
+
+        private bool r1r2 = false;
+        private bool linearinertia = false;
 
 
         private Dictionary<string, Tuple<double, double>> dziedzinyFunkcji = new Dictionary<string, Tuple<double, double>>();
+        private Thread model;
+
         //;
 
         public Form1()
@@ -64,9 +75,43 @@ namespace PSOTests
         {
             MaxEpochUpDown.Value = MaxEpochUpDown.Minimum;
             ParticleQuantityUpDown.Value=ParticleQuantityUpDown.Minimum;
-
         }
 
+        private void functionButtonSet(bool value)
+        {
+            Invoke(new Action(() =>
+            {
+                _threadPaused = value;
+
+                StartBtn.Enabled = value;
+
+            }
+                ));
+        }
+
+        private void GenGraph2()
+        {
+            this.ShowParticleOnGraph(population);
+            //this.ShowGraphChart(population);
+           // this.ShowCharts(population);
+            //this.RefreshModel();
+        }
+
+        private void RefreshModel()
+        {
+            Invoke(new Action(() =>
+            {
+                scena = new ILScene { new ILPlotCube(twoDMode: false) { surface } };
+
+                if (dim == 2)
+                {
+                    scena.First<ILPlotCube>().Rotation = Matrix4.Rotation(new Vector3(1, 1, 1), 0.3f);
+                }
+                scena.Screen.First<ILLabel>().Visible = false;
+
+                ilgraf.Scene = scena;
+            }));
+        }
         /*
         static double Error(double x)
         {
@@ -252,7 +297,6 @@ namespace PSOTests
             int i = 0;
             foreach (Populacja item in list)
             {
-
                 surface = new ILSurface(data);
                 surface.Fill.Markable = false;
                 surface.Wireframe.Markable = false;
@@ -313,16 +357,16 @@ namespace PSOTests
 
         private void GenerateGraph()
         {
-            Invoke(new Action(() => panel1.Visible = true));
+            Invoke(new Action(() => ilgraf.Visible = true));
 
 
 
-            modelpopulation = new Populacja(modelpopulationSize, FunctionName.type);
+            modelpopulation = new Populacja(modelpopulationSize, Funkcje.FunctionName.type);
             modelpopulation.SetRangeOfPopulation();
             modelpopulation.GenerateGraphPopulation();
             modelpopulation.ObliczPopulFitness();
 
-            population = new Populacja(PopulationSize, dim, FunctionName.type);
+            population = new Populacja(PopulationSize, dim, Funkcje.FunctionName.type);
             population.SetRangeOfPopulation();
             population.GeneratePopulation(dim);
             population.ObliczPopulFitness();
@@ -353,6 +397,8 @@ namespace PSOTests
         }
 
 
+
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -366,14 +412,127 @@ namespace PSOTests
         private void StartBtn_Click(object sender, EventArgs e)
         {
             //string f = FunctionSelectionCombo.SelectedItem.ToString();
-            if (!String.IsNullOrEmpty(funkcja)&&!funkcja.Equals("Proszę wybrać funkcję do optymalizacji"))
+            //if (!String.IsNullOrEmpty(funkcja)&&!funkcja.Equals("Proszę wybrać funkcję do optymalizacji"))
+            //{
+            //  ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
+            // maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
+            // optymalizacja = new PSO(dziedzinyFunkcji[funkcja], ileCzastek, maxEpochs, funkcja);
+            //  MessageBox.Show(string.Format("Znalezione minimum to {0} z błędem {1}", PSO.PSOSolution().Item1, PSO.PSOSolution().Item2),"Rezultat optymalizacji",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            // }
+            // else MessageBox.Show("Nie wybrano funkcji do optymalizacji","BŁĄD!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+
+
+            // instrukcja do przycisku start
+            List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
+            this.functionButtonSet(false);
+
+            animace = new Thread(ShowParticleMove);
+            animace.IsBackground = true;
+            animace.Start(tmp);
+            if (thesame == true)
             {
-                ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
-                maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
-                optymalizacja = new PSO(dziedzinyFunkcji[funkcja], ileCzastek, maxEpochs, funkcja);
-                MessageBox.Show(string.Format("Znalezione minimum to {0} z błędem {1}", PSO.PSOSolution().Item1, PSO.PSOSolution().Item2),"Rezultat optymalizacji",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                resetB.Enabled = true;
             }
-            else MessageBox.Show("Nie wybrano funkcji do optymalizacji","BŁĄD!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+
+            
+            richTextBox1.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
+            richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
+            richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
+            richTextBox1.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
+
+            var scena = new ILScene();
+            using (ILScope.Enter())
+            {
+                ILArray<float> AV = sum;
+                ILArray<float> BEST = best;
+                ILArray<float> WORST = worst;
+                ILArray<float> BGFworst = bgfworst;
+                ILArray<float> BGFbest = bgfbest;
+                ILArray<float> BGFav = bgfav;
+                ILArray<float> GLOBAL = globalmin;
+                var plot = scena.Add(new ILPlotCube()
+                {
+                    ScreenRect = new RectangleF(0, 0, 1, 0.4f),
+                    Childs = { new ILLinePlot(AV.T,lineColor:Color.Yellow),
+                                new ILLinePlot(BEST.T,lineColor:Color.Blue),
+                                 new ILLinePlot(WORST.T,lineColor:Color.Red),
+                    },
+                    Axes =
+                    {
+                        XAxis =
+                        {
+                            Label = { Text = "numer iteracji" },
+
+                        },
+
+                        YAxis =
+                        {
+                            Label = { Text = "średnia wartość cząsteczek (cała populacja)" },
+                        }
+                    }
+                    ,
+                });
+                var legend = plot.Add(new ILLegend("średnia z przebiegów", "najlepszy z przebiegów", "najgorszy z przebiegów"));
+
+                var plot1 = scena.Add(new ILPlotCube()
+                {
+                    ScreenRect = new RectangleF(0, 0.33f, 1, 0.4f),
+                    Childs = { new ILLinePlot(BGFav.T,lineColor:Color.Yellow),
+                                new ILLinePlot(BGFbest.T,lineColor:Color.Blue),
+                                 new ILLinePlot(BGFworst.T,lineColor:Color.Red),
+                    },
+                    Axes =
+                    {
+                        XAxis =
+                        {
+                            Label = { Text = "numer iteracji" },
+                        },
+                        YAxis =
+                        {
+                            Label = { Text = "osiągnięte minimum (najlepsze całej populacji)" },
+                        }
+                    }
+                    ,
+                });
+
+                var legend2 = plot1.Add(new ILLegend("średnia z przebiegów", "najlepszy z przebiegów", "najgorszy z przebiegów"));
+                var plot2 = scena.Add(new ILPlotCube()
+                {
+                    ScreenRect = new RectangleF(0, 0.66f, 1, 0.3f),
+                    Childs = { new ILLinePlot(GLOBAL.T, markerStyle: MarkerStyle.Diamond, lineColor: Color.Black) },
+                    Axes =
+                    {
+                        XAxis =
+                        {
+                            Label = { Text = "numer kolejnego testu" },
+
+                        },
+
+                        YAxis =
+                        {
+                            Label = { Text = "osiągnięte minimum  " },
+
+                        }
+                    },
+                });
+
+                var dg2 = plot2.AddDataGroup();
+                dg2.Add(new ILLinePlot(GLOBAL.T, markerStyle: MarkerStyle.Diamond, lineColor: Color.Red));//,lineColor: Color.Red));
+                dg2.ScaleModes.YAxisScale = AxisScale.Logarithmic;
+                var axisY2 = plot2.Axes.Add(new ILAxis(dg2)
+                {
+                    AxisName = AxisNames.YAxis,
+                    Position = new Vector3(1, 0, 0),
+                    Label = { Text = "osiągnięte minimum (log)", Color = Color.Red },
+                    Ticks = { DefaultLabel = { Color = Color.Red } }
+                });
+
+
+                ilgraf.Scene = scena;
+            Show();
+            }
         }
 
         private void MaxEpochUpDown_ValueChanged(object sender, EventArgs e)
@@ -384,9 +543,40 @@ namespace PSOTests
         private void FunctionSelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             funkcja = FunctionSelectionCombo.SelectedItem.ToString();
-            FunctionName.type = (FunctionName.Type)Enum.Parse(typeof(FunctionName.Type), FunctionSelectionCombo.SelectedItem.ToString());
+            Funkcje.FunctionName.type = (Funkcje.FunctionName.Type)Enum.Parse(typeof(Funkcje.FunctionName.Type), FunctionSelectionCombo.SelectedItem.ToString());
             //GenModel();
-            thesamepopulation.Enabled = false;
+            resetB.Enabled = false;
+        }
+
+
+        //instrukcja do przycisku reset
+        private void resetB_Click(object sender, EventArgs e)
+        {
+            i = 0;
+            j = 0;
+
+            avvelocity = new float[1];
+            avfitness = new float[1];
+            avbfitness = new float[1];
+            List<Particle> itemList = new List<Particle>();
+            population = new Populacja(populationestore.dim);
+            population = populationestore.copy();
+            foreach (Particle item in populationestore.population)
+            {
+                Particle tmp = new Particle(populationestore.dim);
+                Particle.copy(item, tmp);
+                population.population.Add(tmp);
+            }
+
+            model = new Thread(GenGraph2);
+            model.IsBackground = true;
+            model.Start();
+            List<Populacja> tmp1 = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
+            this.functionButtonSet(false);
+
+            animace = new Thread(ShowParticleMove);
+            animace.IsBackground = true;
+            animace.Start(tmp1);
         }
     }
 }

@@ -63,6 +63,19 @@ namespace PSOTests
 
         }
 
+        public Populacja(int populationSize, int dim, Funkcje.FunctionName.Type type)
+        {
+            this.populationSize = populationSize;
+            this.dim = dim;
+            this.type = type;
+        }
+
+        public Populacja(int modelpopulationSize, Funkcje.FunctionName.Type type)
+        {
+            this.modelpopulationSize = modelpopulationSize;
+            this.type = type;
+        }
+
         public FunctionName.Type type { get; private set; }
         private int axisTicks { get; set; }
         private double entireInterval { get; set; }
@@ -70,6 +83,7 @@ namespace PSOTests
         public int dim;//{ get; set; }
         public double[] NajlepszaPozycja; //= new double[dim];
         public double NajlepszaFitness = double.MaxValue;
+        private int modelpopulationSize;
 
         private static double randomPoint(double a, double b)
         {
