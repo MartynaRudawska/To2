@@ -57,6 +57,13 @@ namespace PSOTests
         }
         public Populacja() { }
 
+        public Populacja(int populationSize)
+        {
+            this.populationSize = populationSize;
+        }
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -67,7 +74,7 @@ namespace PSOTests
         /// <param name="Funkcja"></param>
         /// <param name="dim"></param>
         /// <param name="type"></param>
-         public Populacja(Tuple<double, double> dziedzina, int populationSize, int ilCzastek, int maxIteracji, string Funkcja, int dim, Funkcje.FunctionName.Type type)
+        public Populacja(Tuple<double, double> dziedzina, int populationSize, int ilCzastek, int maxIteracji, string Funkcja, int dim, Funkcje.FunctionName.Type type)
          {
             minX = dziedzina.Item1;
              maxX = dziedzina.Item2;
