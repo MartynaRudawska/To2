@@ -8,11 +8,12 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
+using static PSOTests.Funkcje;
 
 namespace PSOTests
 {
 
-   public class Populacja
+    public class Populacja
     {
         public static int numParticles { get; private set; }
         public static int maxEpochs = 1000;
@@ -30,7 +31,7 @@ namespace PSOTests
 
         public List<Particle> population = new List<Particle>();
 
-
+        #region konstruktory
         public Populacja(FunctionName.Type type)
         {
             this.type = type;
@@ -42,7 +43,7 @@ namespace PSOTests
             this.dim = dim;
         }
 
-
+        
         /// <summary>
         /// Konstruktor algorytmu PSO
         /// </summary>
@@ -62,21 +63,19 @@ namespace PSOTests
 
 
         }
-
-        public Populacja(int populationSize, int dim, Funkcje.FunctionName.Type type)
-        {
-            this.populationSize = populationSize;
-            this.dim = dim;
-            this.type = type;
-        }
-
-        public Populacja(int modelpopulationSize, Funkcje.FunctionName.Type type)
+              
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelpopulationSize"></param>
+        /// <param name="type"></param>
+        public Populacja(int modelpopulationSize, FunctionName.Type type)
         {
             this.modelpopulationSize = modelpopulationSize;
             this.type = type;
         }
 
-        public FunctionName.Type type { get; private set; }
+        
         private int axisTicks { get; set; }
         private double entireInterval { get; set; }
         private double interval { get; set; }
@@ -85,6 +84,7 @@ namespace PSOTests
         public double NajlepszaFitness = double.MaxValue;
         private int modelpopulationSize;
 
+        #endregion
         private static double randomPoint(double a, double b)
         {
             System.Random r = new System.Random();
@@ -92,12 +92,12 @@ namespace PSOTests
             return a + r.NextDouble() * (b - a);
         }
 
-        private static double Error(double x)
+        private static double Error(FunctionName.Type PostacFunkcji, double x)
         {
-           // double trueMin = 0, y = 0.0, xp, xk;
+            // double trueMin = 0, y = 0.0, xp, xk;
             switch (PostacFunkcji)
             {
-                /*
+                
                 case FunctionName.Type.DeJong1:
                     DeJong1.setFitness([-5.12][5.12]);
                     break;
@@ -113,7 +113,7 @@ namespace PSOTests
                 case FunctionName.Type.Rosenbrock:
                     Rosenbrock.setFitness(population[j]);
                     break;
-                    */
+                    
 
             }
         }
@@ -153,14 +153,14 @@ namespace PSOTests
             }
         }
 
-        public Populacja copy()
+        public static Populacja copy()
         {
             Populacja item = new Populacja();
-            item.maxX = this.maxX;
-            item.minX = this.minX;
-            item.populationSize = this.populationSize;
-            item.type = this.type;
-            item.dim = this.dim;
+            item.maxX = maxX;
+            item.minX = minX;
+            item.populationSize = populationSize;
+            item.type = type;
+            item.dim = dim;
             return item;
         }
 
@@ -188,7 +188,7 @@ namespace PSOTests
         }
 
 
-        internal void ObliczPopulFitness()
+        internal void ObliczPopulFitness(FunctionName.Type type)
         {
             for (int j = 0; j < population.Count; j++)
             {
@@ -215,32 +215,32 @@ namespace PSOTests
                 }
             }
         }
-        internal void SetRangeOfPopulation(double error2)
+        internal void SetRangeOfPopulation(FunctionName.Type type, double error2)
         {
             switch (type)
             {
 
                 case FunctionName.Type.DeJong1:
-                    minX = DeJong1.minRange;
-                    maxX = DeJong1.maxRange;
+                    minX = DeJong1.minX;
+                    maxX = DeJong1.maxX;
                     exitError = error2;
                     min = DeJong1.min;
                     break;
                 case FunctionName.Type.Schwefel:
-                    minX = Schwefel.minRange;
-                    maxX = Schwefel.maxRange;
+                    minX = Schwefel.minX;
+                    maxX = Schwefel.maxX;
                     exitError = error2;
                     min = Schwefel.min;
                     break;
                 case FunctionName.Type.Rastrigin:
-                    minX = Rastrigin.minRange;
-                    maxX = Rastrigin.maxRange;
+                    minX = Rastrigin.minX;
+                    maxX = Rastrigin.maxX;
                     exitError = error2;
                     min = Rastrigin.min;
                     break;
                 case FunctionName.Type.Rosenbrock:
-                    minX = Rosenbrock.minRange;
-                    maxX = Rosenbrock.maxRange;
+                    minX = Rosenbrock.minX;
+                    maxX = Rosenbrock.maxX;
                     exitError = error2;
                     min = Rosenbrock.min;
                     break;
@@ -248,37 +248,38 @@ namespace PSOTests
             }
         }
 
-        internal void SetRangeOfPopulation()
+        internal void SetRangeOfPopulation(FunctionName.Type type)
         {
             switch (type)
             {
 
                 case FunctionName.Type.DeJong1:
-                    minX = DeJong1.minRange;
-                    maxX = DeJong1.maxRange;
-                    exitError = DeJong1.error;
+                    minX = DeJong1.minX;
+                    maxX = DeJong1.maxX;
+                    exitError = DeJong1.exitError;
                     min = DeJong1.min;
                     break;
 
                 case FunctionName.Type.Schwefel:
-                    minX = Schwefel.minRange;
-                    maxX = Schwefel.maxRange;
-                    exitError = Schwefel.error;
+                    minX = Schwefel.minX;
+                    maxX = Schwefel.maxX;
+                    exitError = Schwefel.exitError;
                     min = Schwefel.min;
                     break;
                 case FunctionName.Type.Rastrigin:
-                    minX = Rastrigin.minRange;
-                    maxX = Rastrigin.maxRange;
-                    exitError = Rastrigin.error;
+                    minX = Rastrigin.minX;
+                    maxX = Rastrigin.maxX;
+                    exitError = Rastrigin.exitError;
                     min = Rastrigin.min;
                     break;
                 case FunctionName.Type.Rosenbrock:
-                    minX= Rosenbrock.minRange;
-                    maxX = Rosenbrock.maxRange;
-                    exitError = Rosenbrock.error;
+                    minX = Rosenbrock.minX;
+                    maxX = Rosenbrock.maxX;
+                    exitError = Rosenbrock.exitError;
                     min = Rosenbrock.min;
                     break;
 
             }
         }
     }
+}

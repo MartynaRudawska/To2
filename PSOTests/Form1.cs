@@ -66,9 +66,9 @@ namespace PSOTests
         {
             InitializeComponent();
             dziedzinyFunkcji.Add(" DeJong1 ", new Tuple<double, double>(-5.12, 5.12));
-            dziedzinyFunkcji.Add(" Rosenbrock)", new Tuple<double, double>(-2.048, 2.048));
+            dziedzinyFunkcji.Add(" Rosenbrock", new Tuple<double, double>(-2.048, 2.048));
             dziedzinyFunkcji.Add("Rastrigin", new Tuple<double, double>(-5.12, 5.12));
-            dziedzinyFunkcji.Add("Schwefel)", new Tuple<double, double>(-500, 500));
+            dziedzinyFunkcji.Add("Schwefel", new Tuple<double, double>(-500, 500));
     }
 
         private void Form1_Load(object sender, EventArgs e)

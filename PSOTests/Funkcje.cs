@@ -20,7 +20,7 @@ namespace PSOTests
         public static class DeJong1
         {
             public const double minX = -5.12;   // problem-dependent
-            public const double xmax = 5.12;
+            public const double maxX = 5.12;
             public const double exitError = 0.05;
             public const double min = 0;
 

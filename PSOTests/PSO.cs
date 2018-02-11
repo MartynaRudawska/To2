@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using PSOTests.Funkcje;
+//using PSOTests.Funkcje;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +31,7 @@ namespace PSOTests
             this.c2 = c2;
         }
         public int nrIteracji;
-        public double w //= 0.79; //inertia weight
+        public double w = 0.79; //inertia weight
         public double c1= 1.49445;
         public double c2= 1.49445;
 
@@ -39,6 +39,7 @@ namespace PSOTests
         {
             w = 0.9 - k * (0.9 - 0.4) / nrIteracji;
             return w;
+        }
         
         public bool r1r2;
         public bool linearinertia;
@@ -58,7 +59,7 @@ namespace PSOTests
             List<Populacja> roj = new List<Populacja>();
             roj.Add(p);
 
-            foreach (Particle item in Populacja p)
+            foreach (Particle item in p.population)
             {
                 if (item.fitnessValue < NajlepszaFitness)
                 {
@@ -71,7 +72,7 @@ namespace PSOTests
                 p.NajlepszaFitness = NajlepszaFitness;
 
             }
-
+        
             double r1, r2; // poznawczy i ogólne spułczynniki randoma
 
             // tworzenie roju ->swam

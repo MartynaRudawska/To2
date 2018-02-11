@@ -46,7 +46,7 @@ namespace TechnikiOptymalizacjiAG
         /// Konstruktor
         /// </summary>
         /// 
-
+        #endregion
         #region pola PSO
         PSO optymalizacja;
         private double maxX;
