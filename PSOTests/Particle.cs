@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using PSOTests.Funkcje;
+//using PSOTests.Funkcje;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +34,7 @@ namespace PSOTests
         /// <param name="bestPos"></param>
         /// <param name="bestErr"></param>
         /// 
-        [Serializable]
+       // [Serializable]
         public Particle()
         {
         }

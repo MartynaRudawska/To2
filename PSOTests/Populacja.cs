@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using PSOTests.Funkcje;
+//using static PSOTests.Funkcje;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +25,7 @@ namespace PSOTests
         private static double najlepszaPozycja;
 
 
-        public FunctionName.Type type { get; private set; }
+        public Funkcje.FunctionName.Type type { get; private set; }
         public int populationSize = 40000;
 
         public List<Particle> population = new List<Particle>();

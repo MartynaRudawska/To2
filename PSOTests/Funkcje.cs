@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PSOTests
 {
-    class Funkcje
+     public class Funkcje
     {
 
         private static double randomPoint(double a, double b)
