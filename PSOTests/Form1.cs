@@ -60,6 +60,7 @@ namespace PSOTests
         private Dictionary<string, Tuple<double, double>> dziedzinyFunkcji = new Dictionary<string, Tuple<double, double>>();
         private Thread model;
 
+        private EventWaitHandle wh = new AutoResetEvent(false);
 
         public Form1()
         {
@@ -69,6 +70,7 @@ namespace PSOTests
             dziedzinyFunkcji.Add("Rastrigin", new Tuple<double, double>(-5.12, 5.12));
             dziedzinyFunkcji.Add("Schwefel", new Tuple<double, double>(-500, 500));
         }
+
 
 
         private void Form1_Load(object sender, EventArgs e)
