@@ -24,7 +24,7 @@ namespace PSOTests
         private Populacja population { get; set; }
         private ILSurface surface;
         private Populacja populationestore { get; set; }
-        private Populacja modelpopulation;
+        private Populacja MaxEpoch;
 
 
         private double maxX { get; set; }
@@ -39,9 +39,9 @@ namespace PSOTests
         private double c1 = 1.49445;
         private double c2 = 1.49445;
         private int i = 0;
-        private int j = 0;
+      private int j = 0;
         private int dim = 2;
-        private int modelpopulationSize = 1000;
+        private int MaxEpochSize = 1000;
         private int testnumber = 100;
         private int PopulationSize = 20;
         private int numberIterations = 50;
@@ -60,21 +60,21 @@ namespace PSOTests
         private Dictionary<string, Tuple<double, double>> dziedzinyFunkcji = new Dictionary<string, Tuple<double, double>>();
         private Thread model;
 
-        //;
 
         public Form1()
         {
             InitializeComponent();
-            dziedzinyFunkcji.Add("DeJong1", new Tuple<double, double>(-5.12, 5.12));
-            dziedzinyFunkcji.Add("Rosenbrock", new Tuple<double, double>(-2.048, 2.048));
+            dziedzinyFunkcji.Add(" DeJong1 ", new Tuple<double, double>(-5.12, 5.12));
+            dziedzinyFunkcji.Add(" Rosenbrock", new Tuple<double, double>(-2.048, 2.048));
             dziedzinyFunkcji.Add("Rastrigin", new Tuple<double, double>(-5.12, 5.12));
             dziedzinyFunkcji.Add("Schwefel", new Tuple<double, double>(-500, 500));
-    }
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
             MaxEpochUpDown.Value = MaxEpochUpDown.Minimum;
-            ParticleQuantityUpDown.Value=ParticleQuantityUpDown.Minimum;
+            ParticleQuantityUpDown.Value = ParticleQuantityUpDown.Minimum;
         }
 
         private void functionButtonSet(bool value)
@@ -92,9 +92,7 @@ namespace PSOTests
         private void GenGraph2()
         {
             this.ShowParticleOnGraph(population);
-            //this.ShowGraphChart(population);
-           // this.ShowCharts(population);
-            //this.RefreshModel();
+            this.RefreshModel();
         }
 
         private void RefreshModel()
@@ -112,8 +110,7 @@ namespace PSOTests
                 ilgraf.Scene = scena;
             }));
         }
-        /*
-        static double Error(double x)
+        /*static double Error(double x)
         {
             double trueMin = 0, y = 0;
             switch (funkcja)
@@ -146,8 +143,8 @@ namespace PSOTests
 
             }
             return (y - trueMin) * (y - trueMin);
-        }
-        */
+        }*/
+
         /*
         static double Solve(int numParticles, double minX, double maxX, int maxEpochs, double exitError)
         {
@@ -361,27 +358,27 @@ namespace PSOTests
 
 
 
-            modelpopulation = new Populacja(modelpopulationSize, Funkcje.FunctionName.type);
-            modelpopulation.SetRangeOfPopulation();
-            modelpopulation.GenerateGraphPopulation();
-            modelpopulation.ObliczPopulFitness();
+            MaxEpoch = new Populacja(MaxEpochSize, Funkcje.FunctionName.type);
+            MaxEpoch.SetRangeOfPopulation();
+            MaxEpoch.GenerateGraphPopulation();
+            MaxEpoch.ObliczPopulFitness();
 
             population = new Populacja(PopulationSize, dim, Funkcje.FunctionName.type);
             population.SetRangeOfPopulation();
             population.GeneratePopulation(dim);
             population.ObliczPopulFitness();
 
-            float[] newData = new float[modelpopulation.population.Count * 3];
-            Parallel.For(0, modelpopulation.population.Count, i =>
+            float[] newData = new float[MaxEpoch.population.Count * 3];
+            Parallel.For(0, MaxEpoch.population.Count, i =>
             {
-                newData[i] = (float)modelpopulation.population[i].fitnessValue;  // Z
-                newData[i + modelpopulation.population.Count] = (float)modelpopulation.population[i].position[0]; // X
-                newData[i + 2 * modelpopulation.population.Count] = (float)modelpopulation.population[i].position[1]; // Y
+                newData[i] = (float)MaxEpoch.population[i].fitnessValue;  // Z
+                newData[i + MaxEpoch.population.Count] = (float)MaxEpoch.population[i].position[0]; // X
+                newData[i + 2 * MaxEpoch.population.Count] = (float)MaxEpoch.population[i].position[1]; // Y
 
 
             });
 
-            int size = (int)Math.Sqrt(modelpopulation.population.Count);
+            int size = (int)Math.Sqrt(MaxEpoch.population.Count);
             data = ILNumerics.ILMath.array(newData, size, size, 3);
             surface = new ILSurface(data);
             surface.Fill.Markable = false;
@@ -390,11 +387,10 @@ namespace PSOTests
             ILColorbar color = new ILColorbar() { Location = new PointF(.96f, 0.1f) };
             surface.Children.Add(color);
             this.ShowParticleOnGraph(population);
-            //this.ShowGraphChart(population);
-            //this.ShowCharts(population);
-            //this.RefreshModel();
+            this.RefreshModel();
 
         }
+
 
 
 
@@ -436,7 +432,91 @@ namespace PSOTests
             }
 
 
-            
+            double[] tab = new double[testnumber];
+            float[] sum = new float[numberIterations];
+            float[] best = new float[numberIterations];
+            float[] worst = new float[numberIterations];
+            float[] bgfworst = new float[numberIterations];
+            float[] bgfbest = new float[numberIterations];
+            float[] bgfav = new float[numberIterations];
+
+            float[] globalmin = new float[testnumber];
+            double wynik = 0;
+            double bestresult = 0;
+            double worstresult = 0;
+            double percentsucess = 0;
+            double tmpbest = 0;
+            double tmpworst = 0;
+
+
+            for (int i = 0; i < testnumber; ++i)
+            {
+                population = new Populacja(PopulationSize, dim, Funkcje.FunctionName.type);
+                population.SetRangeOfPopulation(error);
+                population.GeneratePopulation(dim);
+                population.ObliczPopulFitness();
+
+                List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);//numberIterations, inertiaw
+                tmp.Remove(tmp.Last());
+                tab[i] = tmp.Min((x => x.NajlepszaFitness));  //tablica wartości wyników-z tego obliczyc % sukcesów
+                wynik += tab[i];
+                globalmin[i] = (float)tmp.Min((x => x.NajlepszaFitness));
+
+
+                if (Math.Abs(tab[i] - tmp.First().min) < tmp.First().error)
+                    percentsucess++;
+
+                if (i == 0)
+                {
+                    tmpbest = tab[i];
+                    tmpworst = tab[i];
+                }
+                int popnumber = 0;
+
+                foreach (Populacja pop in tmp)
+                {
+                    float b = 0;
+                    float c = 0;
+
+
+                    bgfav[popnumber] += (float)pop.NajlepszaFitness / testnumber;
+
+
+
+
+                    var scene = new ILScene();
+                    scene.Screen.First<ILLabel>().Visible = false;
+
+                    foreach (Particle item in pop.population)
+                    {
+                        // MessageBox.Show(a.Length.ToString()+"  " +tmp.populationSize.ToString());
+                        b += (float)item.fitnessValue;
+                    }
+                    c = (b / pop.population.Count) / testnumber;
+                    sum[popnumber] += c;
+                    if (tab[i] <= tmpbest)
+                    {
+                        best[popnumber] = b / pop.population.Count;
+                        bgfbest[popnumber] = (float)pop.NajlepszaFitness;
+                        bestresult = pop.NajlepszaFitness;
+                        tmpbest = tab[i];
+                    }
+
+                    if (tab[i] >= tmpworst)
+                    {
+                        worst[popnumber] = b / pop.population.Count;
+                        bgfworst[popnumber] = (float)pop.NajlepszaFitness;
+                        worstresult = pop.NajlepszaFitness;
+                        tmpworst = tab[i];
+                    }
+                    popnumber++;
+
+
+
+                }
+
+            }
+
             richTextBox1.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
             richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
             richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
@@ -458,23 +538,9 @@ namespace PSOTests
                     Childs = { new ILLinePlot(AV.T,lineColor:Color.Yellow),
                                 new ILLinePlot(BEST.T,lineColor:Color.Blue),
                                  new ILLinePlot(WORST.T,lineColor:Color.Red),
-                    },
-                    Axes =
-                    {
-                        XAxis =
-                        {
-                            Label = { Text = "numer iteracji" },
-
-                        },
-
-                        YAxis =
-                        {
-                            Label = { Text = "średnia wartość cząsteczek (cała populacja)" },
-                        }
                     }
-                    ,
+
                 });
-                var legend = plot.Add(new ILLegend("średnia z przebiegów", "najlepszy z przebiegów", "najgorszy z przebiegów"));
 
                 var plot1 = scena.Add(new ILPlotCube()
                 {
@@ -483,39 +549,14 @@ namespace PSOTests
                                 new ILLinePlot(BGFbest.T,lineColor:Color.Blue),
                                  new ILLinePlot(BGFworst.T,lineColor:Color.Red),
                     },
-                    Axes =
-                    {
-                        XAxis =
-                        {
-                            Label = { Text = "numer iteracji" },
-                        },
-                        YAxis =
-                        {
-                            Label = { Text = "osiągnięte minimum (najlepsze całej populacji)" },
-                        }
-                    }
-                    ,
+
                 });
 
-                var legend2 = plot1.Add(new ILLegend("średnia z przebiegów", "najlepszy z przebiegów", "najgorszy z przebiegów"));
                 var plot2 = scena.Add(new ILPlotCube()
                 {
                     ScreenRect = new RectangleF(0, 0.66f, 1, 0.3f),
                     Childs = { new ILLinePlot(GLOBAL.T, markerStyle: MarkerStyle.Diamond, lineColor: Color.Black) },
-                    Axes =
-                    {
-                        XAxis =
-                        {
-                            Label = { Text = "numer kolejnego testu" },
 
-                        },
-
-                        YAxis =
-                        {
-                            Label = { Text = "osiągnięte minimum  " },
-
-                        }
-                    },
                 });
 
                 var dg2 = plot2.AddDataGroup();
@@ -531,9 +572,10 @@ namespace PSOTests
 
 
                 ilgraf.Scene = scena;
-            Show();
+                Show();
             }
         }
+
 
         private void MaxEpochUpDown_ValueChanged(object sender, EventArgs e)
         {
@@ -560,7 +602,7 @@ namespace PSOTests
             avbfitness = new float[1];
             List<Particle> itemList = new List<Particle>();
             population = new Populacja(populationestore.dim);
-            population = populationestore.Copy();
+            population = populationestore.copy();
             foreach (Particle item in populationestore.population)
             {
                 Particle tmp = new Particle(populationestore.dim);

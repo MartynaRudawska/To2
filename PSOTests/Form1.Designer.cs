@@ -112,7 +112,7 @@
             this.MaxEpochUpDown.Size = new System.Drawing.Size(52, 20);
             this.MaxEpochUpDown.TabIndex = 8;
             this.MaxEpochUpDown.Value = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             0});
