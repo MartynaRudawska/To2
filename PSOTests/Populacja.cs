@@ -42,8 +42,13 @@ namespace PSOTests
             this.type = type;
             this.dim = dim;
         }
+        public Populacja(int populationSize, FunctionName.Type type)
+        {
+            this.populationSize = populationSize;
+            this.type = type;
+        }
+        public Populacja() { }
 
-        
         /// <summary>
         /// Konstruktor algorytmu PSO
         /// </summary>
@@ -51,32 +56,27 @@ namespace PSOTests
         /// <param name="ilCzastek">Ilość cząstek roju</param>
         /// <param name="maxIteracji">maksymalna ilość Iteracji</param>
         /// <param name="Funkcja">Tekstowa postać funkcji do optymalizacji</param>
-        public Populacja(Tuple<double, double> dziedzina, int populationSize, int ilCzastek, int maxIteracji, string Funkcja, int dim, FunctionName.Type type)
-        {
-            minX = dziedzina.Item1;
-            maxX = dziedzina.Item2;
-            numParticles = ilCzastek;
-            maxEpochs = maxIteracji;
-            PostacFunkcji = Funkcja;
-            roj = new Particle[ilCzastek];
-            this.populationSize = populationSize;
+        /* public Populacja(Tuple<double, double> dziedzina, int populationSize, int ilCzastek, int maxIteracji, string Funkcja, int dim, FunctionName.Type type)
+         {
+             minX = dziedzina.Item1;
+             maxX = dziedzina.Item2;
+             numParticles = ilCzastek;
+             maxEpochs = maxIteracji;
+             PostacFunkcji = Funkcja;
+             roj = new Particle[ilCzastek];
+             this.populationSize = populationSize;
 
 
-        }
-              
+         }*/
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="modelpopulationSize"></param>
         /// <param name="type"></param>
-        public Populacja(int modelpopulationSize, FunctionName.Type type)
-        {
-            this.modelpopulationSize = modelpopulationSize;
-            this.type = type;
-        }
-        public Populacja() { }
-#endregion
-        
+
+        #endregion
+
         private int axisTicks { get; set; }
         private double entireInterval { get; set; }
         private double interval { get; set; }

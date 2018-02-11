@@ -39,7 +39,7 @@ namespace PSOTests
         private double c1 = 1.49445;
         private double c2 = 1.49445;
         private int i = 0;
-      private int j = 0;
+        private int j = 0;
         private int dim = 2;
         private int MaxEpochSize = 1000;
         private int testnumber = 100;
@@ -55,7 +55,7 @@ namespace PSOTests
 
         private bool r1r2 = false;
         private bool linearinertia = false;
-
+        private Form1 frm;
 
         private Dictionary<string, Tuple<double, double>> dziedzinyFunkcji = new Dictionary<string, Tuple<double, double>>();
         private Thread model;
@@ -108,6 +108,7 @@ namespace PSOTests
                 scena.Screen.First<ILLabel>().Visible = false;
 
                 ilgraf.Scene = scena;
+                ilgraf.Refresh();
             }));
         }
         /*static double Error(double x)
@@ -356,8 +357,6 @@ namespace PSOTests
         {
             Invoke(new Action(() => ilgraf.Visible = true));
 
-
-
             MaxEpoch = new Populacja(MaxEpochSize, Funkcje.FunctionName.type);
             MaxEpoch.SetRangeOfPopulation();
             MaxEpoch.GenerateGraphPopulation();
@@ -390,10 +389,6 @@ namespace PSOTests
             this.RefreshModel();
 
         }
-
-
-
-
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -478,11 +473,7 @@ namespace PSOTests
                     float b = 0;
                     float c = 0;
 
-
                     bgfav[popnumber] += (float)pop.NajlepszaFitness / testnumber;
-
-
-
 
                     var scene = new ILScene();
                     scene.Screen.First<ILLabel>().Visible = false;
@@ -517,10 +508,10 @@ namespace PSOTests
 
             }
 
-            richTextBox1.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
-            richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
-            richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
-            richTextBox1.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
+            frm.richTextBox1.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
+            frm.richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
+            frm.richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
+            frm.richTextBox1.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
 
             var scena = new ILScene();
             using (ILScope.Enter())
@@ -571,8 +562,8 @@ namespace PSOTests
                 });
 
 
-                ilgraf.Scene = scena;
-                Show();
+                frm.ilgraf.Scene = scena;
+                frm.Show();
             }
         }
 
@@ -601,13 +592,13 @@ namespace PSOTests
             avfitness = new float[1];
             avbfitness = new float[1];
             List<Particle> itemList = new List<Particle>();
-            population = new Populacja(populationestore.dim);
-            population = populationestore.copy();
+            populationestore = new Populacja(population.dim);
+            populationestore = population.copy();
             foreach (Particle item in populationestore.population)
             {
                 Particle tmp = new Particle(populationestore.dim);
                 Particle.copy(item, tmp);
-                population.population.Add(tmp);
+                populationestore.population.Add(tmp);
             }
 
             model = new Thread(GenGraph2);
