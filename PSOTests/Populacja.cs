@@ -136,7 +136,7 @@ namespace PSOTests
             
             item.maxX = max;
             item.minX = minX;
-            item.populationSize = populationSize;
+            item.populationSize =this.populationSize;
             item.type = type;
             item.dim = dim;
             return new Populacja(new Tuple<double, double>(minX, maxX), populationSize, numParticles, maxEpochs, PostacFunkcji, type);//Tuple<double, double, int, int, string, int, int, type>((minX, maxX, numParticles, maxEpochs, PostacFunkcji, populationSize, dim, type);
