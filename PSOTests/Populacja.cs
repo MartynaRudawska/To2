@@ -15,6 +15,7 @@ namespace PSOTests
 
     public class Populacja
     {
+#region publiczne
         public static int numParticles { get; private set; }
         public static int maxEpochs = 1000;
         public double exitError { get; private set; }
@@ -22,14 +23,22 @@ namespace PSOTests
         public double maxX { get; private set; }
         public double min { get; private set; }
         public static string PostacFunkcji;
-        Particle[] roj;
-        private static double najlepszaPozycja;
-
-
-        public  Funkcje.FunctionName.Type type { get; private set; }
+        public int dim;//{ get; set; }
+        public double[] NajlepszaPozycja; //= new double[dim];
+        public double NajlepszaFitness = double.MaxValue;
+        public FunctionName.Type type { get; private set; }
         public int populationSize = 40000;
-
         public List<Particle> population = new List<Particle>();
+#endregion
+        Particle[] roj;
+        #region prywatne
+        private static double najlepszaPozycja;
+        private int axisTicks { get; set; }
+        private double entireInterval { get; set; }
+        private double interval { get; set; }
+        private int modelpopulationSize;
+        #endregion
+
 
         #region konstruktory
         public Populacja(FunctionName.Type type)
@@ -56,9 +65,9 @@ namespace PSOTests
         /// <param name="ilCzastek">Ilość cząstek roju</param>
         /// <param name="maxIteracji">maksymalna ilość Iteracji</param>
         /// <param name="Funkcja">Tekstowa postać funkcji do optymalizacji</param>
-        /* public Populacja(Tuple<double, double> dziedzina, int populationSize, int ilCzastek, int maxIteracji, string Funkcja, int dim, FunctionName.Type type)
+         public Populacja(Tuple<double, double> dziedzina, int populationSize, int ilCzastek, int maxIteracji, string Funkcja, int dim, FunctionName.Type type)
          {
-             minX = dziedzina.Item1;
+            minX = dziedzina.Item1;
              maxX = dziedzina.Item2;
              numParticles = ilCzastek;
              maxEpochs = maxIteracji;
@@ -67,7 +76,7 @@ namespace PSOTests
              this.populationSize = populationSize;
 
 
-         }*/
+         }
 
         /// <summary>
         /// 
@@ -77,13 +86,7 @@ namespace PSOTests
 
         #endregion
 
-        private int axisTicks { get; set; }
-        private double entireInterval { get; set; }
-        private double interval { get; set; }
-        public int dim;//{ get; set; }
-        public double[] NajlepszaPozycja; //= new double[dim];
-        public double NajlepszaFitness = double.MaxValue;
-        private int modelpopulationSize;
+        
 
         
         private static double randomPoint(double a, double b)
@@ -156,13 +159,13 @@ namespace PSOTests
 
         public static Populacja Copy()
         {
-            Populacja item = new Populacja();
-            item.maxX = maxX;
-            item.minX = minX;
-            item.populationSize = populationSize;
-            item.type = type;
-            item.dim = dim;
-            return item;
+            
+            /*item.maxX = Populacja.maxX;
+            item.minX = Populacja.minX;
+            item.populationSize = Populacja.populationSize;
+            item.type = Populacja.type;
+            item.dim = Populacja.dim;*/
+            return new Populacja(new Tuple<double,double>(minX,maxX),populationSize,numParticles,maxEpochs,PostacFunkcji,dim,type );
         }
 
 
@@ -188,7 +191,10 @@ namespace PSOTests
                 }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
         internal void ObliczPopulFitness(FunctionName.Type type)
         {
             for (int j = 0; j < population.Count; j++)
@@ -216,6 +222,11 @@ namespace PSOTests
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="error2"></param>
         internal void SetRangeOfPopulation(FunctionName.Type type, double error2)
         {
             switch (type)
@@ -248,7 +259,10 @@ namespace PSOTests
 
             }
         }
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name="type"></param>
         internal void SetRangeOfPopulation(FunctionName.Type type)
         {
             switch (type)

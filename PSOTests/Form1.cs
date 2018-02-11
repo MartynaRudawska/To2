@@ -447,9 +447,9 @@ namespace PSOTests
             for (int i = 0; i < testnumber; ++i)
             {
                 population = new Populacja(PopulationSize, dim, Funkcje.FunctionName.type);
-                population.SetRangeOfPopulation(error);
+                population.SetRangeOfPopulation(Funkcje.FunctionName.type,error);
                 population.GeneratePopulation(dim);
-                population.ObliczPopulFitness();
+                population.ObliczPopulFitness(Funkcje.FunctionName.type);
 
                 List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);//numberIterations, inertiaw
                 tmp.Remove(tmp.Last());
