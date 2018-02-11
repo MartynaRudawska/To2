@@ -22,11 +22,12 @@ namespace PSOTests
         public double maxX { get; private set; }
         public double min { get; private set; }
         public static string PostacFunkcji;
+        public int populationSize { get; private set; }
         public int dim;//{ get; set; }
         public double[] NajlepszaPozycja; //= new double[dim];
         public double NajlepszaFitness = double.MaxValue;
         public Funkcje.FunctionName.Type type { get; private set; }
-        public int populationSize = 40000;
+        //public int populationSize = 40000;
         public List<Particle> population = new List<Particle>();
 #endregion
         Particle[] roj;
@@ -133,7 +134,7 @@ namespace PSOTests
         {
             Populacja item = new Populacja();
             
-            item.maxX = maxX;
+            item.maxX = max;
             item.minX = minX;
             item.populationSize = populationSize;
             item.type = type;
