@@ -58,12 +58,15 @@ namespace PSOTests
         public Populacja() { }
 
         /// <summary>
-        /// Konstruktor algorytmu PSO
+        /// 
         /// </summary>
-        /// <param name="dziedzina">Dziedzina funkcji do optymalizacji</param>
-        /// <param name="ilCzastek">Ilość cząstek roju</param>
-        /// <param name="maxIteracji">maksymalna ilość Iteracji</param>
-        /// <param name="Funkcja">Tekstowa postać funkcji do optymalizacji</param>
+        /// <param name="dziedzina"></param>
+        /// <param name="populationSize"></param>
+        /// <param name="ilCzastek"></param>
+        /// <param name="maxIteracji"></param>
+        /// <param name="Funkcja"></param>
+        /// <param name="dim"></param>
+        /// <param name="type"></param>
          public Populacja(Tuple<double, double> dziedzina, int populationSize, int ilCzastek, int maxIteracji, string Funkcja, int dim, Funkcje.FunctionName.Type type)
          {
             minX = dziedzina.Item1;
@@ -77,50 +80,13 @@ namespace PSOTests
 
          }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="modelpopulationSize"></param>
-        /// <param name="type"></param>
-
         #endregion
-
-        
-
-        
         private static double randomPoint(double a, double b)
         {
             System.Random r = new Random();
 
             return a + r.NextDouble() * (b - a);
         }
-        /*
-        private static double Error(FunctionName.Type PostacFunkcji, double x)
-        {
-            // double trueMin = 0, y = 0.0, xp, xk;
-            switch (PostacFunkcji)
-            {
-                
-                case FunctionName.Type.DeJong1:
-                    DeJong1.setFitness([-5.12][5.12]);
-                    break;
-
-                case FunctionName.Type.Schwefel:
-                    Schwefel.setFitness(population[j]);
-                    break;
-
-                case FunctionName.Type.Rastrigin:
-                    Rastrigin.setFitness(population[j]);
-                    break;
-
-                case FunctionName.Type.Rosenbrock:
-                    Rosenbrock.setFitness(population[j]);
-                    break;
-                    
-
-            }
-        }
-        */
         // Utwórz populacje
         public void GeneratePopulation(int Dim)
         {
@@ -159,13 +125,13 @@ namespace PSOTests
         public static Populacja copy()
         {
             Populacja item = new Populacja();
-            /*
-            item.maxX = Populacja.maxX;
-            item.minX = Populacja.minX;
-            item.populationSize = Populacja.populationSize;
-            item.type = Populacja.type;
-            item.dim = Populacja.dim;*/
-            return new Tuple<double, double, int, int, string, int, int, type>((minX, maxX, numParticles, maxEpochs, PostacFunkcji, populationSize, dim, type);
+            
+            item.maxX = maxX;
+            item.minX = minX;
+            item.populationSize = populationSize;
+            item.type = type;
+            item.dim = dim;
+            return new Populacja(new Tuple<double, double>(minX, maxX), populationSize, numParticles, maxEpochs, PostacFunkcji, type);//Tuple<double, double, int, int, string, int, int, type>((minX, maxX, numParticles, maxEpochs, PostacFunkcji, populationSize, dim, type);
         }
 
 

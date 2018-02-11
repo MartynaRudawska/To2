@@ -360,14 +360,14 @@ namespace PSOTests
             Invoke(new Action(() => ilgraf.Visible = true));
 
             MaxEpoch = new Populacja(MaxEpochSize, Funkcje.FunctionName.type);
-            MaxEpoch.SetRangeOfPopulation();
+            MaxEpoch.SetRangeOfPopulation(Funkcje.FunctionName.type, error);
             MaxEpoch.GenerateGraphPopulation();
-            MaxEpoch.ObliczPopulFitness();
+            MaxEpoch.ObliczPopulFitness(Funkcje.FunctionName.type);
 
             population = new Populacja(PopulationSize, dim, Funkcje.FunctionName.type);
-            population.SetRangeOfPopulation();
+            population.SetRangeOfPopulation(Funkcje.FunctionName.type, error);
             population.GeneratePopulation(dim);
-            population.ObliczPopulFitness();
+            population.ObliczPopulFitness(Funkcje.FunctionName.type);
 
             float[] newData = new float[MaxEpoch.population.Count * 3];
             Parallel.For(0, MaxEpoch.population.Count, i =>
@@ -528,7 +528,7 @@ namespace PSOTests
                 var plot = scena.Add(new ILPlotCube()
                 {
                     ScreenRect = new RectangleF(0, 0, 1, 0.4f),
-                    Childs = { new ILLinePlot(AV.T,lineColor:Color.Yellow),
+                    Children = { new ILLinePlot(AV.T,lineColor:Color.Yellow),
                                 new ILLinePlot(BEST.T,lineColor:Color.Blue),
                                  new ILLinePlot(WORST.T,lineColor:Color.Red),
                     }
@@ -538,7 +538,7 @@ namespace PSOTests
                 var plot1 = scena.Add(new ILPlotCube()
                 {
                     ScreenRect = new RectangleF(0, 0.33f, 1, 0.4f),
-                    Childs = { new ILLinePlot(BGFav.T,lineColor:Color.Yellow),
+                    Children = { new ILLinePlot(BGFav.T,lineColor:Color.Yellow),
                                 new ILLinePlot(BGFbest.T,lineColor:Color.Blue),
                                  new ILLinePlot(BGFworst.T,lineColor:Color.Red),
                     },
