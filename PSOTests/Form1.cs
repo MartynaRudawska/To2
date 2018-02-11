@@ -595,7 +595,7 @@ namespace PSOTests
             avbfitness = new float[1];
             List<Particle> itemList = new List<Particle>();
             population = new Populacja(populationestore.dim);
-            population =populationestore.copy();
+            population =(Populacja)populationestore.Clone();
             foreach (Particle item in populationestore.population)
             {
                 Particle tmp = new Particle(populationestore.dim);

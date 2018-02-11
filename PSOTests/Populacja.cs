@@ -12,7 +12,7 @@ using System.Runtime.Serialization;
 namespace PSOTests
 {
 
-    public class Populacja
+    public class Populacja : ICloneable
     {
 #region publiczne
         public static int numParticles { get; private set; }
@@ -85,8 +85,8 @@ namespace PSOTests
              roj = new Particle[ilCzastek];
              this.populationSize = populationSize;
 
-
-         }
+            //new Populacja(new Tuple<double, double>(minX, maxX), populationSize, numParticles, maxEpochs, PostacFunkcji, type)
+        }
 
         #endregion
         private static double randomPoint(double a, double b)
@@ -94,6 +94,10 @@ namespace PSOTests
             System.Random r = new Random();
 
             return a + r.NextDouble() * (b - a);
+        }
+        public object Clone()
+        {
+            return new Populacja(new Tuple<double, double>(minX, maxX), this.populationSize, numParticles, maxEpochs, PostacFunkcji, dim,this.type);
         }
         // Utwórz populacje
         public void GeneratePopulation(int Dim)
@@ -130,7 +134,7 @@ namespace PSOTests
             }
         }
 
-        public static Populacja copy()
+        /*public static Populacja copy()
         {
             //Populacja item = new Populacja();
             
@@ -141,7 +145,7 @@ namespace PSOTests
             //item.dim = dim;
             return new Populacja(new Tuple<double, double>(minX, maxX), populationSize, numParticles, maxEpochs, PostacFunkcji, type);//Tuple<double, double, int, int, string, int, int, type>((minX, maxX, numParticles, maxEpochs, PostacFunkcji, populationSize, dim, type);
         }
-
+        */
 
 
         public void GenerateGraphPopulation()
