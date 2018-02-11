@@ -157,14 +157,12 @@
             // 
             // resetB
             // 
-            this.resetB.Enabled = false;
-            this.resetB.Location = new System.Drawing.Point(325, 237);
+            this.resetB.Location = new System.Drawing.Point(370, 237);
             this.resetB.Name = "resetB";
             this.resetB.Size = new System.Drawing.Size(75, 23);
             this.resetB.TabIndex = 13;
             this.resetB.Text = "Reset";
             this.resetB.UseVisualStyleBackColor = true;
-            this.resetB.Click += new System.EventHandler(this.resetB_Click);
             // 
             // Form1
             // 

@@ -460,7 +460,7 @@ namespace PSOTests
                 globalmin[i] = (float)tmp.Min((x => x.NajlepszaFitness));
 
 
-                if (Math.Abs(tab[i] - tmp.First().min) < tmp.First().error)
+                if (Math.Abs(tab[i] - tmp.First().min) < tmp.First().exitError)
                     percentsucess++;
 
                 if (i == 0)
@@ -594,13 +594,13 @@ namespace PSOTests
             avfitness = new float[1];
             avbfitness = new float[1];
             List<Particle> itemList = new List<Particle>();
-            populationestore = new Populacja(population.dim);
-            populationestore = population.copy();
+            population = new Populacja(populationestore.dim);
+            population = populationestore.copy();
             foreach (Particle item in populationestore.population)
             {
                 Particle tmp = new Particle(populationestore.dim);
                 Particle.copy(item, tmp);
-                populationestore.population.Add(tmp);
+                population.population.Add(tmp);
             }
 
             model = new Thread(GenGraph2);
@@ -613,6 +613,8 @@ namespace PSOTests
             animace.IsBackground = true;
             animace.Start(tmp1);
         }
+
+
     }
 }
 
