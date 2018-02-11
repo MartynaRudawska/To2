@@ -65,8 +65,8 @@ namespace PSOTests
         public Form1()
         {
             InitializeComponent();
-            dziedzinyFunkcji.Add(" DeJong1 ", new Tuple<double, double>(-5.12, 5.12));
-            dziedzinyFunkcji.Add(" Rosenbrock", new Tuple<double, double>(-2.048, 2.048));
+            dziedzinyFunkcji.Add("DeJong1", new Tuple<double, double>(-5.12, 5.12));
+            dziedzinyFunkcji.Add("Rosenbrock", new Tuple<double, double>(-2.048, 2.048));
             dziedzinyFunkcji.Add("Rastrigin", new Tuple<double, double>(-5.12, 5.12));
             dziedzinyFunkcji.Add("Schwefel", new Tuple<double, double>(-500, 500));
     }
@@ -560,7 +560,7 @@ namespace PSOTests
             avbfitness = new float[1];
             List<Particle> itemList = new List<Particle>();
             population = new Populacja(populationestore.dim);
-            population = populationestore.copy();
+            population = populationestore.Copy();
             foreach (Particle item in populationestore.population)
             {
                 Particle tmp = new Particle(populationestore.dim);

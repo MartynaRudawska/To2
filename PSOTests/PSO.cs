@@ -64,7 +64,7 @@ namespace PSOTests
                 if (item.fitnessValue < NajlepszaFitness)
                 {
                     NajlepszaFitness = item.fitnessValue;
-                    item.parameters.CopyTo(NajlepszaPozycja, 0);
+                    item.position.CopyTo(NajlepszaPozycja, 0);
 
                 }
                 p.NajlepszaPozycja = new double[p.dim];

@@ -17,16 +17,16 @@ namespace PSOTests
     {
         public static int numParticles { get; private set; }
         public static int maxEpochs = 1000;
-        public static double exitError { get; private set; }
-        public static double minX; // problem-dependent
-        public static double maxX;
-        public static double min { get; private set; }
+        public double exitError { get; private set; }
+        public double minX { get; private set; } // problem-dependent
+        public double maxX { get; private set; }
+        public double min { get; private set; }
         public static string PostacFunkcji;
         Particle[] roj;
         private static double najlepszaPozycja;
 
 
-        public Funkcje.FunctionName.Type type { get; private set; }
+        public  Funkcje.FunctionName.Type type { get; private set; }
         public int populationSize = 40000;
 
         public List<Particle> population = new List<Particle>();
@@ -74,7 +74,8 @@ namespace PSOTests
             this.modelpopulationSize = modelpopulationSize;
             this.type = type;
         }
-
+        public Populacja() { }
+#endregion
         
         private int axisTicks { get; set; }
         private double entireInterval { get; set; }
@@ -84,14 +85,14 @@ namespace PSOTests
         public double NajlepszaFitness = double.MaxValue;
         private int modelpopulationSize;
 
-        #endregion
+        
         private static double randomPoint(double a, double b)
         {
-            System.Random r = new System.Random();
+            System.Random r = new Random();
 
             return a + r.NextDouble() * (b - a);
         }
-
+        /*
         private static double Error(FunctionName.Type PostacFunkcji, double x)
         {
             // double trueMin = 0, y = 0.0, xp, xk;
@@ -117,7 +118,7 @@ namespace PSOTests
 
             }
         }
-
+        */
         // Utwórz populacje
         public void GeneratePopulation(int Dim)
         {
@@ -153,7 +154,7 @@ namespace PSOTests
             }
         }
 
-        public static Populacja copy()
+        public static Populacja Copy()
         {
             Populacja item = new Populacja();
             item.maxX = maxX;
@@ -172,7 +173,7 @@ namespace PSOTests
             Random r = new Random();
             double param1;
             double param2;
-            entireInterval = this.maxX - this.minX;
+            entireInterval = maxX - minX;
             axisTicks = (int)Math.Sqrt(this.populationSize) / 2;
             interval = entireInterval / (axisTicks * 2);
 
