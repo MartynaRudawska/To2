@@ -51,3 +51,6 @@ C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizac
 C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.TechnikiOptymalizacjiAGMainWindow.resources
 C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.Properties.Resources.resources
 C:\Users\Ania\Documents\TO\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.csproj.GenerateResource.Cache
+C:\Users\Ania\Documents\To2\TechnikiOptymalizacjiAG\bin\Debug\TechnikiOptymalizacjiAG.exe.config
+C:\Users\Ania\Documents\To2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.exe
+C:\Users\Ania\Documents\To2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.pdb
