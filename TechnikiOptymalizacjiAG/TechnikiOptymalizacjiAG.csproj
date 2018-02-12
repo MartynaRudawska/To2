@@ -76,9 +76,9 @@
     <Compile Include="Crossovers\ThreeParentCrossover.cs" />
     <Compile Include="Crossovers\TwoPointCrossover.cs" />
     <Compile Include="Crossovers\UniformCrossover.cs" />
+    <Compile Include="Funkcje.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="Pomocnicze\FunctionOptimizationSampleController.cs" />
-    <Compile Include="Funkcja.cs" />
     <Compile Include="Pomocnicze\ISampleController.cs" />
     <Compile Include="Pomocnicze\SampleContext.cs" />
     <Compile Include="Pomocnicze\SampleControllerBase.cs" />

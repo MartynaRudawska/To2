@@ -49,12 +49,46 @@ namespace TechnikiOptymalizacjiAG
         #endregion
         #region pola PSO
         PSO optymalizacja;
-        private double maxX;
-        private double minX;
+
+        private Thread animace;
+        private Populacja population { get; set; }
+        private Populacja populationestore { get; set; }
+        private Populacja MaxEpoch;
+
+        private double maxX { get; set; }
+        private double minX { get; set; }
         private short ileCzastek;
         private short maxEpochs;
         private string funkcja;
+
+        private bool _threadPaused = false;
+        private bool thesame = false;
+        private double c1 = 1.49445;
+        private double c2 = 1.49445;
+        private int i = 0;
+        private int j = 0;
+        private int dim = 2;
+        private int MaxEpochSize = 1000;
+        private int testnumber = 100;
+        private int PopulationSize = 20;
+        private int numberIterations = 50;
+        private int nrIteracji = 50;
+        private double inertiaw = 0.75;
+        private double error = 0.005;
+
+        private float[] avfitness = new float[1];
+        private float[] avbfitness = new float[1];
+        private float[] avvelocity = new float[1];
+
+        private bool r1r2 = false;
+        private bool linearinertia = false;
+        private  Form frm;
+
         private Dictionary<string, Tuple<double, double>> dziedzinyFunkcji = new Dictionary<string, Tuple<double, double>>();
+        private Thread model;
+
+        private EventWaitHandle wh = new AutoResetEvent(false);
+
         #endregion
         #region konstruktor
         /// <summary>
@@ -62,10 +96,8 @@ namespace TechnikiOptymalizacjiAG
         /// </summary>
         /// 
 
-
         public TechnikiOptymalizacjiAGMainWindow()
         {
-            InitializeComponent();
             InitializeComponent();
             dziedzinyFunkcji.Add("DeJong1", new Tuple<double, double>(-5.12, 5.12));
             dziedzinyFunkcji.Add("Schwefel)", new Tuple<double, double>(-500, 500));
@@ -74,11 +106,34 @@ namespace TechnikiOptymalizacjiAG
             
         }
         #endregion
+
         private void Form1_Load(object sender, EventArgs e)
         {
             MaxEpochUpDown.Value = MaxEpochUpDown.Minimum;
             ParticleQuantityUpDown.Value = ParticleQuantityUpDown.Minimum;
         }
+
+
+        private void functionButtonSet(bool value)
+        {
+            //Invoke(new Gtk.Action(()                  ?
+            
+                /* Invoke(new Action(() =>
+                 {
+                     _threadPaused = value;
+
+                     StartBtn.Enabled = value;
+
+                 }*/
+                ));
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////                                                                                                          //////
+        /////                   PSO                                                                                   ///////
+        /////                                                                                                        ////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         private void ParticleQuantityUpDown_ValueChanged(object sender, EventArgs e)
         {
@@ -107,6 +162,18 @@ namespace TechnikiOptymalizacjiAG
         {
             funkcja = FunctionSelectionCombo.SelectedItem.ToString();
         }
+
+
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////                                                                                                          //////
+        /////                   Algorytm Genetyczny                                                                   ///////
+        /////                                                                                                        ////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
         #region Metody Algorytmu Genetycznego
 
