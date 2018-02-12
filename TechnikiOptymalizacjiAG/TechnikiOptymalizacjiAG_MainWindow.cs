@@ -92,7 +92,7 @@ namespace TechnikiOptymalizacjiAG
             {
                 ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
                 maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
-                optymalizacja = new PSO(dziedzinyFunkcji[funkcja], ileCzastek, maxEpochs, funkcja);
+               // optymalizacja = new PSO(dziedzinyFunkcji[funkcja], ileCzastek, maxEpochs, funkcja);
                 MessageBox.Show(string.Format("Znalezione minimum to {0} z błędem {1}", PSO.PSOSolution().Item1, PSO.PSOSolution().Item2), "Rezultat optymalizacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else MessageBox.Show("Nie wybrano funkcji do optymalizacji", "BŁĄD!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -117,8 +117,8 @@ namespace TechnikiOptymalizacjiAG
         /// <param name="isResuming">Czy praca algorytmu jest właśnie wznawiana?</param>
         private void RunGAThread(bool isResuming)
         {
-            vbxSample.Sensitive = false;
-            vbxGA.Sensitive = false;
+          //  vbxSample.Sensitive = false;
+            //vbxGA.Sensitive = false;
             m_evolvingThread = isResuming ? new Thread(ResumeGA) : new Thread(StartGA);
             m_evolvingThread.Start();
         }
@@ -153,10 +153,10 @@ namespace TechnikiOptymalizacjiAG
                 m_sampleContext.GA = m_ga;
                 m_ga.GenerationRan += delegate
                 {
-                    Application.Invoke(delegate
+                    /*Application.Invoke(delegate
                     {
                         m_sampleController.Update();
-                    });
+                    });*/
                 };
 
                 m_sampleController.ConfigGA(m_ga);
@@ -193,7 +193,7 @@ namespace TechnikiOptymalizacjiAG
             }
             catch (Exception ex)
             {
-                Application.Invoke(delegate
+                System.Windows.Forms.Application.Invoke(delegate
                 {
                     var msg = new MessageDialog(
                         this,
@@ -221,7 +221,7 @@ namespace TechnikiOptymalizacjiAG
                 });
             }
 
-            Application.Invoke(delegate
+            System.Windows.Forms.Application.Invoke(delegate
             {
                 btnNew.Visible = true;
                 btnResume.Visible = true;
@@ -234,8 +234,28 @@ namespace TechnikiOptymalizacjiAG
         #region Event Handlers
 
         private void Reset_Click(object sender, EventArgs e)
-        {
+        {/*
+            i = 0;
+            j = 0;
 
+            List<Particle> itemList = new List<Particle>();
+            population = new Populacja(populationestore.dim);
+            population = (Populacja)populationestore.Clone();
+            {
+                Particle tmp = new Particle(populationestore.dim);
+                Particle.copy(item, tmp);
+                population.population.Add(tmp);
+            }
+
+            model = new Thread(GenGraph2);
+            model.IsBackground = true;
+            model.Start();
+            List<Populacja> tmp1 = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
+            this.functionButtonSet(false);
+
+            //animace = new Thread(ShowParticleMove);
+            //animace.IsBackground = true;
+            animace.Start(tmp1);*/
         }
 
         private void TimeThresholdUpDown_Click(object sender, EventArgs e)

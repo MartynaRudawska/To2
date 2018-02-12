@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using TechnikiOptymalizacjiAG.Funkcja;
+//using TechnikiOptymalizacjiAG.Funkcje;
 
 namespace TechnikiOptymalizacjiAG
 {
-    public class Particle : Funkcja
+    public class Particle : Funkcje
     {
         public double[] position { get; set; }                  // &parameters
         public double error;
