@@ -171,6 +171,43 @@ namespace TechnikiOptymalizacjiAG
 
         }
 
+        private void GenerateGraph()
+        {
+            //Invoke(new Action(() => ilgraf.Visible = true));
+
+            MaxEpoch = new Populacja(MaxEpochSize, Funkcje.FunctionName.type);
+            MaxEpoch.SetRangeOfPopulation(Funkcje.FunctionName.type, error);
+            MaxEpoch.GenerateGraphPopulation();
+            MaxEpoch.ObliczPopulFitness(Funkcje.FunctionName.type);
+
+            population = new Populacja(PopulationSize, dim, Funkcje.FunctionName.type);
+            population.SetRangeOfPopulation(Funkcje.FunctionName.type, error);
+            population.GeneratePopulation(dim);
+            population.ObliczPopulFitness(Funkcje.FunctionName.type);
+
+            float[] newData = new float[MaxEpoch.population.Count * 3];
+            Parallel.For(0, MaxEpoch.population.Count, i =>
+            {
+                newData[i] = (float)MaxEpoch.population[i].fitnessValue;  // Z
+                newData[i + MaxEpoch.population.Count] = (float)MaxEpoch.population[i].position[0]; // X
+                newData[i + 2 * MaxEpoch.population.Count] = (float)MaxEpoch.population[i].position[1]; // Y
+
+
+            });
+
+            int size = (int)Math.Sqrt(MaxEpoch.population.Count);
+           // data = ILNumerics.ILMath.array(newData, size, size, 3);
+            //surface = new ILSurface(data);
+           // surface.Fill.Markable = false;
+            //surface.Wireframe.Markable = false;
+            //surface.Colormap = Colormaps.Copper;
+            //ILColorbar color = new ILColorbar() { Location = new PointF(.96f, 0.1f) };
+            //surface.Children.Add(color);
+            //this.ShowParticleOnGraph(population);
+            //this.RefreshModel();
+
+        }
+
 
         private void ParticleQuantityUpDown_ValueChanged(object sender, EventArgs e)
         {
