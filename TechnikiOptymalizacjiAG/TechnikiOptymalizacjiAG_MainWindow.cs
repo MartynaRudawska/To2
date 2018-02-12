@@ -125,7 +125,7 @@ namespace TechnikiOptymalizacjiAG
                      StartBtn.Enabled = value;
 
                  }*/
-                ));
+               // ));
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,24 +134,49 @@ namespace TechnikiOptymalizacjiAG
         /////                                                                                                        ////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        public void ShowParticleMove(object obj)
+        {
+            List<Populacja> list = (List<Populacja>)obj;
+
+            int i = 0;
+            foreach (Populacja item in list)
+            {
+                //surface = new ILSurface(data);
+                //surface.Fill.Markable = false;
+                //surface.Wireframe.Markable = false;
+                //this.ShowParticleOnGraph(item, 8);
+                //this.ShowGraphChart(item);
+                //this.ShowCharts(item);
+                //this.RefreshModel();
+
+                if (i < nrIteracji)
+                {
+                    int k = i + 1;
+                    for (int j = 0; j < item.NajlepszaPozycja.Length; ++j)
+                    {
+                        Invoke(new Action(() => richTextPSO.AppendText("Iteracja: " + k.ToString() + "  x" + "[" + j + "]" + "   " + item.NajlepszaPozycja[j] + "\n")));
+                    }
+                    Invoke(new Action(() => richTextPSO.AppendText("    Minimum: " + item.NajlepszaFitness + "\n")));
+                    Invoke(new Action(() => richTextPSO.ScrollToCaret()));
+
+                }
+                // Thread.Sleep(1000);
+
+
+                if (_threadPaused)
+                    wh.WaitOne();
+                ++i;
+            }
+            //Invoke(new Action(() => playPausePictureBox.Visible = false));
+
+        }
+
 
         private void ParticleQuantityUpDown_ValueChanged(object sender, EventArgs e)
         {
             ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
         }
 
-        private void StartBtn_Click(object sender, EventArgs e)
-        {
-            //string f = FunctionSelectionCombo.SelectedItem.ToString();
-            if (!String.IsNullOrEmpty(funkcja) && !funkcja.Equals("Proszę wybrać funkcję do optymalizacji"))
-            {
-                ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
-                maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
-               // optymalizacja = new PSO(dziedzinyFunkcji[funkcja], ileCzastek, maxEpochs, funkcja);
-                MessageBox.Show(string.Format("Znalezione minimum to {0} z błędem {1}", PSO.PSOSolution().Item1, PSO.PSOSolution().Item2), "Rezultat optymalizacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else MessageBox.Show("Nie wybrano funkcji do optymalizacji", "BŁĄD!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
 
         private void MaxEpochUpDown_ValueChanged(object sender, EventArgs e)
         {
@@ -251,7 +276,7 @@ namespace TechnikiOptymalizacjiAG
                 m_ga.Resume();
             });
         }
-        
+
         private void RunGA(System.Action runAction)
         {
             try
@@ -260,7 +285,7 @@ namespace TechnikiOptymalizacjiAG
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.Application.Invoke(delegate
+                /*System.Windows.Forms.Application.Invoke(delegate
                 {
                     var msg = new MessageDialog(
                         this,
@@ -284,22 +309,30 @@ namespace TechnikiOptymalizacjiAG
                         details.Destroy();
                     }
 
-                    msg.Destroy();
-                });
+                msg.Destroy();
+                });*/
             }
 
-            System.Windows.Forms.Application.Invoke(delegate
+           /* System.Windows.Forms.Application.Invoke(delegate
             {
                 btnNew.Visible = true;
                 btnResume.Visible = true;
                 btnStop.Visible = false;
                 vbxGA.Sensitive = true;
-            });
+            });*/
         }
         #endregion
 
         #region Event Handlers
 
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////                                                                                                          //////
+        /////                   Form                                                                                  ///////
+        /////                                                                                                        ////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //reset
         private void Reset_Click(object sender, EventArgs e)
         {/*
             i = 0;
@@ -324,6 +357,108 @@ namespace TechnikiOptymalizacjiAG
             //animace.IsBackground = true;
             animace.Start(tmp1);*/
         }
+
+
+        //start
+        private void StartBtn_Click(object sender, EventArgs e)
+        {
+            //string f = FunctionSelectionCombo.SelectedItem.ToString();
+            // if (!String.IsNullOrEmpty(funkcja) && !funkcja.Equals("Proszę wybrać funkcję do optymalizacji"))
+            // {
+            //     ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
+            //  maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
+            // optymalizacja = new PSO(dziedzinyFunkcji[funkcja], ileCzastek, maxEpochs, funkcja);
+            // MessageBox.Show(string.Format("Znalezione minimum to {0} z błędem {1}", PSO.PSOSolution().Item1, PSO.PSOSolution().Item2), "Rezultat optymalizacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            // else MessageBox.Show("Nie wybrano funkcji do optymalizacji", "BŁĄD!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
+            this.functionButtonSet(false);
+            if (thesame == true)
+            {
+                Reset.Enabled = true;
+            }
+
+            double[] tab = new double[testnumber];
+            float[] sum = new float[numberIterations];
+            float[] best = new float[numberIterations];
+            float[] worst = new float[numberIterations];
+            float[] bgfworst = new float[numberIterations];
+            float[] bgfbest = new float[numberIterations];
+            float[] bgfav = new float[numberIterations];
+
+            float[] globalmin = new float[testnumber];
+            double wynik = 0;
+            double bestresult = 0;
+            double worstresult = 0;
+            double percentsucess = 0;
+            double tmpbest = 0;
+            double tmpworst = 0;
+
+            for (int i = 0; i < testnumber; ++i)
+            {
+                population = new Populacja(PopulationSize, dim, Funkcje.FunctionName.type);
+                population.SetRangeOfPopulation(Funkcje.FunctionName.type, error);
+                population.GeneratePopulation(dim);
+                population.ObliczPopulFitness(Funkcje.FunctionName.type);
+
+                //List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);//numberIterations, inertiaw
+                tmp.Remove(tmp.Last());
+                tab[i] = tmp.Min((x => x.NajlepszaFitness));  //tablica wartości wyników-z tego obliczyc % sukcesów
+                wynik += tab[i];
+                globalmin[i] = (float)tmp.Min((x => x.NajlepszaFitness));
+
+
+                if (Math.Abs(tab[i] - tmp.First().min) < tmp.First().exitError)
+                    percentsucess++;
+
+                if (i == 0)
+                {
+                    tmpbest = tab[i];
+                    tmpworst = tab[i];
+                }
+                int popnumber = 0;
+
+                foreach (Populacja pop in tmp)
+                {
+                    float b = 0;
+                    float c = 0;
+
+                    bgfav[popnumber] += (float)pop.NajlepszaFitness / testnumber;
+                    foreach (Particle item in pop.population)
+                    {
+                        // MessageBox.Show(a.Length.ToString()+"  " +tmp.populationSize.ToString());
+                        b += (float)item.fitnessValue;
+                    }
+                    c = (b / pop.population.Count) / testnumber;
+                    sum[popnumber] += c;
+                    if (tab[i] <= tmpbest)
+                    {
+                        best[popnumber] = b / pop.population.Count;
+                        bgfbest[popnumber] = (float)pop.NajlepszaFitness;
+                        bestresult = pop.NajlepszaFitness;
+                        tmpbest = tab[i];
+                    }
+
+                    if (tab[i] >= tmpworst)
+                    {
+                        worst[popnumber] = b / pop.population.Count;
+                        bgfworst[popnumber] = (float)pop.NajlepszaFitness;
+                        worstresult = pop.NajlepszaFitness;
+                        tmpworst = tab[i];
+                    }
+                    popnumber++;
+
+                }
+            }
+            frm.richTextPSO.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
+            frm.richTextPSO.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
+            frm.richTextPSO.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
+            frm.richTextPSO.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
+
+
+        }
+
 
         private void TimeThresholdUpDown_Click(object sender, EventArgs e)
         {
