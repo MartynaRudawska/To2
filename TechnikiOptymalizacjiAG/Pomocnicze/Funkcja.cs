@@ -7,18 +7,9 @@ using System.Threading.Tasks;
 
 namespace TechnikiOptymalizacjiAG.Pomocnicze
 {
-    class Funkcja
+    public class Funkcje
     {
-        double pt;
-        double y, x, yMin;
-        double xp,xk;                                   //xp- x początkowy      xk- x końcowy
 
-
-   
-        ///<summary>
-        ///random number from a to b
-        ///</summary>
-        ///<returns></returns>
         private static double randomPoint(double a, double b)
         {
             System.Random r = new System.Random();
@@ -26,145 +17,91 @@ namespace TechnikiOptymalizacjiAG.Pomocnicze
             return a + r.NextDouble() * (b - a);
         }
 
-
-
-        ///<summary>
-        ///Banalny sprawdzający
-        ///w przedziale [-3;3]
-        ///</summary>
-        ///<returns></returns>
-        public Tuple<double, double> Banalny()
+        public static class DeJong1
         {
-            //y=2*x^2+x-2
-            xp = -3;
-            xk = 3;
-            yMin=-2.125; // @x=-0.25
-            y = Math.Pow(x, 2) * 2 + x - 2;   
+            public const double minX = -5.12;   // problem-dependent
+            public const double maxX = 5.12;
+            public const double exitError = 0.05;
+            public const double min = 0;
 
-            return new Tuple<double, double>(yMin, y);
-        }
 
-        /// <summary>
-        /// przykład funkcji kwadratowej Sin Cos
-        /// w przedziale [-1;1]
-        /// </summary>
-        /// <returns></returns>
-        public Tuple<double, double> FKwadSinCos()
-        {
-            //f(x) = x^2+sin(3 cos(5 x))
-            y = Math.Pow(randomPoint(xp, xk), 2) + Math.Sin(3 * Math.Cos(5 * randomPoint(xp, xk)));
-            xp = -1;
-            xk = 1;
-            yMin = 0.14112;//@x=0
-            return new Tuple<double, double>(yMin, y);
-            // return yMin;
-        }
-
-        /// <summary>
-        /// Przykład funkcji wielomianowej
-        /// w przedziale [-5;5]
-        /// </summary>
-        /// <returns>Tuple of xMin, gMin</returns>
-        public Tuple<double, double> FWielom()
-        {
-            //g(x)= x^4+x^3-7x^2-5x+10
-            xp = -5;
-            xk = 5;
-
-            y = Math.Pow(randomPoint(xp, xk), 4) + Math.Pow(randomPoint(xp, xk), 3) - 4 * Math.Pow(randomPoint(xp, xk), 2) - 3 * randomPoint(xp, xk) + 5;
-            return new Tuple<double, double>(yMin, y);
-            //return gMin;
-        }
-
-        /// <summary>
-        /// Przykład funkcji sin
-        /// w przedziale [-3;3]
-        /// </summary>
-        /// <returns></returns>
-        public Tuple<double, double> FSin()
-        {
-            //h(x) = sin(2 x)+log_{10}(x^2)
-            xp = -3;
-            xk = 3;
-
-            y = Math.Sin(2 * randomPoint(xp, xk)) + Math.Log10(Math.Pow(randomPoint(xp, xk), 2));
-            return new Tuple<double, double>(yMin, y);
-        }
-
-        /// <summary>
-        /// Przykład funkcji Logarytmicznej
-        /// w przedziale [0;2]
-        /// </summary>
-        /// <returns></returns>
-        public Tuple<double, double> FLogarytmiczne()
-        {
-            //p(x) = abs(log_{10}(x^2))
-            xp = 0;
-            xk = 2;
-
-            y = Math.Abs(Math.Log10(Math.Pow(randomPoint(xp, xk), 2))) + 0.03;
-            return new Tuple<double, double>(yMin, y);
-            //return yMin;
-        }
-    }
-    class Przystosowanie
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="t"></param>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        public double fitness(int[] t, int n) // funkcja przystosowania
-        {
-            double s = 0;
-            for (int i = 0; i < n; i++)
+            public static void setFitness(Particle ind)
             {
-                s += t[i];
-            }
-            return s;
-        }
-    }
-
-    class Funkcje
-    {
-        //miejsce zerowe
-        //f(x)=ax^2+bx+c gdzie a->nie 0      del=b^2-4ac
-
-        double dell, a, b, c;
-        double x0, x1, x2;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dell"></param>
-        /// <returns></returns>
-        public double Del(double dell)
-        {
-            dell = Math.Pow(b, 2) - 4 * a * c;
-            return dell;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dell">'delta' - discriminant</param>
-        /// <returns>Tuple of x1,x2</returns>
-        public Tuple<double, double> MiejsceZer(double dell)
-        {
-            if (dell < 0)
-            {
-                return new Tuple<double, double>(-1, -1); // nie ma miejsca zerowego w R
-            }
-            else if (dell == 0)
-            {
-                x0 = -(b / (2 * a));
-                return new Tuple<double, double>(x0, x0);
-            }
-            else
-            {
-                x1 = (-b + Math.Sqrt(dell)) / 2 * a;
-                x2 = (-b - Math.Sqrt(dell)) / 2 * a;
-                return new Tuple<double, double>(x1, x2);
+                foreach (double position in ind.position)
+                {
+                    ind.fitnessValue += Math.Pow(position, 2);
+                }
             }
         }
+
+        public static class Schwefel
+        {
+            public const double minX = -500;
+            public const double maxX = 500;
+            public const double exitError = 0.05;
+            public const double min = 0;
+
+
+            public static void setFitness(Particle ind)                               //Particle=Individual
+            {
+                double y = 0.0;
+                double n = ind.position.Length;
+                foreach (double randomPoint in ind.position)
+
+                    //f(x)= n E i=o  (x^2_i) 
+
+                    y += (randomPoint * Math.Sin(Math.Sqrt(Math.Abs(randomPoint))));
+                ind.fitnessValue = 418.9829 * n - (y);
+
+            }
+        }
+
+
+        public static class Rosenbrock
+        {
+            public const double minX = -2.048;
+            public const double maxX = 2.048;
+            public const double exitError = 1;
+            public const double min = 0;
+
+            public static void setFitness(Particle ind)
+            {
+
+                //f(x)=n-1 E i=0 [100(x_i+1 - x^2_i)^2+(x^2_i - 1)^2]
+
+                for (int j = 0; j < ind.position.Length - 1; ++j)
+                {
+
+                    ind.fitnessValue += 100 * Math.Pow(ind.position[j + 1] - Math.Pow(ind.position[j], 2), 2) + Math.Pow(1 - ind.position[j], 2);
+                }
+            }
+        }
+
+        public static class Rastrigin
+        {
+            public const double minX = -5.12;
+            public const double maxX = 5.12;
+            public const double exitError = 1;
+            public const double min = 0;
+
+
+            public static void setFitness(Particle ind)
+            {
+
+                //f(x)=10n+ n E i+1 [x^2_i - 10cos(2*pi*x_i)]
+
+                foreach (double parametr in ind.position)
+                    ind.fitnessValue += (Math.Pow(parametr, 2) - 10 * Math.Cos(2 * Math.PI * parametr));
+
+                ind.fitnessValue += 10 * ind.position.Length;
+            }
+        }
+
+        public static class FunctionName
+        {
+            public static Type type { get; set; }
+            public enum Type { DeJong1, Rosenbrock, Rastrigin, Schwefel };
+        }
+
     }
 }
