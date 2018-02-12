@@ -26,3 +26,12 @@ C:\Users\Ania\Documents\TO\GeneticSharp.Domain\bin\Debug\GeneticSharp.Infrastruc
 C:\Users\Ania\Documents\TO\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.csprojResolveAssemblyReference.cache
 C:\Users\Ania\Documents\TO\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.dll
 C:\Users\Ania\Documents\TO\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\GeneticSharp.Domain.xml
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\GeneticSharp.Domain.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\GeneticSharp.Domain.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.pdb

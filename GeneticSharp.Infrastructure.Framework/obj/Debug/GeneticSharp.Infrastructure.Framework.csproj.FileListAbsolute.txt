@@ -11,3 +11,9 @@ C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.In
 C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.csprojResolveAssemblyReference.cache
 C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.dll
 C:\Users\Martyna\Documents\Algorytmy\AnalizaTechnikOptymalizacji\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\bin\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.csprojResolveAssemblyReference.cache
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.pdb

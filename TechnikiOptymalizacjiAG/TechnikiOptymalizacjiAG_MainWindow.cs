@@ -233,7 +233,7 @@ namespace TechnikiOptymalizacjiAG
 
         #region Event Handlers
 
-        private void CompareBtn_Click(object sender, EventArgs e)
+        private void Reset_Click(object sender, EventArgs e)
         {
 
         }

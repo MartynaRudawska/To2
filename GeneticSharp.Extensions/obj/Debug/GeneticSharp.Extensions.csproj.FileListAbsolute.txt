@@ -38,3 +38,16 @@ C:\Users\Ania\Documents\TO\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Infras
 C:\Users\Ania\Documents\TO\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
 C:\Users\Ania\Documents\TO\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.dll
 C:\Users\Ania\Documents\TO\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Extensions.xml
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Extensions.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Extensions.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Domain.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\NCalc.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Domain.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Domain.xml
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.pdb
