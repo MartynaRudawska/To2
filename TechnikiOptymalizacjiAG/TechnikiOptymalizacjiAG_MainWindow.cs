@@ -60,6 +60,9 @@ namespace TechnikiOptymalizacjiAG
         private short ileCzastek;
         private short maxEpochs;
         private string funkcja;
+        private string krzyzowanie;
+        private string selekcja;
+        private int mutacja;
 
         private bool _threadPaused = false;
         private bool thesame = false;
@@ -209,25 +212,6 @@ namespace TechnikiOptymalizacjiAG
         }
 
 
-        private void ParticleQuantityUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
-        }
-
-
-        private void MaxEpochUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
-        }
-
-        private void FunctionSelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            funkcja = FunctionSelectionCombo.SelectedItem.ToString();
-        }
-
-
-
-
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////                                                                                                          //////
         /////                   Algorytm Genetyczny                                                                   ///////
@@ -246,8 +230,8 @@ namespace TechnikiOptymalizacjiAG
         /// <param name="isResuming">Czy praca algorytmu jest właśnie wznawiana?</param>
         private void RunGAThread(bool isResuming)
         {
-          //  vbxSample.Sensitive = false;
-            //vbxGA.Sensitive = false;
+            vbxSample.Sensitive = false;
+            vbxGA.Sensitive = false;
             m_evolvingThread = isResuming ? new Thread(ResumeGA) : new Thread(StartGA);
             m_evolvingThread.Start();
         }
@@ -274,18 +258,18 @@ namespace TechnikiOptymalizacjiAG
                     m_crossover,
                     m_mutation);
 
-               // m_ga.CrossoverProbability = Convert.ToSingle(hslCrossoverProbability.Value);
-                m_ga.MutationProbability = Convert.ToSingle(MutationProbTrackbar.Value);
+                m_ga.CrossoverProbability = Convert.ToSingle(hslCrossoverProbability.Value);
+                m_ga.MutationProbability = Convert.ToSingle(MutationProbTrackbar.Value); // przechwycenie mutacji
                 m_ga.Reinsertion = m_reinsertion;
                 m_ga.Termination = m_termination;
 
                 m_sampleContext.GA = m_ga;
                 m_ga.GenerationRan += delegate
                 {
-                    /*Application.Invoke(delegate
+                    Application.Invoke(delegate
                     {
                         m_sampleController.Update();
-                    });*/
+                    });
                 };
 
                 m_sampleController.ConfigGA(m_ga);
@@ -322,7 +306,7 @@ namespace TechnikiOptymalizacjiAG
             }
             catch (Exception ex)
             {
-                /*System.Windows.Forms.Application.Invoke(delegate
+                System.Windows.Forms.Application.Invoke(delegate
                 {
                     var msg = new MessageDialog(
                         this,
@@ -347,16 +331,16 @@ namespace TechnikiOptymalizacjiAG
                     }
 
                 msg.Destroy();
-                });*/
+                });
             }
 
-           /* System.Windows.Forms.Application.Invoke(delegate
+            System.Windows.Forms.Application.Invoke(delegate
             {
                 btnNew.Visible = true;
                 btnResume.Visible = true;
                 btnStop.Visible = false;
                 vbxGA.Sensitive = true;
-            });*/
+            });
         }
         #endregion
 
@@ -371,7 +355,7 @@ namespace TechnikiOptymalizacjiAG
 
         //reset
         private void Reset_Click(object sender, EventArgs e)
-        {/*
+        {/
             i = 0;
             j = 0;
 
@@ -392,22 +376,24 @@ namespace TechnikiOptymalizacjiAG
 
             //animace = new Thread(ShowParticleMove);
             //animace.IsBackground = true;
-            animace.Start(tmp1);*/
+            animace.Start(tmp1);
         }
 
 
         //start
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            //string f = FunctionSelectionCombo.SelectedItem.ToString();
-            // if (!String.IsNullOrEmpty(funkcja) && !funkcja.Equals("Proszę wybrać funkcję do optymalizacji"))
-            // {
-            //     ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
-            //  maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
-            // optymalizacja = new PSO(dziedzinyFunkcji[funkcja], ileCzastek, maxEpochs, funkcja);
-            // MessageBox.Show(string.Format("Znalezione minimum to {0} z błędem {1}", PSO.PSOSolution().Item1, PSO.PSOSolution().Item2), "Rezultat optymalizacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            // else MessageBox.Show("Nie wybrano funkcji do optymalizacji", "BŁĄD!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            string f = FunctionSelectionCombo.SelectedItem.ToString();
+            string g = SelectionCombo.SelectedItem.ToString();
+            string h = CrossingCombo.SelectedItem.ToString();
+            if (!String.IsNullOrEmpty(funkcja) && !funkcja.Equals("Proszę wybrać funkcję do optymalizacji"))
+            {
+                ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
+              maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
+             //optymalizacja = new PSO(dziedzinyFunkcji[funkcja], ileCzastek, maxEpochs, funkcja);
+            //MessageBox.Show(string.Format("Znalezione minimum to {0} z błędem {1}", PSO.PSOSolution().Item1, PSO.PSOSolution().Item2), "Rezultat optymalizacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+             else MessageBox.Show("Nie wybrano funkcji do optymalizacji", "BŁĄD!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
             this.functionButtonSet(false);
@@ -415,6 +401,17 @@ namespace TechnikiOptymalizacjiAG
             {
                 Reset.Enabled = true;
             }
+
+
+            List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
+            this.functionButtonSet(false);
+            if (thesame == true)
+            {
+                Reset.Enabled = true;
+            }
+
+
+
 
             double[] tab = new double[testnumber];
             float[] sum = new float[numberIterations];
@@ -497,6 +494,42 @@ namespace TechnikiOptymalizacjiAG
         }
 
 
+        private void ParticleQuantityUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
+        }
+
+
+        private void MaxEpochUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
+        }
+
+        //nazwa funkcji
+        private void FunctionSelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            funkcja = FunctionSelectionCombo.SelectedItem.ToString();
+        }
+
+        //wybranie Krzyżowania
+        private void CrossingCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            krzyzowanie = CrossingCombo.SelectedItem.ToString();
+        }
+
+
+        //wybranie Selekcji
+        private void SelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selekcja = SelectionCombo.SelectedItem.ToString();
+        }
+
+        //Mutacja
+        private void MutationProbTrackbar_Scroll(object sender, EventArgs e)
+        {
+            
+        }
+
         private void TimeThresholdUpDown_Click(object sender, EventArgs e)
         {
 
@@ -504,7 +537,7 @@ namespace TechnikiOptymalizacjiAG
 
         private void IterationThresholdUpDown_ValueChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(IterationThresholdUpDown.Value.ToString());
+           // MessageBox.Show(IterationThresholdUpDown.Value.ToString());
         }
 
         private void TimeThresholdUpDown_ValueChanged(object sender, EventArgs e)
@@ -522,24 +555,9 @@ namespace TechnikiOptymalizacjiAG
 
         }
 
-        private void MutationProbTrackbar_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CrossingCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void PopulationMinUpDown_ValueChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(PopulationMinUpDown.Value.ToString());
+            //Console.WriteLine(PopulationMinUpDown.Value.ToString());
         }
 
         private void PopulationMaxUpDown_ValueChanged(object sender, EventArgs e)

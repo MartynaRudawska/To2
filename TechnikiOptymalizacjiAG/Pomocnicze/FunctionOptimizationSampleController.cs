@@ -60,9 +60,12 @@ namespace GeneticSharp.Runner.GtkApp
 		public override ICrossover CreateCrossover()
 		{
 			return new UniformCrossover();
-		}
+            //         TwoPointCrossover();
+            //          ThreeParentCrossover();
+            //          OnePointCrossover();
+        }
 
-		public override IMutation CreateMutation()
+        public override IMutation CreateMutation()
 		{
 			return new FlipBitMutation();
 		}
@@ -70,9 +73,11 @@ namespace GeneticSharp.Runner.GtkApp
 		public override ISelection CreateSelection()
 		{
 			return new EliteSelection();
-		}
+            //TournamentSelection();
+            //RouletteWheelSelection.()
+        }
 
-		public override ITermination CreateTermination()
+        public override ITermination CreateTermination()
 		{
 			return new FitnessStagnationTermination(100);
 		}

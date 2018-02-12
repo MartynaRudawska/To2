@@ -72,11 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crossovers\CrossoverBase.cs" />
+    <Compile Include="Crossovers\Krzyzowanie.cs" />
     <Compile Include="Crossovers\OnePointCrossover.cs" />
     <Compile Include="Crossovers\ThreeParentCrossover.cs" />
     <Compile Include="Crossovers\TwoPointCrossover.cs" />
     <Compile Include="Crossovers\UniformCrossover.cs" />
     <Compile Include="Funkcje.cs" />
+    <Compile Include="GeneticAlgorithm.cs" />
+    <Compile Include="IGeneticAlgorithm.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="Pomocnicze\FunctionOptimizationSampleController.cs" />
     <Compile Include="Pomocnicze\ISampleController.cs" />

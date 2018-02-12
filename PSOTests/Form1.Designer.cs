@@ -154,6 +154,7 @@
             this.resetB.TabIndex = 13;
             this.resetB.Text = "Reset";
             this.resetB.UseVisualStyleBackColor = true;
+            this.resetB.Click += new System.EventHandler(this.resetB_Click_1);
             // 
             // ilgraf
             // 
