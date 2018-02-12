@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 //using System.Math;
 
-namespace TechnikiOptymalizacjiAG.Pomocnicze
+namespace TechnikiOptymalizacjiAG
 {
     public class Funkcje
     {

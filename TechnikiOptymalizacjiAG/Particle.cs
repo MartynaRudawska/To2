@@ -3,11 +3,111 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+//using TechnikiOptymalizacjiAG.Funkcja;
 
 namespace TechnikiOptymalizacjiAG
 {
-    public class Particle
+    public class Particle : Funkcja
     {
+        public double[] position { get; set; }                  // &parameters
+        public double error;
+        public double[] velocity { get; set; }
+        public double[] bestPosition { get; set; }
+        public double bestError;
+        public double pozycja;
+        public double predkosc;
+        public double NajlepszaPozycja { get; set; }                 //&bestPosition
+        public double najlBlad;
+        public double fitnessValue { get; set; }
+        public double bestFitness { get; set; }
+
+
+
+        /// <summary>
+        /// Multi-dimensional 
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <param name="err"></param>
+        /// <param name="vel"></param>
+        /// <param name="bestPos"></param>
+        /// <param name="bestErr"></param>
+        /// 
+       // [Serializable]
+        public Particle()
+        {
+        }
+        public Particle(int dim)
+        {
+            this.position = new double[dim];
+            this.velocity = new double[dim];
+            this.bestPosition = new double[dim];
+
+        }
+
+        public Particle(double param1, double param2)
+        {
+            this.position = new double[2];
+            this.position[0] = param1;
+            this.position[1] = param2;
+
+        }
+        public Particle(double[] param)
+        {
+            this.position = new double[param.Length];
+            param.CopyTo(this.position, 0);
+
+        }
+
+        public Particle(double[] param, double bestFitness, double[] velocity, double[] bestPosition)
+        {
+            this.position = new double[param.Length];
+            param.CopyTo(this.position, 0);
+            this.velocity = new double[param.Length];
+            velocity.CopyTo(this.velocity, 0);
+            this.bestPosition = new double[param.Length];//[bestPosition.Length];
+            bestPosition.CopyTo(this.bestPosition, 0);
+            this.bestFitness = bestFitness;
+        }
+
+        public static void copy(Particle src, Particle dest)
+        {
+            Particle tmp = new Particle(src.position.Length);
+            src.position.CopyTo(dest.position, 0);
+            src.velocity.CopyTo(dest.velocity, 0);
+            src.bestPosition.CopyTo(dest.bestPosition, 0);
+            src.bestPosition.CopyTo(dest.bestPosition, 0);
+            dest.bestFitness = src.bestFitness;
+            dest.fitnessValue = src.fitnessValue;
+
+        }
+
+        public static void ObliczIndiwFitness(Particle ind)
+        {
+            switch (FunctionName.type)
+            {
+                case FunctionName.Type.Schwefel:
+                    Schwefel.setFitness(ind);
+                    break;
+
+                case FunctionName.Type.DeJong1:
+                    DeJong1.setFitness(ind);
+                    break;
+
+                case FunctionName.Type.Rastrigin:
+                    Rastrigin.setFitness(ind);
+                    break;
+
+                case FunctionName.Type.Rosenbrock:
+                    Rosenbrock.setFitness(ind);
+                    break;
+
+            }
+        }
+
+
+
+        /*
         public double[] position;
         public double error;
         public double[] velocity;
@@ -74,6 +174,6 @@ namespace TechnikiOptymalizacjiAG
             s += "==========================\n";
             return s;
         }
-
+        */
     } // Particle
 }

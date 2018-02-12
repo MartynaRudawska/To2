@@ -78,10 +78,11 @@
     <Compile Include="Crossovers\UniformCrossover.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="Pomocnicze\FunctionOptimizationSampleController.cs" />
-    <Compile Include="Pomocnicze\Funkcja.cs" />
+    <Compile Include="Funkcja.cs" />
     <Compile Include="Pomocnicze\ISampleController.cs" />
     <Compile Include="Pomocnicze\SampleContext.cs" />
     <Compile Include="Pomocnicze\SampleControllerBase.cs" />
+    <Compile Include="Populacja.cs" />
     <Compile Include="PSO.cs" />
     <Compile Include="TechnikiOptymalizacjiAG_MainWindow.cs">
       <SubType>Form</SubType>
