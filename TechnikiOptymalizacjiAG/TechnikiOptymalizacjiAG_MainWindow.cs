@@ -157,10 +157,10 @@ namespace TechnikiOptymalizacjiAG
                     int k = i + 1;
                     for (int j = 0; j < item.NajlepszaPozycja.Length; ++j)
                     {
-                        Invoke(new Action(() => richTextPSO.AppendText("Iteracja: " + k.ToString() + "  x" + "[" + j + "]" + "   " + item.NajlepszaPozycja[j] + "\n")));
+                        Invoke(new System.Action(() => richTextPSO.AppendText("Iteracja: " + k.ToString() + "  x" + "[" + j + "]" + "   " + item.NajlepszaPozycja[j] + "\n")));
                     }
-                    Invoke(new Action(() => richTextPSO.AppendText("    Minimum: " + item.NajlepszaFitness + "\n")));
-                    Invoke(new Action(() => richTextPSO.ScrollToCaret()));
+                    Invoke(new System.Action(() => richTextPSO.AppendText("    Minimum: " + item.NajlepszaFitness + "\n")));
+                    Invoke(new System.Action(() => richTextPSO.ScrollToCaret()));
 
                 }
                 // Thread.Sleep(1000);
@@ -258,7 +258,7 @@ namespace TechnikiOptymalizacjiAG
                     m_crossover,
                     m_mutation);
 
-                m_ga.CrossoverProbability = Convert.ToSingle(hslCrossoverProbability.Value);
+                m_ga.CrossoverProbability = 0.75f;//Convert.ToSingle(hslCrossoverProbability.Value);
                 m_ga.MutationProbability = Convert.ToSingle(MutationProbTrackbar.Value); // przechwycenie mutacji
                 m_ga.Reinsertion = m_reinsertion;
                 m_ga.Termination = m_termination;
@@ -266,7 +266,7 @@ namespace TechnikiOptymalizacjiAG
                 m_sampleContext.GA = m_ga;
                 m_ga.GenerationRan += delegate
                 {
-                    Application.Invoke(delegate
+                    Gtk.Application.Invoke(delegate
                     {
                         m_sampleController.Update();
                     });
@@ -306,7 +306,7 @@ namespace TechnikiOptymalizacjiAG
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.Application.Invoke(delegate
+                Invoke(delegate
                 {
                     var msg = new MessageDialog(
                         this,
@@ -334,7 +334,7 @@ namespace TechnikiOptymalizacjiAG
                 });
             }
 
-            System.Windows.Forms.Application.Invoke(delegate
+            Invoke(delegate
             {
                 btnNew.Visible = true;
                 btnResume.Visible = true;
@@ -355,7 +355,7 @@ namespace TechnikiOptymalizacjiAG
 
         //reset
         private void Reset_Click(object sender, EventArgs e)
-        {/
+        {
             i = 0;
             j = 0;
 
@@ -368,9 +368,9 @@ namespace TechnikiOptymalizacjiAG
                 population.population.Add(tmp);
             }
 
-            model = new Thread(GenGraph2);
-            model.IsBackground = true;
-            model.Start();
+            //model = new Thread(GenGraph2);
+            //model.IsBackground = true;
+            //model.Start();
             List<Populacja> tmp1 = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
             this.functionButtonSet(false);
 
@@ -403,7 +403,7 @@ namespace TechnikiOptymalizacjiAG
             }
 
 
-            List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
+            //List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
             this.functionButtonSet(false);
             if (thesame == true)
             {
@@ -485,11 +485,12 @@ namespace TechnikiOptymalizacjiAG
 
                 }
             }
-            frm.richTextPSO.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
-            frm.richTextPSO.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
-            frm.richTextPSO.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
-            frm.richTextPSO.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
+            richTextBox1.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
 
+            richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
+            richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
+            richTextBox1.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
+            
 
         }
 
@@ -569,6 +570,57 @@ namespace TechnikiOptymalizacjiAG
         {
 
         }
+
+        /*private void GenGraph2()
+        {
+            this.ShowParticleOnGraph(population);
+            this.RefreshModel();
+        }
+
+        private void ShowParticleOnGraph(Populacja tmp, int size = 10)
+        {
+            double best = tmp.population.Min(x => x.fitnessValue);
+            foreach (Particle item in tmp.population)
+            {
+                ILArray<float> coords = new float[3];
+                coords[0] = (float)item.position[0];
+                coords[1] = (float)item.position[1];
+                coords[2] = (float)item.fitnessValue;// +1000;
+                ILPoints bod = surface.Add(Shapes.Point);
+                //surface.Colormap = Colormaps.Hot;
+
+                if (item.fitnessValue == best)
+                {
+                    bod.Color = Color.Red;
+                    bod.Size = 10;
+                }
+                else
+                {
+                    bod.Color = Color.Black;
+                    bod.Size = size;
+                }
+
+                bod.Positions.Update(coords);
+                surface.Add(bod);
+            }
+        }
+
+        private void RefreshModel()
+        {
+            Invoke(new System.Action(() =>
+            {
+                scena = new ILScene { new ILPlotCube(twoDMode: false) { surface } };
+
+                if (dim == 2)
+                {
+                    scena.First<ILPlotCube>().Rotation = Matrix4.Rotation(new Vector3(1, 1, 1), 0.3f);
+                }
+                scena.Screen.First<ILLabel>().Visible = false;
+
+                ilgraf.Scene = scena;
+                ilgraf.Refresh();
+            }));
+        }*/
         /* private void FunctionSelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
          {
              MessageBox.Show(FunctionSelectionCombo.SelectedItem.ToString());

@@ -62,7 +62,7 @@ namespace TechnikiOptymalizacjiAG
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.richTextAlGenet = new System.Windows.Forms.RichTextBox();
-            this.richTextPSO = new System.Windows.Forms.RichTextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IterationThresholdUpDown)).BeginInit();
@@ -215,7 +215,7 @@ namespace TechnikiOptymalizacjiAG
             this.Reset.TabIndex = 4;
             this.Reset.Text = "Porównaj";
             this.Reset.UseVisualStyleBackColor = true;
-            this.Reset.Click += new System.EventHandler(this.CompareBtn_Click);
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
             // groupBoxAG
             // 
@@ -460,20 +460,20 @@ namespace TechnikiOptymalizacjiAG
             this.richTextAlGenet.TabIndex = 9;
             this.richTextAlGenet.Text = "";
             // 
-            // richTextPSO
+            // richTextBox1
             // 
-            this.richTextPSO.Location = new System.Drawing.Point(376, 399);
-            this.richTextPSO.Name = "richTextPSO";
-            this.richTextPSO.Size = new System.Drawing.Size(338, 206);
-            this.richTextPSO.TabIndex = 10;
-            this.richTextPSO.Text = "";
+            this.richTextBox1.Location = new System.Drawing.Point(376, 399);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(338, 196);
+            this.richTextBox1.TabIndex = 10;
+            this.richTextBox1.Text = "";
             // 
             // TechnikiOptymalizacjiAGMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 607);
-            this.Controls.Add(this.richTextPSO);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.richTextAlGenet);
             this.Controls.Add(this.groupBoxPSO);
             this.Controls.Add(this.groupBox2);
@@ -539,6 +539,7 @@ namespace TechnikiOptymalizacjiAG
         private System.Windows.Forms.NumericUpDown ParticleQuantityUpDown;
         private System.Windows.Forms.RichTextBox richTextAlGenet;
         private System.Windows.Forms.RichTextBox richTextPSO;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
