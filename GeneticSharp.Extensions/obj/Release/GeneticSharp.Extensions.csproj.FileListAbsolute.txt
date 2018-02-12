@@ -1,0 +1,2 @@
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.csproj.CoreCompileInputs.cache

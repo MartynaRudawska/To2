@@ -57,8 +57,14 @@ namespace TechnikiOptymalizacjiAG
 
         private double maxX { get; set; }
         private double minX { get; set; }
+        /// <summary>
+        /// Ilość cząstek w populacji
+        /// </summary>
         private short ileCzastek;
         private short maxEpochs;
+        /// <summary>
+        /// Tekstowa reprezentacja funkcji
+        /// </summary>
         private string funkcja;
         private string krzyzowanie;
         private string selekcja;
@@ -157,10 +163,10 @@ namespace TechnikiOptymalizacjiAG
                     int k = i + 1;
                     for (int j = 0; j < item.NajlepszaPozycja.Length; ++j)
                     {
-                        Invoke(new System.Action(() => richTextPSO.AppendText("Iteracja: " + k.ToString() + "  x" + "[" + j + "]" + "   " + item.NajlepszaPozycja[j] + "\n")));
+                        Invoke(new System.Action(() => richTextBox1.AppendText("Iteracja: " + k.ToString() + "  x" + "[" + j + "]" + "   " + item.NajlepszaPozycja[j] + "\n")));
                     }
-                    Invoke(new System.Action(() => richTextPSO.AppendText("    Minimum: " + item.NajlepszaFitness + "\n")));
-                    Invoke(new System.Action(() => richTextPSO.ScrollToCaret()));
+                    Invoke(new System.Action(() => richTextBox1.AppendText("    Minimum: " + item.NajlepszaFitness + "\n")));
+                    Invoke(new System.Action(() => richTextBox1.ScrollToCaret()));
 
                 }
                 // Thread.Sleep(1000);
@@ -394,7 +400,7 @@ namespace TechnikiOptymalizacjiAG
             //MessageBox.Show(string.Format("Znalezione minimum to {0} z błędem {1}", PSO.PSOSolution().Item1, PSO.PSOSolution().Item2), "Rezultat optymalizacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
              else MessageBox.Show("Nie wybrano funkcji do optymalizacji", "BŁĄD!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            
             List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
             this.functionButtonSet(false);
             if (thesame == true)
@@ -428,6 +434,11 @@ namespace TechnikiOptymalizacjiAG
             double percentsucess = 0;
             double tmpbest = 0;
             double tmpworst = 0;
+
+            richTextAlGenet.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
+            richTextAlGenet.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
+            richTextAlGenet.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
+            richTextAlGenet.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
 
             for (int i = 0; i < testnumber; ++i)
             {
@@ -626,5 +637,10 @@ namespace TechnikiOptymalizacjiAG
              MessageBox.Show(FunctionSelectionCombo.SelectedItem.ToString());
          }*/
         #endregion
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

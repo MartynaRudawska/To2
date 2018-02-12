@@ -58,3 +58,8 @@ C:\Users\Ania\Documents\To2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymaliza
 C:\Users\Ania\Documents\To2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.TechnikiOptymalizacjiAGMainWindow.resources
 C:\Users\Ania\Documents\To2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.Properties.Resources.resources
 C:\Users\Ania\Documents\To2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.csproj.GenerateResource.Cache
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.TechnikiOptymalizacjiAGMainWindow.resources
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.Properties.Resources.resources
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.csproj.GenerateResource.Cache
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Debug\TechnikiOptymalizacjiAG.csproj.CoreCompileInputs.cache

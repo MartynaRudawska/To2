@@ -203,9 +203,10 @@ namespace TechnikiOptymalizacjiAG
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(36, 30);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(18, 13);
+            this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 2;
-            this.label7.Text = "y=";
+            this.label7.Text = "f(x,y) :";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // Reset
             // 
@@ -462,11 +463,11 @@ namespace TechnikiOptymalizacjiAG
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(376, 399);
+            /*this.richTextBox1.Location = new System.Drawing.Point(376, 399);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(338, 196);
             this.richTextBox1.TabIndex = 10;
-            this.richTextBox1.Text = "";
+            this.richTextBox1.Text = "";*/
             // 
             // TechnikiOptymalizacjiAGMainWindow
             // 
@@ -538,8 +539,8 @@ namespace TechnikiOptymalizacjiAG
         private System.Windows.Forms.NumericUpDown MaxEpochUpDown;
         private System.Windows.Forms.NumericUpDown ParticleQuantityUpDown;
         private System.Windows.Forms.RichTextBox richTextAlGenet;
-        private System.Windows.Forms.RichTextBox richTextPSO;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        //private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

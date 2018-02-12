@@ -1,0 +1,2 @@
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\obj\Release\GeneticSharp.Infrastructure.Threading.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\obj\Release\GeneticSharp.Infrastructure.Threading.csproj.CoreCompileInputs.cache

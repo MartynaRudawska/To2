@@ -51,3 +51,5 @@ C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\bin\Debug\GeneticSharp.Infra
 C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
 C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.dll
 C:\Users\Ania\Documents\To2\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.pdb
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Debug\GeneticSharp.Extensions.csproj.CoreCompileInputs.cache
