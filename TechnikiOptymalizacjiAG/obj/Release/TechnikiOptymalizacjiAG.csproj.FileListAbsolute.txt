@@ -1,0 +1,5 @@
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Release\TechnikiOptymalizacjiAG.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Release\TechnikiOptymalizacjiAG.TechnikiOptymalizacjiAGMainWindow.resources
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Release\TechnikiOptymalizacjiAG.Properties.Resources.resources
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Release\TechnikiOptymalizacjiAG.csproj.GenerateResource.Cache
+E:\sourcefiles\repozytoria\to2\TechnikiOptymalizacjiAG\obj\Release\TechnikiOptymalizacjiAG.csproj.CoreCompileInputs.cache

@@ -56,6 +56,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartThreadPool, Version=2.2.4.0, Culture=neutral, PublicKeyToken=1126fe8b671e8a79, processorArchitecture=MSIL">
+      <HintPath>..\packages\SmartThreadPool.dll.2.2.4\lib\net20\SmartThreadPool.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +165,7 @@
     <None Include="Fitnesses\Fitnesses.cd" />
     <None Include="GeneticSharp.snk" />
     <None Include="Mutations\Mutations.cd" />
+    <None Include="packages.config" />
     <None Include="Populations\Populations.cd" />
     <None Include="Randomizations\Randomizations.cd" />
     <None Include="Selections\Selection.cd" />
