@@ -269,6 +269,8 @@ namespace TechnikiOptymalizacjiAG
                 m_ga.Reinsertion = m_reinsertion;
                 m_ga.Termination = m_termination;
 
+
+
                 m_sampleContext.GA = m_ga;
                 m_ga.GenerationRan += delegate
                 {
@@ -295,6 +297,8 @@ namespace TechnikiOptymalizacjiAG
                 m_ga.Selection = m_selection;
                 m_ga.Crossover = m_crossover;
                 m_ga.Mutation = m_mutation;
+                
+                
                 //m_ga.CrossoverProbability = Convert.ToSingle(hslCrossoverProbability.Value);
                 m_ga.MutationProbability = Convert.ToSingle(MutationProbTrackbar.Value);
                 m_ga.Reinsertion = m_reinsertion;
