@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticSharp.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOTests", "PSOTests\PSOTests.csproj", "{D5C14DF3-26D9-48E6-ACE5-C60250466B37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticSharp.Runner.GtkApp", "GeneticSharp.Runner.GtkApp\GeneticSharp.Runner.GtkApp.csproj", "{3B5D7E7E-28B3-490E-AFF0-A231F246A963}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,14 @@ Global
 		{D5C14DF3-26D9-48E6-ACE5-C60250466B37}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5C14DF3-26D9-48E6-ACE5-C60250466B37}.Release|x86.ActiveCfg = Release|Any CPU
 		{D5C14DF3-26D9-48E6-ACE5-C60250466B37}.Release|x86.Build.0 = Release|Any CPU
+		{3B5D7E7E-28B3-490E-AFF0-A231F246A963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B5D7E7E-28B3-490E-AFF0-A231F246A963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B5D7E7E-28B3-490E-AFF0-A231F246A963}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3B5D7E7E-28B3-490E-AFF0-A231F246A963}.Debug|x86.Build.0 = Debug|Any CPU
+		{3B5D7E7E-28B3-490E-AFF0-A231F246A963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B5D7E7E-28B3-490E-AFF0-A231F246A963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B5D7E7E-28B3-490E-AFF0-A231F246A963}.Release|x86.ActiveCfg = Release|Any CPU
+		{3B5D7E7E-28B3-490E-AFF0-A231F246A963}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

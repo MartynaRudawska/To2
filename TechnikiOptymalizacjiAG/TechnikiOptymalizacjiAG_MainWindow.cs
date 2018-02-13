@@ -236,8 +236,8 @@ namespace TechnikiOptymalizacjiAG
         /// <param name="isResuming">Czy praca algorytmu jest właśnie wznawiana?</param>
         private void RunGAThread(bool isResuming)
         {
-            vbxSample.Sensitive = false;
-            vbxGA.Sensitive = false;
+            //vbxSample.Sensitive = false;
+            //vbxGA.Sensitive = false;
             m_evolvingThread = isResuming ? new Thread(ResumeGA) : new Thread(StartGA);
             m_evolvingThread.Start();
         }
@@ -304,15 +304,115 @@ namespace TechnikiOptymalizacjiAG
             });
         }
 
+        private void PrepareSamples()
+        {
+            //LoadComboBox(cmbSample, TypeHelper.GetDisplayNamesByInterface<ISampleController>());
+            //m_sampleController = TypeHelper.CreateInstanceByName<ISampleController>(cmbSample.ActiveText);
+
+            // Sample context.
+            //var layout = new Pango.Layout(this.PangoContext);
+            //layout.Alignment = Pango.Alignment.Center;
+           // layout.FontDescription = Pango.FontDescription.FromString("Arial 16");
+
+            //m_sampleContext.GC = m_sampleContext.CreateGC(new Gdk.Color(255, 50, 50));
+
+            m_sampleController.Context = m_sampleContext;
+            m_sampleController.Reconfigured += delegate
+            {
+                //ResetSample();
+            };
+
+            //problemConfigWidgetContainer.Add(m_sampleController.CreateConfigWidget());
+            //problemConfigWidgetContainer.ShowAll();
+
+            SetSampleOperatorsToComboxes();
+            //?
+           /* cmbSample.Changed += delegate
+            {
+                m_sampleController = TypeHelper.CreateInstanceByName<ISampleController>(cmbSample.ActiveText);
+                SetSampleOperatorsToComboxes();
+
+                m_sampleController.Context = m_sampleContext;
+                m_sampleController.Reconfigured += delegate
+                {
+                    ResetSample();
+                };
+
+                if (problemConfigWidgetContainer.Children.Length > 0)
+                {
+                    problemConfigWidgetContainer.Children[0].Destroy();
+                }
+
+                problemConfigWidgetContainer.Add(m_sampleController.CreateConfigWidget());
+                problemConfigWidgetContainer.ShowAll();
+
+                ResetBuffer();
+                ResetSample();
+            };*/
+        }
+
+
+        private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<ICrossover> createCrossover, Action<ICrossover> p, object crossingCombo)
+        {
+            throw new NotImplementedException();
+        }
+        //SetSampleOperatorToCombobox(CrossoverService.GetCrossoverTypes, m_sampleController.CreateCrossover, (c) => m_crossover = c, Gtk.ComboBox.CrossingCombo);
+        //zmień operator do Coboboxa( CrossoverService jest to biblioteka GeneticSharp.Domain.Crossovers "Creates the ICrossover's implementation with the specified name.", GetCrossoverTypes zabiera Typ Krzyżowania nazwe itd, wrzuca do tworzenia, przerzucenie parametrów , nazwa comboBoxa);
+        // nie jestem pewna czy to to samo
+
+        private void SetSampleOperatorToCombobox(Func<IList<Type>> getSelectionTypes, Func<ISelection> CreateSelection, Action<ISelection> p, object SelectionCombo)
+        {
+            throw new NotImplementedException();
+        }
+        
+        //SetSampleOperatorToCombobox(SelectionService.GetSelectionTypes, m_sampleController.CreateSelection, (c) => m_selection = c, cmbSelection);
+        
+            
+            private void SetSampleOperatorsToComboxes()
+        {
+            SetSampleOperatorToCombobox(MutationService.GetMutationTypes, m_sampleController.CreateMutation, (c) => m_mutation = c, cmbMutation);
+            SetSampleOperatorToCombobox(TerminationService.GetTerminationTypes, m_sampleController.CreateTermination, (c) => m_termination = c, cmbTermination);
+
+
+        }
+
+        private void SetSampleOperatorToCombobox<TOperator>(Func<IList<Type>> getOperatorTypes, Func<TOperator> getOperator, System.Action<TOperator> setOperator, ComboBox combobox)
+        {
+            var @operator = getOperator();
+            var operatorType = @operator.GetType();
+
+            var opeartorIndex = getOperatorTypes().Select((type, index) => new { type, index }).First(c => c.type.Equals(operatorType)).index;
+            combobox.Active = opeartorIndex;
+            setOperator(@operator);
+        }
+        private void PrepareComboBoxes()
+        {
+            
+               SelectionService.GetSelectionNames,
+               SelectionService.GetSelectionTypeByName,
+               SelectionService.CreateSelectionByName,
+               () => m_selection,
+               (i) => m_selection = i;
+
+            PrepareEditComboBox(
+                cmbCrossover,
+                btnEditCrossover,
+                CrossoverService.GetCrossoverNames,
+                CrossoverService.GetCrossoverTypeByName,
+                CrossoverService.CreateCrossoverByName,
+                () => m_crossover,
+                (i) => m_crossover = i);
+        }
+
         private void RunGA(System.Action runAction)
         {
-            try
-            {
+            //try
+           // {
                 runAction();
-            }
-            catch (Exception ex)
-            {
-                Invoke(delegate
+            //}
+            //catch (Exception ex)
+            //{
+              /*  Invoke(delegate
                 {
                     var msg = new MessageDialog(
                         this,
@@ -346,8 +446,10 @@ namespace TechnikiOptymalizacjiAG
                 btnResume.Visible = true;
                 btnStop.Visible = false;
                 vbxGA.Sensitive = true;
-            });
+            });*/
+
         }
+
         #endregion
 
         #region Event Handlers
@@ -359,7 +461,10 @@ namespace TechnikiOptymalizacjiAG
         /////                                                                                                        ////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
         //reset
+
         private void Reset_Click(object sender, EventArgs e)
         {
             i = 0;
@@ -527,6 +632,7 @@ namespace TechnikiOptymalizacjiAG
         private void CrossingCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             krzyzowanie = CrossingCombo.SelectedItem.ToString();
+
         }
 
 

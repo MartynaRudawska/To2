@@ -457,23 +457,23 @@ namespace TechnikiOptymalizacjiAG
             // 
             this.richTextAlGenet.Location = new System.Drawing.Point(21, 399);
             this.richTextAlGenet.Name = "richTextAlGenet";
-            this.richTextAlGenet.Size = new System.Drawing.Size(343, 206);
+            this.richTextAlGenet.Size = new System.Drawing.Size(343, 220);
             this.richTextAlGenet.TabIndex = 9;
             this.richTextAlGenet.Text = "";
             // 
             // richTextBox1
             // 
-            /*this.richTextBox1.Location = new System.Drawing.Point(376, 399);
+            this.richTextBox1.Location = new System.Drawing.Point(383, 399);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(338, 196);
-            this.richTextBox1.TabIndex = 10;
-            this.richTextBox1.Text = "";*/
+            this.richTextBox1.Size = new System.Drawing.Size(338, 220);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // TechnikiOptymalizacjiAGMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 607);
+            this.ClientSize = new System.Drawing.Size(755, 644);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.richTextAlGenet);
             this.Controls.Add(this.groupBoxPSO);
