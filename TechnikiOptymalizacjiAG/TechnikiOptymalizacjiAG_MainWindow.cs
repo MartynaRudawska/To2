@@ -23,6 +23,7 @@ using GeneticSharp.Runner.GtkApp.Samples;
 using Gdk;
 using Gtk;
 using GeneticSharp.Infrastructure.Framework.Reflection;
+using GeneticSharp.Domain.Chromosomes;
 
 namespace TechnikiOptymalizacjiAG
 {
@@ -33,7 +34,8 @@ namespace TechnikiOptymalizacjiAG
         private IFitness m_fitness;
         private ISelection m_selection;
         private ICrossover m_crossover;
-        private IMutation m_mutation;
+        private IMutation m_mutation = new FlipBitMutation();
+        
         private IReinsertion m_reinsertion;
         private ITermination m_termination;
         private IGenerationStrategy m_generationStrategy;
@@ -253,7 +255,7 @@ namespace TechnikiOptymalizacjiAG
                 m_sampleContext.Population = new Population(
                     Convert.ToInt32(PopulationMinUpDown.Value),
                     Convert.ToInt32(PopulationMaxUpDown.Value),
-                    m_sampleController.CreateChromosome());
+                    m_sampleController.CreateChromosome(new IChromosome.BinaryChromosomeBase));
 
                 m_sampleContext.Population.GenerationStrategy = m_generationStrategy;
 
@@ -267,7 +269,11 @@ namespace TechnikiOptymalizacjiAG
                 m_ga.CrossoverProbability = 0.75f;//Convert.ToSingle(hslCrossoverProbability.Value);
                 m_ga.MutationProbability = Convert.ToSingle(MutationProbTrackbar.Value); // przechwycenie mutacji
                 m_ga.Reinsertion = m_reinsertion;
-                m_ga.Termination = m_termination;
+                m_ga.Termination = m_termination new Termination(
+                    if (System.Windows.Forms.RadioButton.TechnikiOptymalizacjiAF.TimeThresholdRadioBtn.Checked(true))
+                        m_termination = new TimeEvolvingTermination();
+                else
+                    m_termination = new GenerationNumberTermination();
 
 
 
@@ -290,6 +296,7 @@ namespace TechnikiOptymalizacjiAG
         /// </summary>
         private void ResumeGA()
         {
+
             RunGA(() =>
             {
                 m_ga.Population.MinSize = Convert.ToInt32(PopulationMinUpDown.Value);
@@ -297,12 +304,27 @@ namespace TechnikiOptymalizacjiAG
                 m_ga.Selection = m_selection;
                 m_ga.Crossover = m_crossover;
                 m_ga.Mutation = m_mutation;
-                
-                
+
+                float[] globalmin = new float[testnumber];
+                double wynik = 0;
+                double bestresult = 0;
+                double worstresult = 0;
+                double percentsucess = 0;
+                double tmpbest = 0;
+                double tmpworst = 0;
+
                 //m_ga.CrossoverProbability = Convert.ToSingle(hslCrossoverProbability.Value);
                 m_ga.MutationProbability = Convert.ToSingle(MutationProbTrackbar.Value);
                 m_ga.Reinsertion = m_reinsertion;
                 m_ga.Termination = m_termination;
+                richTextBox1.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
+                richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
+                richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
+                richTextBox1.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
+
+
+
+
 
                 m_ga.Resume();
             });
@@ -329,7 +351,7 @@ namespace TechnikiOptymalizacjiAG
             //problemConfigWidgetContainer.Add(m_sampleController.CreateConfigWidget());
             //problemConfigWidgetContainer.ShowAll();
 
-            SetSampleOperatorsToComboxes();
+            //SetSampleOperatorsToComboxes();
             //?
            /* cmbSample.Changed += delegate
             {
@@ -370,15 +392,7 @@ namespace TechnikiOptymalizacjiAG
         }
         
         //SetSampleOperatorToCombobox(SelectionService.GetSelectionTypes, m_sampleController.CreateSelection, (c) => m_selection = c, cmbSelection);
-        
-            
-            private void SetSampleOperatorsToComboxes()
-        {
-            SetSampleOperatorToCombobox(MutationService.GetMutationTypes, m_sampleController.CreateMutation, (c) => m_mutation = c, cmbMutation);
-            SetSampleOperatorToCombobox(TerminationService.GetTerminationTypes, m_sampleController.CreateTermination, (c) => m_termination = c, cmbTermination);
 
-
-        }
 
         private void SetSampleOperatorToCombobox<TOperator>(Func<IList<Type>> getOperatorTypes, Func<TOperator> getOperator, System.Action<TOperator> setOperator, ComboBox combobox)
         {
@@ -389,18 +403,19 @@ namespace TechnikiOptymalizacjiAG
             combobox.Active = opeartorIndex;
             setOperator(@operator);
         }
+
         private void PrepareComboBoxes()
         {
-            
-               SelectionService.GetSelectionNames,
-               SelectionService.GetSelectionTypeByName,
+
+            SelectionService.GetSelectionNames,
+            SelectionService.GetSelectionTypeByName,
                SelectionService.CreateSelectionByName,
                () => m_selection,
                (i) => m_selection = i;
 
             PrepareEditComboBox(
-                cmbCrossover,
-                btnEditCrossover,
+                //cmbCrossover,
+                //btnEditCrossover,
                 CrossoverService.GetCrossoverNames,
                 CrossoverService.GetCrossoverTypeByName,
                 CrossoverService.CreateCrossoverByName,

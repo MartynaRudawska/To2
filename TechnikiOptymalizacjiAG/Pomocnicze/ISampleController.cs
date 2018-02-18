@@ -93,6 +93,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
         /// Draws the sample.
         /// </summary>
         void Draw();
+        
         #endregion
     }
 }
