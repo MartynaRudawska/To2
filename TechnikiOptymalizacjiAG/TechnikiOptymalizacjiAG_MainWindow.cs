@@ -547,7 +547,7 @@ namespace TechnikiOptymalizacjiAG
         }
         else MessageBox.Show("Nie wybrano funkcji do optymalizacji", "BŁĄD!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-        List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
+       // List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
         this.functionButtonSet(false);
         if (thesame == true)
         {
@@ -581,7 +581,7 @@ namespace TechnikiOptymalizacjiAG
         double tmpbest = 0;
         double tmpworst = 0;
 
-        richTextAlGenet.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
+        richTextAlGenet.AppendText("Średnie wartości funkcji: " + wynik / testnumber + "\n" + "\n");
         richTextAlGenet.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
         richTextAlGenet.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
         richTextAlGenet.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
@@ -593,7 +593,7 @@ namespace TechnikiOptymalizacjiAG
             population.GeneratePopulation(dim);
             population.ObliczPopulFitness(Funkcje.FunctionName.type);
 
-            //List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);//numberIterations, inertiaw
+            List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);//numberIterations, inertiaw
             tmp.Remove(tmp.Last());
             tab[i] = tmp.Min((x => x.NajlepszaFitness));  //tablica wartości wyników-z tego obliczyc % sukcesów
             wynik += tab[i];
@@ -642,7 +642,7 @@ namespace TechnikiOptymalizacjiAG
 
             }
         }
-        richTextBox1.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
+        richTextBox1.AppendText("Średnie wartości funkcji: " + wynik / testnumber + "\n" + "\n");
 
         richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
         richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
