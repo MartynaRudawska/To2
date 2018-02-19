@@ -45,3 +45,4 @@ C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Threading\obj\Debug\Gene
 C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Threading\obj\Debug\GeneticSharp.Infrastructure.Threading.pdb
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\obj\Debug\GeneticSharp.Infrastructure.Threading.csprojResolveAssemblyReference.cache
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\obj\Debug\GeneticSharp.Infrastructure.Threading.csproj.CoreCompileInputs.cache
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Threading\bin\Debug\NCalc.dll

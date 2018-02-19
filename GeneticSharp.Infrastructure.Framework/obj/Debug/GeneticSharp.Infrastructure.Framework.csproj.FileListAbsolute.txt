@@ -24,3 +24,6 @@ E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Framework\obj\Debug\G
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.csproj.CoreCompileInputs.cache
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.dll
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Framework\obj\Debug\GeneticSharp.Infrastructure.Framework.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\bin\Debug\NCalc.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\bin\Debug\SmartThreadPool.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Infrastructure.Framework\bin\Debug\SmartThreadPool.pdb

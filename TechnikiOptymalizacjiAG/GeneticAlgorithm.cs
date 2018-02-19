@@ -14,6 +14,7 @@ using GeneticSharp.Infrastructure.Framework.Texts;
 using GeneticSharp.Infrastructure.Framework.Threading;
 using GeneticSharp.Infrastructure.Framework.Commons;
 
+
 namespace GeneticSharp.Domain
 {
     #region Enums
@@ -254,6 +255,8 @@ namespace GeneticSharp.Domain
         public ITaskExecutor TaskExecutor { get; set; }
         #endregion
 
+
+
         #region Methods
 
         /// <summary>
@@ -399,6 +402,7 @@ namespace GeneticSharp.Domain
         /// </summary>
         private void EvaluateFitness()
         {
+
             try
             {
                 var chromosomesWithoutFitness = Population.CurrentGeneration.Chromosomes.Where(c => !c.Fitness.HasValue).ToList();
@@ -424,7 +428,7 @@ namespace GeneticSharp.Domain
                 TaskExecutor.Clear();
             }
 
-            Population.CurrentGeneration.Chromosomes = Population.CurrentGeneration.Chromosomes.OrderByDescending(c => c.Fitness.Value).ToList();
+           Population.CurrentGeneration.Chromosomes = Population.CurrentGeneration.Chromosomes.OrderByDescending(c => c.Fitness.Value).ToList();
         }
 
         /// <summary>

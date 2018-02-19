@@ -87,12 +87,11 @@
     <Compile Include="Crossovers\UniformCrossover.cs" />
     <Compile Include="Funkcje.cs" />
     <Compile Include="GeneticAlgorithm.cs" />
-    <Compile Include="IGeneticAlgorithm.cs" />
     <Compile Include="Particle.cs" />
-    <Compile Include="Pomocnicze\FunctionOptimizationSampleController.cs" />
-    <Compile Include="Pomocnicze\ISampleController.cs" />
-    <Compile Include="Pomocnicze\SampleContext.cs" />
-    <Compile Include="Pomocnicze\SampleControllerBase.cs" />
+    <Compile Include="FunctionOptimizationSampleController.cs" />
+    <Compile Include="ISampleController.cs" />
+    <Compile Include="SampleContext.cs" />
+    <Compile Include="SampleControllerBase.cs" />
     <Compile Include="Populacja.cs" />
     <Compile Include="PSO.cs" />
     <Compile Include="TechnikiOptymalizacjiAG_MainWindow.cs">
@@ -147,7 +146,9 @@
       <Name>GeneticSharp.Infrastructure.Threading</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pomocnicze\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -352,10 +352,10 @@ namespace TechnikiOptymalizacjiAG
                 m_ga.MutationProbability = Convert.ToSingle(MutationProbTrackbar.Value);
             m_ga.Reinsertion = m_reinsertion;
             m_ga.Termination = m_termination;
-            richTextBox1.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
-            richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
-            richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
-            richTextBox1.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
+            richTextAlGenet.AppendText("Średnie wartości funkci: " + wynik / testnumber + "\n" + "\n");
+            richTextAlGenet.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
+            richTextAlGenet.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
+            richTextAlGenet.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
             m_ga.Resume();
         });
     }
@@ -408,7 +408,7 @@ namespace TechnikiOptymalizacjiAG
         }
 
 
-    private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<ICrossover> createCrossover, Action<ICrossover> p, object crossingCombo)
+    private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<ICrossover> createCrossover, Action<ICrossover> p, object CrossingCombo)
     {
         throw new NotImplementedException();
     }
@@ -435,31 +435,36 @@ namespace TechnikiOptymalizacjiAG
         setOperator(@operator);
     }
 
-    private void PrepareComboBoxes()
+   /* private void PrepareComboBoxes()
     {
         PrepareEditComboBox(
-            cmbSelection,
-            btnEditSelection,
+            SelectionCombo,
             SelectionService.GetSelectionNames,
             SelectionService.GetSelectionTypeByName,
             SelectionService.CreateSelectionByName,
             () => m_selection,
-            (i) => m_selection = i);
+            (i) => m_selection = i)
+            ;
 
         PrepareEditComboBox(
-            cmbCrossover,
-            btnEditCrossover,
+            CrossingCombo,
             CrossoverService.GetCrossoverNames,
             CrossoverService.GetCrossoverTypeByName,
             CrossoverService.CreateCrossoverByName,
             () => m_crossover,
-            (i) => m_crossover = i);
-    }
+            (i) => m_crossover = i)
+            ;
+    }*/
 
-        private void PrepareEditComboBox<TItem>(ComboBox comboBox, Button editButton, Func<IList<string>> getNames, Func<string, Type> getTypeByName, Func<string, object[], TItem> createItem, Func<TItem> getItem, Action<TItem> setItem)
+        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], ISelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox comboBox, System.Windows.Forms.Button editButton, Func<IList<string>> getNames, Func<string, Type> getTypeByName, Func<string, object[], TItem> createItem, Func<TItem> getItem, Action<TItem> setItem)
         {
             // ComboBox.
-            LoadComboBox(comboBox, getNames());
+           /* LoadComboBox(comboBox, getNames());
 
             comboBox.Changed += delegate
             {
@@ -481,7 +486,7 @@ namespace TechnikiOptymalizacjiAG
                 var editor = new PropertyEditor(getTypeByName(comboBox.ActiveText), getItem());
                 editor.Run();
                 setItem((TItem)editor.ObjectInstance);
-            };
+            };*/
         }
 
         #endregion
@@ -507,10 +512,12 @@ namespace TechnikiOptymalizacjiAG
         List<Particle> itemList = new List<Particle>();
         population = new Populacja(populationestore.dim);
         population = (Populacja)populationestore.Clone();
-        {
+            foreach (Particle item in populationestore.population)
+            {
             Particle tmp = new Particle(populationestore.dim);
             Particle.copy(item, tmp);
             population.population.Add(tmp);
+
         }
 
         //model = new Thread(GenGraph2);
@@ -791,5 +798,6 @@ namespace TechnikiOptymalizacjiAG
     {
 
     }
+
 }
 }

@@ -45,3 +45,6 @@ E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.csproj.CoreCompileInputs.cache
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.dll
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\obj\Debug\GeneticSharp.Domain.pdb
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\NCalc.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\SmartThreadPool.dll
+C:\Users\Ania\Documents\To2\GeneticSharp.Domain\bin\Debug\SmartThreadPool.pdb

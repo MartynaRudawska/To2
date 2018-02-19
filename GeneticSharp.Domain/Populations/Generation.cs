@@ -54,7 +54,7 @@ namespace GeneticSharp.Domain.Populations
         /// Gets the chromosomes.
         /// </summary>
         /// <value>The chromosomes.</value>
-        public IList<IChromosome> Chromosomes { get; internal set; }
+        public IList<IChromosome> Chromosomes { get; set; }
 
         /// <summary>
         /// Gets the best chromosome.

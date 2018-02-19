@@ -21,12 +21,12 @@ namespace GeneticSharp.Runner.GtkApp
 		private List<KeyValuePair<double, double[]>> m_positions;
 
 		#region implemented abstract members of SampleControllerBase
-		public override Gtk.Widget CreateConfigWidget()
+		/*public override Gtk.Widget CreateConfigWidget()
 		{
 			var container = new VBox();
 
 			return container;
-		}
+		}*/
 
 		public override IFitness CreateFitness()
 		{

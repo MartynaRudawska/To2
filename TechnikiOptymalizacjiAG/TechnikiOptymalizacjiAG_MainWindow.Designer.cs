@@ -149,9 +149,24 @@ namespace TechnikiOptymalizacjiAG
             // TimeThresholdUpDown
             // 
             this.TimeThresholdUpDown.Location = new System.Drawing.Point(57, 48);
+            this.TimeThresholdUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.TimeThresholdUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.TimeThresholdUpDown.Name = "TimeThresholdUpDown";
             this.TimeThresholdUpDown.Size = new System.Drawing.Size(64, 20);
             this.TimeThresholdUpDown.TabIndex = 2;
+            this.TimeThresholdUpDown.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.TimeThresholdUpDown.ValueChanged += new System.EventHandler(this.TimeThresholdUpDown_ValueChanged);
             this.TimeThresholdUpDown.Click += new System.EventHandler(this.TimeThresholdUpDown_Click);
             // 
@@ -187,7 +202,7 @@ namespace TechnikiOptymalizacjiAG
             // 
             this.FunctionSelectionCombo.FormattingEnabled = true;
             this.FunctionSelectionCombo.Items.AddRange(new object[] {
-            "DeJong1",
+            "De Jong1",
             "Rosenbrock",
             "Rastrigin",
             "Schwefel"});
@@ -214,7 +229,7 @@ namespace TechnikiOptymalizacjiAG
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(75, 23);
             this.Reset.TabIndex = 4;
-            this.Reset.Text = "Porównaj";
+            this.Reset.Text = "Reset";
             this.Reset.UseVisualStyleBackColor = true;
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
@@ -357,7 +372,7 @@ namespace TechnikiOptymalizacjiAG
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(120, 116);
+            this.label3.Location = new System.Drawing.Point(126, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 2;

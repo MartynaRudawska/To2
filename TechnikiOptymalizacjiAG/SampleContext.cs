@@ -28,7 +28,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
 
         public Pixmap Buffer { get; set; }
 
-       // public Pango.Layout Layout { get; set; }
+        public Pango.Layout Layout { get; set; }
 
         public Population Population { get; set; }
 
