@@ -16,7 +16,7 @@ namespace GeneticSharp.Domain.Crossovers
 	/// </remarks>
 	/// </summary>
 	[DisplayName("Two-Point")]
-	public class TwoPointCrossover : OnePointCrossover
+	public class MyTwoPointCrossover : MyOnePointCrossover
 	{
 		#region Constructors
 		/// <summary>
@@ -24,7 +24,7 @@ namespace GeneticSharp.Domain.Crossovers
 		/// </summary>
 		/// <param name="swapPointOneGeneIndex">Swap point one gene index.</param>
 		/// <param name="swapPointTwoGeneIndex">Swap point two gene index.</param>
-		public TwoPointCrossover(int swapPointOneGeneIndex, int swapPointTwoGeneIndex)
+		public MyTwoPointCrossover(int swapPointOneGeneIndex, int swapPointTwoGeneIndex)
 		{
 			if (swapPointOneGeneIndex >= swapPointTwoGeneIndex)
 			{
@@ -39,7 +39,7 @@ namespace GeneticSharp.Domain.Crossovers
 		/// <summary>
 		/// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.TwoPointCrossover"/> class.
 		/// </summary>
-		public TwoPointCrossover() : this(0, 1)
+		public MyTwoPointCrossover() : this(0, 1)
 		{
 		}
 		#endregion

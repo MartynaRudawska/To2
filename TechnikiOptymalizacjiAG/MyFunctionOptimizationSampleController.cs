@@ -59,10 +59,10 @@ namespace GeneticSharp.Runner.GtkApp
 
 		public override ICrossover CreateCrossover()
 		{
-			return new UniformCrossover();
-            //         TwoPointCrossover();
-            //          ThreeParentCrossover();
-            //          OnePointCrossover();
+			return new MyUniformCrossover();
+            //         MyTwoPointCrossover();
+            //          MyThreeParentCrossover();
+            //          MyOnePointCrossover();
         }
 
         public override IMutation CreateMutation()

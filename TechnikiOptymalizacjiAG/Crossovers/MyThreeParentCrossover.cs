@@ -14,13 +14,13 @@ namespace GeneticSharp.Domain.Crossovers
     /// </remarks>
     /// </summary>
     [DisplayName("Three Parent")]
-    public class ThreeParentCrossover : CrossoverBase
+    public class MyThreeParentCrossover : MyCrossoverBase
     {
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeParentCrossover"/> class.
         /// </summary>
-        public ThreeParentCrossover()
+        public MyThreeParentCrossover()
             : base(3, 1)
         {
         }

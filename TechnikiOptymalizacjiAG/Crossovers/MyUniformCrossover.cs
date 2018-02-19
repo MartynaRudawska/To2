@@ -14,14 +14,14 @@ namespace GeneticSharp.Domain.Crossovers
     /// <see href="http://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)#Uniform_Crossover_and_Half_Uniform_Crossover">Wikipedia</see>
     /// </summary>
     [DisplayName("Uniform")]
-    public class UniformCrossover : CrossoverBase
+    public class MyUniformCrossover : MyCrossoverBase
     {
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.UniformCrossover"/> class.
         /// </summary>
         /// <param name="mixProbability">The mix probability. he default mix probability is 0.5.</param>
-        public UniformCrossover(float mixProbability)
+        public MyUniformCrossover(float mixProbability)
             : base(2, 2)
         {
             MixProbability = mixProbability;
@@ -33,7 +33,7 @@ namespace GeneticSharp.Domain.Crossovers
         /// The default mix probability is 0.5.
         /// </remarks>
         /// </summary>
-        public UniformCrossover() : this(0.5f)
+        public MyUniformCrossover() : this(0.5f)
         {
         }
         #endregion

@@ -19,13 +19,13 @@ namespace GeneticSharp.Domain.Crossovers
 	/// Have two swap points indexes: 0 and 1.
 	/// <para>
 	/// 1) 
-	/// new OnePointCrossover(0);
+	/// new MyOnePointCrossover(0);
 	/// Children result:
 	/// |0|1|1| and |1|0|0|
 	/// </para>
 	/// <para>
 	/// 2) 
-	/// new OnePointCrossover(1);
+	/// new MyOnePointCrossover(1);
 	/// Children result:
 	/// |0|0|1| and |1|1|0|
 	/// </para>
@@ -33,14 +33,14 @@ namespace GeneticSharp.Domain.Crossovers
 	/// </remarks>
 	/// </summary>
 	[DisplayName("One-Point")]
-    public class OnePointCrossover : CrossoverBase
+    public class MyOnePointCrossover : MyCrossoverBase
     {
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.OnePointCrossover"/> class.
         /// </summary>
         /// <param name="swapPointIndex">Swap point index.</param>
-        public OnePointCrossover(int swapPointIndex) : base(2, 2)
+        public MyOnePointCrossover(int swapPointIndex) : base(2, 2)
         {
             SwapPointIndex = swapPointIndex;
         }
@@ -48,7 +48,7 @@ namespace GeneticSharp.Domain.Crossovers
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.OnePointCrossover"/> class.
         /// </summary>
-        public OnePointCrossover() : this(0)
+        public MyOnePointCrossover() : this(0)
         {
         }
         #endregion
