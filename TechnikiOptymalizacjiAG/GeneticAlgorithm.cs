@@ -62,7 +62,7 @@ namespace GeneticSharp.Domain
     /// </para>
     /// <see href="http://http://en.wikipedia.org/wiki/Genetic_algorithm">Wikipedia</see>
     /// </summary>
-    public sealed class GeneticAlgorithm : IGeneticAlgorithm
+    public sealed class MyGeneticAlgorithm : IGeneticAlgorithm
     {
         #region Constants
         /// <summary>
@@ -91,7 +91,7 @@ namespace GeneticSharp.Domain
         /// <param name="selection">The selection operator.</param>
         /// <param name="crossover">The crossover operator.</param>
         /// <param name="mutation">The mutation operator.</param>
-        public GeneticAlgorithm(
+        public MyGeneticAlgorithm(
                           IPopulation population,
                           IFitness fitness,
                           ISelection selection,

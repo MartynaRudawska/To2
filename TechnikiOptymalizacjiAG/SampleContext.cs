@@ -18,7 +18,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
             GtkWindow = gtkWindow;
         }
 
-        public GeneticAlgorithm GA { get; set; }
+        public MyGeneticAlgorithm GA { get; set; }
 
         public Gdk.Window GdkWindow { get; private set; }
 

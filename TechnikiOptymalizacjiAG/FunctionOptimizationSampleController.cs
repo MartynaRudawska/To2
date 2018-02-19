@@ -82,7 +82,7 @@ namespace GeneticSharp.Runner.GtkApp
 			return new FitnessStagnationTermination(100);
 		}
 
-		public override void ConfigGA(GeneticSharp.Domain.GeneticAlgorithm ga)
+		public override void ConfigGA(GeneticSharp.Domain.MyGeneticAlgorithm ga)
 		{
 			var latestFitness = 0.0;
 

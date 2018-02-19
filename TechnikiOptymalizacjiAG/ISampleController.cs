@@ -77,7 +77,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
 		/// Configure the Genetic Algorithm.
 		/// </summary>
 		/// <param name="ga">The genetic algorithm.</param>
-		void ConfigGA(GeneticAlgorithm ga);
+		void ConfigGA(MyGeneticAlgorithm ga);
 
         /// <summary>
         /// Resets the sample.

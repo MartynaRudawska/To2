@@ -30,7 +30,7 @@ namespace TechnikiOptymalizacjiAG
     public partial class TechnikiOptymalizacjiAGMainWindow : Form
     {
         #region pola genetyczny
-        private GeneticAlgorithm m_ga;
+        private MyGeneticAlgorithm m_ga;
         private IFitness m_fitness;
         private ISelection m_selection;
         private ICrossover m_crossover;
@@ -304,7 +304,7 @@ namespace TechnikiOptymalizacjiAG
                 m_sampleController.Reset();
                 m_sampleContext.Population = new Population(Convert.ToInt32(PopulationMinUpDown.Value),Convert.ToInt32(PopulationMaxUpDown.Value),m_sampleController.CreateChromosome());//new IChromosome.BinaryChromosomeBase());
                 m_sampleContext.Population.GenerationStrategy = m_generationStrategy;
-                m_ga = new GeneticAlgorithm(m_sampleContext.Population,m_fitness,m_selection,m_crossover,m_mutation);
+                m_ga = new MyGeneticAlgorithm(m_sampleContext.Population,m_fitness,m_selection,m_crossover,m_mutation);
 
                 m_ga.CrossoverProbability = 0.75f;//Convert.ToSingle(hslCrossoverProbability.Value);
                 m_ga.MutationProbability = Convert.ToSingle(MutationProbTrackbar.Value); // przechwycenie mutacji
