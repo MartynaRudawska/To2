@@ -434,7 +434,8 @@ namespace TechnikiOptymalizacjiAG
         
         setOperator(@operator);
     }
-
+        /* almost certainly obsolete stuff
+         * 
     private void PrepareComboBoxes()
     {
         PrepareEditComboBox(
@@ -455,20 +456,28 @@ namespace TechnikiOptymalizacjiAG
             () => m_crossover,
             (i) => m_crossover = i);
     }
+        private void LoadComboBox(System.Windows.Forms.ComboBox cmb, IList<string> names)
+        {
+            foreach (var c in names)
+            {
+                cmb.Items.Add(c);
+            }
 
-        private void PrepareEditComboBox<TItem>(ComboBox comboBox, Button editButton, Func<IList<string>> getNames, Func<string, Type> getTypeByName, Func<string, object[], TItem> createItem, Func<TItem> getItem, Action<TItem> setItem)
+            cmb.SelectedIndex = 0;
+        }
+        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox comboBox, System.Windows.Forms.Button editButton, Func<IList<string>> getNames, Func<string, Type> getTypeByName, Func<string, object[], TItem> createItem, Func<TItem> getItem, Action<TItem> setItem)
         {
             // ComboBox.
             LoadComboBox(comboBox, getNames());
 
-            comboBox.Changed += delegate
+            comboBox.SelectedValueChanged += delegate
             {
-                var item = createItem(comboBox.ActiveText, new object[0]);
+                var item = createItem(comboBox.SelectedText, new object[0]);
                 setItem(item);
                 ShowButtonByEditableProperties(editButton, item);
             };
 
-            setItem(createItem(comboBox.ActiveText, new object[0]));
+            setItem(createItem(comboBox.SelectedText, new object[0]));
 
             comboBox.ExposeEvent += delegate
             {
@@ -476,14 +485,15 @@ namespace TechnikiOptymalizacjiAG
             };
 
             // Edit button.
-            editButton.Clicked += delegate
+            editButton.Click += delegate
             {
-                var editor = new PropertyEditor(getTypeByName(comboBox.ActiveText), getItem());
+                var editor = new PropertyEditor(getTypeByName(comboBox.SelectedText), getItem());
                 editor.Run();
                 setItem((TItem)editor.ObjectInstance);
             };
         }
-
+        
+             */
         #endregion
 
         #region Event Handlers
@@ -507,6 +517,7 @@ namespace TechnikiOptymalizacjiAG
         List<Particle> itemList = new List<Particle>();
         population = new Populacja(populationestore.dim);
         population = (Populacja)populationestore.Clone();
+        foreach (Particle item in populationestore.population)
         {
             Particle tmp = new Particle(populationestore.dim);
             Particle.copy(item, tmp);
