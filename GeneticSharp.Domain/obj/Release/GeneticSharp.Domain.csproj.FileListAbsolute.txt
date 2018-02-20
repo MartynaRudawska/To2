@@ -5,3 +5,6 @@ E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\bin\Release\GeneticSharp.Infr
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\obj\Release\GeneticSharp.Domain.csprojResolveAssemblyReference.cache
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\obj\Release\GeneticSharp.Domain.csproj.CoreCompileInputs.cache
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\obj\Release\GeneticSharp.Domain.dll
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\bin\Release\NCalc.dll
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\bin\Release\SmartThreadPool.dll
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Domain\bin\Release\SmartThreadPool.pdb

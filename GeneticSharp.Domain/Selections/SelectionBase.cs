@@ -10,7 +10,7 @@ namespace GeneticSharp.Domain.Selections
     /// <summary>
     /// A base class for selection.
     /// </summary>
-    public abstract class SelectionBase : ISelection
+    public abstract class MySelectionBase : ISelection
     {
         #region Fields
         private int m_minNumberChromosomes;
@@ -18,10 +18,10 @@ namespace GeneticSharp.Domain.Selections
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Selections.SelectionBase"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Selections.MySelectionBase"/> class.
         /// </summary>
         /// <param name="minNumberChromosomes">Minimum number chromosomes support to be selected.</param>
-        protected SelectionBase(int minNumberChromosomes)
+        protected MySelectionBase(int minNumberChromosomes)
         {
             m_minNumberChromosomes = minNumberChromosomes;
         }

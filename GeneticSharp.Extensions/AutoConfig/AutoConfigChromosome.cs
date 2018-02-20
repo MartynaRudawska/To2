@@ -17,8 +17,8 @@ namespace GeneticSharp.Extensions.AutoConfig
     {
         #region Fields
         private static IRandomization s_randomization = RandomizationProvider.Current;
-        private static IList<string> s_availableSelections = SelectionService.GetSelectionNames();
-        private static IList<string> s_availableCrossovers = CrossoverService.GetCrossoverNames();
+        private static IList<string> s_availableSelections = MySelectionService.GetSelectionNames();
+        private static IList<string> s_availableCrossovers = MyCrossoverService.GetCrossoverNames();
         private static IList<string> s_availableMutations = MutationService.GetMutationNames();
         #endregion
 

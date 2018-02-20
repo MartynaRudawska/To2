@@ -13,7 +13,7 @@ namespace GeneticSharp.Domain.Crossovers
     /// <see href="http://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)#Three_parent_crossover">Wikipedia</see>
     /// </remarks>
     /// </summary>
-    [DisplayName("Three Parent")]
+    [DisplayName("3 rodziców")]
     public class MyThreeParentCrossover : MyCrossoverBase
     {
         #region Constructors

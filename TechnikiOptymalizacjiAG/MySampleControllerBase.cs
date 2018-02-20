@@ -57,7 +57,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
         /// <returns>
         /// The crossover.
         /// </returns>
-        public abstract ICrossover CreateCrossover();
+        public abstract MyICrossover CreateCrossover();
 
         /// <summary>
         /// Creates the mutation.
@@ -73,7 +73,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
         /// <returns>
         /// The selection.
         /// </returns>
-        public abstract ISelection CreateSelection();
+        public abstract MyISelection CreateSelection();
 
         /// <summary>
         /// Creates the termination.

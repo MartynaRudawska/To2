@@ -8,7 +8,7 @@ namespace GeneticSharp.Domain.Selections
     /// <summary>
     /// Selection service.
     /// </summary>
-    public static class SelectionService
+    public static class MySelectionService
     {
         #region Methods
         /// <summary>

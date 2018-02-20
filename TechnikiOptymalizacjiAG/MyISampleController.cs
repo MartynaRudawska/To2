@@ -13,7 +13,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
     /// <summary>
     /// Defines an interface for sample controller.
     /// </summary>
-    public interface ISampleController
+    public interface MyISampleController
     {
         #region Events
         /// <summary>
@@ -53,7 +53,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
         /// Creates the crossover.
         /// </summary>
         /// <returns>The crossover.</returns>
-        ICrossover CreateCrossover();
+        MyICrossover CreateCrossover();
 
         /// <summary>
         /// Creates the mutation.
@@ -65,7 +65,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
         /// Creates the selection.
         /// </summary>
         /// <returns>The selection.</returns>
-        ISelection CreateSelection();
+        MyISelection CreateSelection();
 
         /// <summary>
         /// Creates the termination.

@@ -79,6 +79,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crossovers\MyICrossover.cs" />
+    <Compile Include="Crossovers\MyCrossoverException.cs" />
+    <Compile Include="Crossovers\MyCrossoverService.cs" />
     <Compile Include="Crossovers\MyCrossoverBase.cs" />
     <Compile Include="Crossovers\Krzyzowanie.cs" />
     <Compile Include="Crossovers\MyOnePointCrossover.cs" />
@@ -94,6 +97,12 @@
     <Compile Include="MySampleControllerBase.cs" />
     <Compile Include="Populacja.cs" />
     <Compile Include="PSO.cs" />
+    <Compile Include="Selections\MyISelection.cs" />
+    <Compile Include="Selections\MyRouletteWheelSelection.cs" />
+    <Compile Include="Selections\MySelectionBase.cs" />
+    <Compile Include="Selections\MySelectionException.cs" />
+    <Compile Include="Selections\MySelectionService.cs" />
+    <Compile Include="Selections\MyTournamentSelection.cs" />
     <Compile Include="TechnikiOptymalizacjiAG_MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

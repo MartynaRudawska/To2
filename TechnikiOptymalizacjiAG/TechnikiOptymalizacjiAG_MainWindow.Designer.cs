@@ -277,13 +277,13 @@ namespace TechnikiOptymalizacjiAG
             // 
             this.CrossingCombo.FormattingEnabled = true;
             this.CrossingCombo.Items.AddRange(new object[] {
-            "Jedno punktowy",
-            "Dwu Punktowy",
-            "Uniform Crossover",
-            "Three parent"});
+            "Jednopunktowe",
+            "Dwupunktowe",
+            "Jednorodne",
+            "3 rodziców"});
             this.CrossingCombo.Location = new System.Drawing.Point(56, 144);
             this.CrossingCombo.Name = "CrossingCombo";
-            this.CrossingCombo.Size = new System.Drawing.Size(228, 21);
+            this.CrossingCombo.Size = new System.Drawing.Size(239, 21);
             this.CrossingCombo.TabIndex = 12;
             this.CrossingCombo.Text = "Proszę wybrać krzyżowanie do optymalizacji";
             this.CrossingCombo.SelectedIndexChanged += new System.EventHandler(this.CrossingCombo_SelectedIndexChanged);
@@ -294,9 +294,9 @@ namespace TechnikiOptymalizacjiAG
             this.SelectionCombo.Items.AddRange(new object[] {
             "Ruletka",
             "Turniej"});
-            this.SelectionCombo.Location = new System.Drawing.Point(56, 85);
+            this.SelectionCombo.Location = new System.Drawing.Point(56, 81);
             this.SelectionCombo.Name = "SelectionCombo";
-            this.SelectionCombo.Size = new System.Drawing.Size(228, 21);
+            this.SelectionCombo.Size = new System.Drawing.Size(239, 21);
             this.SelectionCombo.TabIndex = 11;
             this.SelectionCombo.Text = "Proszę wybrać selekcje do optymalizacji";
             this.SelectionCombo.SelectedIndexChanged += new System.EventHandler(this.SelectionCombo_SelectedIndexChanged);

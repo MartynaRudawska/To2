@@ -27,7 +27,7 @@ namespace GeneticSharp.Domain.Selections
     /// </remarks>
     /// </summary>
     [DisplayName("Roulette Wheel")]
-    public class RouletteWheelSelection : SelectionBase
+    public class RouletteWheelSelection : MySelectionBase
     {
         #region Constructors
         /// <summary>

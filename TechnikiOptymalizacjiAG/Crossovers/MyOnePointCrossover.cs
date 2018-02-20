@@ -32,7 +32,7 @@ namespace GeneticSharp.Domain.Crossovers
 	/// </example>
 	/// </remarks>
 	/// </summary>
-	[DisplayName("One-Point")]
+	[DisplayName("Jednopunktowe")]
     public class MyOnePointCrossover : MyCrossoverBase
     {
         #region Constructors

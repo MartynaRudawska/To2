@@ -13,7 +13,7 @@ namespace GeneticSharp.Domain.Crossovers
     /// </remarks>
     /// <see href="http://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)#Uniform_Crossover_and_Half_Uniform_Crossover">Wikipedia</see>
     /// </summary>
-    [DisplayName("Uniform")]
+    [DisplayName("Jednorodne")]
     public class MyUniformCrossover : MyCrossoverBase
     {
         #region Constructors

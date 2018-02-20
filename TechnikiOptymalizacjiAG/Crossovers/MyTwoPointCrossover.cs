@@ -15,7 +15,7 @@ namespace GeneticSharp.Domain.Crossovers
 	/// <see href="http://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)#Two-point_crossover">Wikipedia</see>
 	/// </remarks>
 	/// </summary>
-	[DisplayName("Two-Point")]
+	[DisplayName("Dwupunktowe")]
 	public class MyTwoPointCrossover : MyOnePointCrossover
 	{
 		#region Constructors
@@ -28,7 +28,7 @@ namespace GeneticSharp.Domain.Crossovers
 		{
 			if (swapPointOneGeneIndex >= swapPointTwoGeneIndex)
 			{
-				throw new ArgumentOutOfRangeException("swapPointTwoGeneIndex", "The the swap point two index should be greater than swap point one index.");
+                throw new ArgumentOutOfRangeException("IndeksDrugiegoPunktuZmiany", "Indeks drugiego punktu zamiany powinien być większy niż indeks pierwszego punktu zamiany");//The the swap point two index should be greater than swap point one index.");
 			}
 
 			SwapPointOneGeneIndex = swapPointOneGeneIndex;
@@ -76,8 +76,8 @@ namespace GeneticSharp.Domain.Crossovers
 			if (SwapPointTwoGeneIndex >= swapPointsLength)
 			{
 				throw new ArgumentOutOfRangeException(
-					"parents",
-					"The swap point two index is {0}, but there is only {1} genes. The swap should result at least one gene to each sides.".With(SwapPointTwoGeneIndex, parentLength));
+					"Rodzice",
+					"Indeks drugiego punktu zamiany to {0}, ale jest tylko {1} genów. The swap should result at least one gene to each sides.".With(SwapPointTwoGeneIndex, parentLength));
 			}
 
 			return CreateChildren(firstParent, secondParent);

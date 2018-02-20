@@ -13,7 +13,7 @@ namespace GeneticSharp.Domain.Selections
     /// Also know as: Truncation Selection.
     /// </remarks>    
     [DisplayName("Elite")]
-    public sealed class EliteSelection : SelectionBase
+    public sealed class EliteSelection : MySelectionBase
     {
         #region Constructors
         /// <summary>

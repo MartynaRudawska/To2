@@ -9,7 +9,7 @@ namespace GeneticSharp.Domain.Crossovers
     /// <summary>
     /// A base class for crossovers.
     /// </summary>
-    public abstract class MyCrossoverBase : ICrossover
+    public abstract class MyCrossoverBase : MyICrossover
     {
         #region Constructors
         /// <summary>
@@ -83,7 +83,7 @@ namespace GeneticSharp.Domain.Crossovers
 
             if (firstParent.Length < MinChromosomeLength)
             {
-                throw new CrossoverException(
+                throw new MyCrossoverException(
                     this, "A chromosome should have, at least, {0} genes. {1} has only {2} gene.".With(MinChromosomeLength, firstParent.GetType().Name, firstParent.Length));
             }
 

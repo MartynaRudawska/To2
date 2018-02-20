@@ -14,7 +14,7 @@ using Gtk;
 
 namespace GeneticSharp.Runner.GtkApp
 {
-	[DisplayName("Function optimization")]
+	[DisplayName("Optymizacja funkcji")]
 	public class FunctionOptimizationSampleController : SampleControllerBase
 	{
 		private FloatingPointChromosome m_bestChromosome;
@@ -57,7 +57,7 @@ namespace GeneticSharp.Runner.GtkApp
 				new int[] { 0, 0, 0, 0 });
 		}
 
-		public override ICrossover CreateCrossover()
+		public override MyICrossover CreateCrossover()
 		{
 			return new MyUniformCrossover();
             //         MyTwoPointCrossover();
@@ -70,10 +70,9 @@ namespace GeneticSharp.Runner.GtkApp
 			return new FlipBitMutation();
 		}
 
-		public override ISelection CreateSelection()
+		public override MyISelection CreateSelection()
 		{
-			return new EliteSelection();
-            //TournamentSelection();
+			return new MyTournamentSelection();
             //RouletteWheelSelection.()
         }
 

@@ -8,7 +8,7 @@ namespace GeneticSharp.Domain.Crossovers
     /// <summary>
     /// Crossover service.
     /// </summary>
-    public static class CrossoverService
+    public static class MyCrossoverService
     {
         #region Methods
         /// <summary>

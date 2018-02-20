@@ -32,14 +32,14 @@ namespace TechnikiOptymalizacjiAG
         #region pola genetyczny
         private MyGeneticAlgorithm m_ga;
         private IFitness m_fitness;
-        private ISelection m_selection;
-        private ICrossover m_crossover;
+        private MyISelection m_selection;
+        private MyICrossover m_crossover;
         private IMutation m_mutation = new FlipBitMutation();
 
         private IReinsertion m_reinsertion;
         private ITermination m_termination;
         private IGenerationStrategy m_generationStrategy;
-        private ISampleController m_sampleController;
+        private MyISampleController m_sampleController;
         private SampleContext m_sampleContext;
         private Thread m_evolvingThread;
         #endregion
@@ -118,7 +118,7 @@ namespace TechnikiOptymalizacjiAG
         }
         #endregion
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void TechnikiOptymalizacjiAGMainWindow_Load(object sender, EventArgs e)
         {
             MaxEpochUpDown.Value = MaxEpochUpDown.Minimum;
             ParticleQuantityUpDown.Value = ParticleQuantityUpDown.Minimum;
@@ -142,13 +142,13 @@ namespace TechnikiOptymalizacjiAG
              }*/
             // ));
         }
-
+        
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////                                                                                                          //////
         /////                   PSO                                                                                   ///////
         /////                                                                                                        ////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+#region PSO - metody
         public void ShowParticleMove(object obj)
         {
             List<Populacja> list = (List<Populacja>)obj;
@@ -222,7 +222,7 @@ namespace TechnikiOptymalizacjiAG
             //this.RefreshModel();
 
         }
-
+        #endregion
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////                                                                                                          //////
@@ -301,7 +301,7 @@ namespace TechnikiOptymalizacjiAG
 
             RunGA(() =>
             {
-                m_sampleController.Reset();
+                //m_sampleController.Reset();
                 m_sampleContext.Population = new Population(Convert.ToInt32(PopulationMinUpDown.Value),Convert.ToInt32(PopulationMaxUpDown.Value),m_sampleController.CreateChromosome());//new IChromosome.BinaryChromosomeBase());
                 m_sampleContext.Population.GenerationStrategy = m_generationStrategy;
                 m_ga = new MyGeneticAlgorithm(m_sampleContext.Population,m_fitness,m_selection,m_crossover,m_mutation);
@@ -362,7 +362,7 @@ namespace TechnikiOptymalizacjiAG
 
     private void PrepareSamples()
     {
-        //LoadComboBox(cmbSample, TypeHelper.GetDisplayNamesByInterface<ISampleController>());
+        LoadComboBox(FunctionSelectionCombo, TypeHelper.GetDisplayNamesByInterface<MyISampleController>());
         //m_sampleController = TypeHelper.CreateInstanceByName<ISampleController>(cmbSample.ActiveText);
 
         // Sample context.
@@ -408,7 +408,7 @@ namespace TechnikiOptymalizacjiAG
         }
 
 
-    private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<ICrossover> createCrossover, Action<ICrossover> p, object CrossingCombo)
+    private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<MyICrossover> createCrossover, Action<MyICrossover> p, object CrossingCombo)
     {
         throw new NotImplementedException();
     }
@@ -416,7 +416,7 @@ namespace TechnikiOptymalizacjiAG
     //zmień operator do Coboboxa( CrossoverService jest to biblioteka GeneticSharp.Domain.Crossovers "Creates the ICrossover's implementation with the specified name.", GetCrossoverTypes zabiera Typ Krzyżowania nazwe itd, wrzuca do tworzenia, przerzucenie parametrów , nazwa comboBoxa);
     // nie jestem pewna czy to to samo
 
-    private void SetSampleOperatorToCombobox(Func<IList<Type>> getSelectionTypes, Func<ISelection> CreateSelection, Action<ISelection> p, object SelectionCombo)
+    private void SetSampleOperatorToCombobox(Func<IList<Type>> getSelectionTypes, Func<MyISelection> CreateSelection, Action<MyISelection> p, object SelectionCombo)
     {
         throw new NotImplementedException();
     }
@@ -424,7 +424,7 @@ namespace TechnikiOptymalizacjiAG
     //SetSampleOperatorToCombobox(SelectionService.GetSelectionTypes, m_sampleController.CreateSelection, (c) => m_selection = c, cmbSelection);
 
 
-    private void SetSampleOperatorToCombobox<TOperator>(Func<IList<Type>> getOperatorTypes, Func<TOperator> getOperator, System.Action<TOperator> setOperator, System.Windows.Forms.ComboBox combobox)
+    private void SetSampleOperatorToCombobox<TOperator>(Func<IList<Type>> getOperatorTypes, Func<TOperator> getOperator, Action<TOperator> setOperator, System.Windows.Forms.ComboBox combobox)
     {
         var @operator = getOperator();
         var operatorType = @operator.GetType();
@@ -435,59 +435,68 @@ namespace TechnikiOptymalizacjiAG
         setOperator(@operator);
     }
 
-   /* private void PrepareComboBoxes()
+    private void PrepareComboBoxes()
     {
-        PrepareEditComboBox(
-            SelectionCombo,
-            SelectionService.GetSelectionNames,
-            SelectionService.GetSelectionTypeByName,
-            SelectionService.CreateSelectionByName,
-            () => m_selection,
-            (i) => m_selection = i)
-            ;
+            PrepareEditComboBox(
+                SelectionCombo,
+                MySelectionService.GetSelectionNames,
+                MySelectionService.GetSelectionTypeByName,
+                MySelectionService.CreateSelectionByName,
+                () => m_selection,
+                (i) => m_selection = i);
 
-        PrepareEditComboBox(
-            CrossingCombo,
-            CrossoverService.GetCrossoverNames,
-            CrossoverService.GetCrossoverTypeByName,
-            CrossoverService.CreateCrossoverByName,
-            () => m_crossover,
-            (i) => m_crossover = i)
-            ;
-    }*/
 
-        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], ISelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
+            PrepareEditComboBox(
+                CrossingCombo,
+                MyCrossoverService.GetCrossoverNames,
+                MyCrossoverService.GetCrossoverTypeByName,
+                MyCrossoverService.CreateCrossoverByName,
+                () => m_crossover,
+                (i) => m_crossover = i);
+    }
+
+        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], MyISelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
         {
             throw new NotImplementedException();
+        }
+
+        private void LoadComboBox(System.Windows.Forms.ComboBox cmb, IList<string> names)
+        {
+            foreach (var c in names)
+            {
+                cmb.Items.Add(c);
+            }
+
+            cmb.SelectedIndex = 0;
         }
 
         private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox comboBox, System.Windows.Forms.Button editButton, Func<IList<string>> getNames, Func<string, Type> getTypeByName, Func<string, object[], TItem> createItem, Func<TItem> getItem, Action<TItem> setItem)
         {
             // ComboBox.
-           /* LoadComboBox(comboBox, getNames());
+            LoadComboBox(comboBox, getNames());
 
-            comboBox.Changed += delegate
+            /*comboBox.SelectedValueChanged += delegate
             {
-                var item = createItem(comboBox.ActiveText, new object[0]);
+                var item = createItem(comboBox.SelectedText, new object[0]);
                 setItem(item);
                 ShowButtonByEditableProperties(editButton, item);
             };
+            */
+            setItem(createItem(comboBox.SelectedText, new object[0]));
 
-            setItem(createItem(comboBox.ActiveText, new object[0]));
-
-            comboBox.ExposeEvent += delegate
+            /*comboBox.ExposeEvent += delegate
             {
                 ShowButtonByEditableProperties(editButton, getItem());
             };
 
             // Edit button.
-            editButton.Clicked += delegate
+            editButton.Click += delegate
             {
-                var editor = new PropertyEditor(getTypeByName(comboBox.ActiveText), getItem());
+                var editor = new PropertyEditor(getTypeByName(comboBox.SelectedText), getItem());
                 editor.Run();
                 setItem((TItem)editor.ObjectInstance);
             };*/
-        }
+        }/**/
 
         #endregion
 
@@ -535,6 +544,7 @@ namespace TechnikiOptymalizacjiAG
     //start
     private void StartBtn_Click(object sender, EventArgs e)
     {
+        RunGAThread(false);
         string f = FunctionSelectionCombo.SelectedItem.ToString();
         string g = SelectionCombo.SelectedItem.ToString();
         string h = CrossingCombo.SelectedItem.ToString();
@@ -553,18 +563,7 @@ namespace TechnikiOptymalizacjiAG
         {
             Reset.Enabled = true;
         }
-
-
-        //List<Populacja> tmp = new PSO(numberIterations, inertiaw, c1, c2, r1r2, linearinertia).PSOALG(population);
-        this.functionButtonSet(false);
-        if (thesame == true)
-        {
-            Reset.Enabled = true;
-        }
-
-
-
-
+        
         double[] tab = new double[testnumber];
         float[] sum = new float[numberIterations];
         float[] best = new float[numberIterations];
@@ -643,7 +642,6 @@ namespace TechnikiOptymalizacjiAG
             }
         }
         richTextBox1.AppendText("Średnie wartości funkcji: " + wynik / testnumber + "\n" + "\n");
-
         richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
         richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
         richTextBox1.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
@@ -654,13 +652,13 @@ namespace TechnikiOptymalizacjiAG
 
     private void ParticleQuantityUpDown_ValueChanged(object sender, EventArgs e)
     {
-        ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
+        //ileCzastek = Convert.ToInt16(ParticleQuantityUpDown.Value);
     }
 
 
     private void MaxEpochUpDown_ValueChanged(object sender, EventArgs e)
     {
-        maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
+       // maxEpochs = Convert.ToInt16(MaxEpochUpDown.Value);
     }
 
     //nazwa funkcji
@@ -729,11 +727,6 @@ namespace TechnikiOptymalizacjiAG
     }
 
     private void PopulationMaxUpDown_ValueChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    private void TechnikiOptymalizacjiAGMainWindow_Load(object sender, EventArgs e)
     {
 
     }

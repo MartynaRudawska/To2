@@ -17,7 +17,7 @@ namespace GeneticSharp.Domain.Selections
 	/// </remarks>
 	/// </summary>
 	[DisplayName("Tournament")]
-    public class TournamentSelection : SelectionBase
+    public class TournamentSelection : MySelectionBase
     {
         #region Constructors
         /// <summary>
