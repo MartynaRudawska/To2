@@ -62,7 +62,7 @@ namespace TechnikiOptymalizacjiAG
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.richTextAlGenet = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextPSO = new System.Windows.Forms.RichTextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IterationThresholdUpDown)).BeginInit();
@@ -184,9 +184,10 @@ namespace TechnikiOptymalizacjiAG
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(37, 17);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.Size = new System.Drawing.Size(82, 13);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Timer";
+            this.label9.Text = "Timer [sekundy]";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // StartBtn
             // 
@@ -276,11 +277,6 @@ namespace TechnikiOptymalizacjiAG
             // CrossingCombo
             // 
             this.CrossingCombo.FormattingEnabled = true;
-            this.CrossingCombo.Items.AddRange(new object[] {
-            "Jednopunktowe",
-            "Dwupunktowe",
-            "Jednorodne",
-            "3 rodziców"});
             this.CrossingCombo.Location = new System.Drawing.Point(56, 144);
             this.CrossingCombo.Name = "CrossingCombo";
             this.CrossingCombo.Size = new System.Drawing.Size(239, 21);
@@ -476,20 +472,20 @@ namespace TechnikiOptymalizacjiAG
             this.richTextAlGenet.TabIndex = 9;
             this.richTextAlGenet.Text = "";
             // 
-            // richTextBox1
+            // richTextPSO
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(383, 399);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(338, 220);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextPSO.Location = new System.Drawing.Point(383, 399);
+            this.richTextPSO.Name = "richTextPSO";
+            this.richTextPSO.Size = new System.Drawing.Size(338, 220);
+            this.richTextPSO.TabIndex = 0;
+            this.richTextPSO.Text = "";
             // 
             // TechnikiOptymalizacjiAGMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 644);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextPSO);
             this.Controls.Add(this.richTextAlGenet);
             this.Controls.Add(this.groupBoxPSO);
             this.Controls.Add(this.groupBox2);
@@ -554,7 +550,7 @@ namespace TechnikiOptymalizacjiAG
         private System.Windows.Forms.NumericUpDown MaxEpochUpDown;
         private System.Windows.Forms.NumericUpDown ParticleQuantityUpDown;
         private System.Windows.Forms.RichTextBox richTextAlGenet;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextPSO;
         //private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

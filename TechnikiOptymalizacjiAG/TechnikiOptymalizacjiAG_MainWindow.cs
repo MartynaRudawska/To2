@@ -97,7 +97,7 @@ namespace TechnikiOptymalizacjiAG
         private Form frm;
 
         private Dictionary<string, Tuple<double, double>> dziedzinyFunkcji = new Dictionary<string, Tuple<double, double>>();
-        private Thread model;
+        private Thread pso_thread;
 
         private EventWaitHandle wh = new AutoResetEvent(false);
 
@@ -154,7 +154,7 @@ namespace TechnikiOptymalizacjiAG
         /////                   PSO                                                                                   ///////
         /////                                                                                                        ////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#region PSO - metody
+        #region PSO - metody
         public void ShowParticleMove(object obj)
         {
             List<Populacja> list = (List<Populacja>)obj;
@@ -175,10 +175,10 @@ namespace TechnikiOptymalizacjiAG
                     int k = i + 1;
                     for (int j = 0; j < item.NajlepszaPozycja.Length; ++j)
                     {
-                        Invoke(new System.Action(() => richTextBox1.AppendText("Iteracja: " + k.ToString() + "  x" + "[" + j + "]" + "   " + item.NajlepszaPozycja[j] + "\n")));
+                        Invoke(new System.Action(() => richTextPSO.AppendText("Iteracja: " + k.ToString() + "  x" + "[" + j + "]" + "   " + item.NajlepszaPozycja[j] + "\n")));
                     }
-                    Invoke(new System.Action(() => richTextBox1.AppendText("    Minimum: " + item.NajlepszaFitness + "\n")));
-                    Invoke(new System.Action(() => richTextBox1.ScrollToCaret()));
+                    Invoke(new System.Action(() => richTextPSO.AppendText("    Minimum: " + item.NajlepszaFitness + "\n")));
+                    Invoke(new System.Action(() => richTextPSO.ScrollToCaret()));
 
                 }
                 // Thread.Sleep(1000);
@@ -228,8 +228,29 @@ namespace TechnikiOptymalizacjiAG
             //this.RefreshModel();
 
         }
-        #endregion
+        
+        private void RunPSOThread()
+        {
+            pso_thread = new Thread(RunPSO);
+        }
 
+        private void RunPSO()
+        {
+            //throw new NotImplementedException();
+            try
+            {
+                //runAction();
+            }
+            catch (Exception ex)
+            {
+                DialogResult r = MessageBox.Show(this, ex.Message, "Wystąpił błąd w trakcie pracy algorytmu PSO", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                if (r == DialogResult.Yes)
+                {
+                    MessageBox.Show(this, ex.StackTrace, "Błąd w trakcie pracy algorytmu PSO - Stack Trace", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
+            }
+        }
+        #endregion
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////                                                                                                          //////
         /////                   Algorytm Genetyczny                                                                   ///////
@@ -442,10 +463,10 @@ namespace TechnikiOptymalizacjiAG
                 (i) => m_crossover = i);
     }
 
-        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], IMyISelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
+        /*private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], IMyISelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
         {
             throw new NotImplementedException();
-        }
+        }*/
 
         private void LoadComboBox(System.Windows.Forms.ComboBox cmb, IList<string> names)
         {
@@ -457,7 +478,7 @@ namespace TechnikiOptymalizacjiAG
             cmb.SelectedIndex = 0;
         }
 
-        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox comboBox, System.Windows.Forms.Button editButton, Func<IList<string>> getNames, Func<string, Type> getTypeByName, Func<string, object[], TItem> createItem, Func<TItem> getItem, Action<TItem> setItem)
+        private void PrepareEditComboBox<TItem>(ComboBox comboBox, Func<IList<string>> getNames, Func<string, Type> getTypeByName, Func<string, object[], TItem> createItem, Func<TItem> getItem, Action<TItem> setItem)
         {
             // ComboBox.
             LoadComboBox(comboBox, getNames());
@@ -628,10 +649,10 @@ namespace TechnikiOptymalizacjiAG
 
             }
         }
-        richTextBox1.AppendText("Średnie wartości funkcji: " + wynik / testnumber + "\n" + "\n");
-        richTextBox1.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
-        richTextBox1.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
-        richTextBox1.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
+        richTextPSO.AppendText("Średnie wartości funkcji: " + wynik / testnumber + "\n" + "\n");
+        richTextPSO.AppendText("Najlepsza wartość funkcji: " + bestresult + "\n" + "\n");
+        richTextPSO.AppendText("Najgorsza wartość funkcji: " + worstresult + "\n" + "\n");
+        richTextPSO.AppendText("Procent sukcesu: " + percentsucess / testnumber * 100 + "%" + "\n" + "\n");
 
 
     }
@@ -807,5 +828,9 @@ namespace TechnikiOptymalizacjiAG
 
     }
 
-}
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
