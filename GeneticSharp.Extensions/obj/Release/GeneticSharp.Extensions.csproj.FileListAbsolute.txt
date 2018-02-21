@@ -1,5 +1,3 @@
-E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
-E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.csproj.CoreCompileInputs.cache
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\bin\Release\GeneticSharp.Extensions.xml
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\bin\Release\GeneticSharp.Extensions.dll
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\bin\Release\GeneticSharp.Extensions.pdb
@@ -10,5 +8,7 @@ E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\bin\Release\SmartThreadPo
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\bin\Release\GeneticSharp.Infrastructure.Framework.pdb
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\bin\Release\GeneticSharp.Infrastructure.Framework.xml
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\bin\Release\SmartThreadPool.pdb
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.csprojResolveAssemblyReference.cache
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.csproj.CoreCompileInputs.cache
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.dll
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Extensions\obj\Release\GeneticSharp.Extensions.pdb

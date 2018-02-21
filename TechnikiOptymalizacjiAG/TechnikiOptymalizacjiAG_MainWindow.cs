@@ -18,12 +18,13 @@ using GeneticSharp.Domain.Reinsertions;
 using GeneticSharp.Domain.Terminations;
 using GeneticSharp.Domain.Populations;
 using System.Threading;
-using GeneticSharp.Runner.GtkApp;
-using GeneticSharp.Runner.GtkApp.Samples;
-using Gdk;
-using Gtk;
+//using GeneticSharp.Runner.GtkApp;
+//using GeneticSharp.Runner.GtkApp.Samples;
+//using Gdk;
+//using Gtk;
 using GeneticSharp.Infrastructure.Framework.Reflection;
 using GeneticSharp.Domain.Chromosomes;
+//using GeneticSharp.Runner.GtkApp.Samples;
 
 namespace TechnikiOptymalizacjiAG
 {
@@ -32,15 +33,15 @@ namespace TechnikiOptymalizacjiAG
         #region pola genetyczny
         private MyGeneticAlgorithm m_ga;
         private IFitness m_fitness;
-        private MyISelection m_selection;
-        private MyICrossover m_crossover;
+        private IMyISelection m_selection;
+        private IMyICrossover m_crossover;
         private IMutation m_mutation = new FlipBitMutation();
 
         private IReinsertion m_reinsertion;
         private ITermination m_termination;
         private IGenerationStrategy m_generationStrategy;
-        private MyISampleController m_sampleController;
-        private SampleContext m_sampleContext;
+        private IMyISampleController m_sampleController;
+        private MySampleContext m_sampleContext;
         private Thread m_evolvingThread;
         #endregion
         #region konstruktor
@@ -126,6 +127,11 @@ namespace TechnikiOptymalizacjiAG
 
             IterationThresholdUpDown.Enabled = false;
             TimeThresholdUpDown.Enabled = false;
+
+            PrepareComboBoxes();
+            PrepareSamples();
+            MutationProbTrackbar.Value = Convert.ToInt32(GeneticAlgorithm.DefaultMutationProbability);
+
         }
 
 
@@ -237,40 +243,19 @@ namespace TechnikiOptymalizacjiAG
 
         private void RunGA(System.Action runAction)
         {
-            //try
-            // {
+            try
+             {
             runAction();
-            //}
-            //catch (Exception ex)
-            //{
-            /*  Invoke(delegate
-              {
-                  var msg = new MessageDialog(
-                      this,
-                      DialogFlags.Modal,
-                      MessageType.Error,
-                      ButtonsType.YesNo,
-                      "{0}\n\nDo you want to see more details about this error?",
-                      ex.Message);
-
-                  if (msg.Run() == (int)ResponseType.Yes)
-                  {
-                      var details = new MessageDialog(
-                          this,
-                          DialogFlags.Modal,
-                          MessageType.Info,
-                          ButtonsType.Ok,
-                          "StackTrace");
-
-                      details.SecondaryText = ex.StackTrace;
-                      details.Run();
-                      details.Destroy();
-                  }
-
-              msg.Destroy();
-              });
+            }
+            catch (Exception ex)
+            {
+                DialogResult r=MessageBox.Show(this, ex.Message, "Wystąpił błąd w trakcie pracy algorytmu genetycznego", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                if (r == DialogResult.Yes)
+                {
+                    MessageBox.Show(this, ex.StackTrace, "Błąd w trakcie pracy algorytmu genetycznego - Stack Trace", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
           }
-
+/*
           Invoke(delegate
           {
               btnNew.Visible = true;
@@ -362,8 +347,8 @@ namespace TechnikiOptymalizacjiAG
 
     private void PrepareSamples()
     {
-        LoadComboBox(FunctionSelectionCombo, TypeHelper.GetDisplayNamesByInterface<MyISampleController>());
-        //m_sampleController = TypeHelper.CreateInstanceByName<ISampleController>(cmbSample.ActiveText);
+        LoadComboBox(FunctionSelectionCombo, TypeHelper.GetDisplayNamesByInterface<IMyISampleController>());
+        m_sampleController = TypeHelper.CreateInstanceByName<IMyISampleController>(FunctionSelectionCombo.SelectedText);
 
         // Sample context.
         //var layout = new Pango.Layout(this.PangoContext);
@@ -375,13 +360,13 @@ namespace TechnikiOptymalizacjiAG
         m_sampleController.Context = m_sampleContext;
         m_sampleController.Reconfigured += delegate
         {
-                //ResetSample();
-            }; 
+                ResetSample();
+        };
 
             //problemConfigWidgetContainer.Add(m_sampleController.CreateConfigWidget());
             //problemConfigWidgetContainer.ShowAll();
 
-        //SetSampleOperatorsToComboxes();
+            SetSampleOperatorsToComboboxes();
         //?
         /* cmbSample.Changed += delegate
          {
@@ -408,7 +393,7 @@ namespace TechnikiOptymalizacjiAG
         }
 
 
-    private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<MyICrossover> createCrossover, Action<MyICrossover> p, object CrossingCombo)
+    private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<IMyICrossover> createCrossover, Action<IMyICrossover> p, object CrossingCombo)
     {
         throw new NotImplementedException();
     }
@@ -416,26 +401,28 @@ namespace TechnikiOptymalizacjiAG
     //zmień operator do Coboboxa( CrossoverService jest to biblioteka GeneticSharp.Domain.Crossovers "Creates the ICrossover's implementation with the specified name.", GetCrossoverTypes zabiera Typ Krzyżowania nazwe itd, wrzuca do tworzenia, przerzucenie parametrów , nazwa comboBoxa);
     // nie jestem pewna czy to to samo
 
-    private void SetSampleOperatorToCombobox(Func<IList<Type>> getSelectionTypes, Func<MyISelection> CreateSelection, Action<MyISelection> p, object SelectionCombo)
+    private void SetSampleOperatorsToComboboxes()
     {
-        throw new NotImplementedException();
-    }
+            SetSampleOperatorToCombobox(MyCrossoverService.GetCrossoverTypes, m_sampleController.CreateCrossover, (c) => m_crossover = c, CrossingCombo);
+            //SetSampleOperatorToCombobox(MutationService.GetMutationTypes, m_sampleController.CreateMutation, (c) => m_mutation = c, cmbMutation);
+            SetSampleOperatorToCombobox(MySelectionService.GetSelectionTypes, m_sampleController.CreateSelection, (d) => m_selection = d, SelectionCombo);
+            //SetSampleOperatorToCombobox(TerminationService.GetTerminationTypes, m_sampleController.CreateTermination, (c) => m_termination = c, cmbTermination);
+        }
 
-    //SetSampleOperatorToCombobox(SelectionService.GetSelectionTypes, m_sampleController.CreateSelection, (c) => m_selection = c, cmbSelection);
+        //SetSampleOperatorToCombobox(SelectionService.GetSelectionTypes, m_sampleController.CreateSelection, (c) => m_selection = c, cmbSelection);
 
 
-    private void SetSampleOperatorToCombobox<TOperator>(Func<IList<Type>> getOperatorTypes, Func<TOperator> getOperator, Action<TOperator> setOperator, System.Windows.Forms.ComboBox combobox)
-    {
-        var @operator = getOperator();
-        var operatorType = @operator.GetType();
+        private void SetSampleOperatorToCombobox<TOperator>(Func<IList<Type>> getOperatorTypes, Func<TOperator> getOperator, System.Action<TOperator> setOperator, System.Windows.Forms.ComboBox combobox)
+        {
+            var @operator = getOperator();
+            var operatorType = @operator.GetType();
 
-        var opeartorIndex = getOperatorTypes().Select((type, index) => new { type, index }).First(c => c.type.Equals(operatorType)).index;
-        combobox.SelectedIndex= opeartorIndex;
-        
-        setOperator(@operator);
-    }
+            var opeartorIndex = getOperatorTypes().Select((type, index) => new { type, index }).First(c => c.type.Equals(operatorType)).index;
+            combobox.SelectedIndex = opeartorIndex;
+            setOperator(@operator);
+        }
 
-    private void PrepareComboBoxes()
+        private void PrepareComboBoxes()
     {
             PrepareEditComboBox(
                 SelectionCombo,
@@ -455,7 +442,7 @@ namespace TechnikiOptymalizacjiAG
                 (i) => m_crossover = i);
     }
 
-        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], MyISelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
+        private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], IMyISelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
         {
             throw new NotImplementedException();
         }
@@ -664,8 +651,27 @@ namespace TechnikiOptymalizacjiAG
     //nazwa funkcji
     private void FunctionSelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
     {
-        funkcja = FunctionSelectionCombo.SelectedItem.ToString();
-    }
+            //funkcja = FunctionSelectionCombo.SelectedItem.ToString();
+            m_sampleController = TypeHelper.CreateInstanceByName<IMyISampleController>(FunctionSelectionCombo.SelectedText);
+            SetSampleOperatorsToComboboxes();
+
+            m_sampleController.Context = m_sampleContext;
+            m_sampleController.Reconfigured += delegate
+            {
+                ResetSample();
+            };
+
+            /*if (problemConfigWidgetContainer.Children.Length > 0)
+            {
+                problemConfigWidgetContainer.Children[0].Destroy();
+            }
+
+            problemConfigWidgetContainer.Add(m_sampleController.CreateConfigWidget());
+            problemConfigWidgetContainer.ShowAll();
+            */
+            //ResetBuffer();
+            ResetSample();
+        }
 
     //wybranie Krzyżowania
     private void CrossingCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -730,64 +736,73 @@ namespace TechnikiOptymalizacjiAG
     {
 
     }
-
-    /*private void GenGraph2()
+    private void ResetSample()
     {
-        this.ShowParticleOnGraph(population);
-        this.RefreshModel();
+            m_sampleContext.GC = m_sampleContext.CreateGC(new Gdk.Color(255, 50, 50));
+            m_sampleContext.Population = null;
+            //var r = drawingArea.Allocation;
+            //m_sampleContext.DrawingArea = new Rectangle(0, 100, r.Width, r.Height - 100);
+            m_sampleController.Reset();
+            m_fitness = m_sampleController.CreateFitness();
+            //UpdateSample();
     }
-
-    private void ShowParticleOnGraph(Populacja tmp, int size = 10)
-    {
-        double best = tmp.population.Min(x => x.fitnessValue);
-        foreach (Particle item in tmp.population)
+        /*private void GenGraph2()
         {
-            ILArray<float> coords = new float[3];
-            coords[0] = (float)item.position[0];
-            coords[1] = (float)item.position[1];
-            coords[2] = (float)item.fitnessValue;// +1000;
-            ILPoints bod = surface.Add(Shapes.Point);
-            //surface.Colormap = Colormaps.Hot;
-
-            if (item.fitnessValue == best)
-            {
-                bod.Color = Color.Red;
-                bod.Size = 10;
-            }
-            else
-            {
-                bod.Color = Color.Black;
-                bod.Size = size;
-            }
-
-            bod.Positions.Update(coords);
-            surface.Add(bod);
+            this.ShowParticleOnGraph(population);
+            this.RefreshModel();
         }
-    }
 
-    private void RefreshModel()
-    {
-        Invoke(new System.Action(() =>
+        private void ShowParticleOnGraph(Populacja tmp, int size = 10)
         {
-            scena = new ILScene { new ILPlotCube(twoDMode: false) { surface } };
-
-            if (dim == 2)
+            double best = tmp.population.Min(x => x.fitnessValue);
+            foreach (Particle item in tmp.population)
             {
-                scena.First<ILPlotCube>().Rotation = Matrix4.Rotation(new Vector3(1, 1, 1), 0.3f);
+                ILArray<float> coords = new float[3];
+                coords[0] = (float)item.position[0];
+                coords[1] = (float)item.position[1];
+                coords[2] = (float)item.fitnessValue;// +1000;
+                ILPoints bod = surface.Add(Shapes.Point);
+                //surface.Colormap = Colormaps.Hot;
+
+                if (item.fitnessValue == best)
+                {
+                    bod.Color = Color.Red;
+                    bod.Size = 10;
+                }
+                else
+                {
+                    bod.Color = Color.Black;
+                    bod.Size = size;
+                }
+
+                bod.Positions.Update(coords);
+                surface.Add(bod);
             }
-            scena.Screen.First<ILLabel>().Visible = false;
+        }
 
-            ilgraf.Scene = scena;
-            ilgraf.Refresh();
-        }));
-    }*/
-    /* private void FunctionSelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
-     {
-         MessageBox.Show(FunctionSelectionCombo.SelectedItem.ToString());
-     }*/
-    #endregion
+        private void RefreshModel()
+        {
+            Invoke(new System.Action(() =>
+            {
+                scena = new ILScene { new ILPlotCube(twoDMode: false) { surface } };
 
-    private void label7_Click(object sender, EventArgs e)
+                if (dim == 2)
+                {
+                    scena.First<ILPlotCube>().Rotation = Matrix4.Rotation(new Vector3(1, 1, 1), 0.3f);
+                }
+                scena.Screen.First<ILLabel>().Visible = false;
+
+                ilgraf.Scene = scena;
+                ilgraf.Refresh();
+            }));
+        }*/
+        /* private void FunctionSelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
+         {
+             MessageBox.Show(FunctionSelectionCombo.SelectedItem.ToString());
+         }*/
+        #endregion
+
+        private void label7_Click(object sender, EventArgs e)
     {
 
     }

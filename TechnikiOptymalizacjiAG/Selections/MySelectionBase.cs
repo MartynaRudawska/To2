@@ -10,7 +10,7 @@ namespace GeneticSharp.Domain.Selections
     /// <summary>
     /// A base class for selection.
     /// </summary>
-    public abstract class MySelectionBase : MyISelection
+    public abstract class MySelectionBase : IMyISelection
     {
         #region Fields
         private int m_minNumberChromosomes;

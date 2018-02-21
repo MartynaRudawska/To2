@@ -6,15 +6,15 @@ using GeneticSharp.Domain;
 using GeneticSharp.Domain.Populations;
 using GeneticSharp.Infrastructure.Framework.Texts;
 
-namespace GeneticSharp.Runner.GtkApp.Samples
+namespace TechnikiOptymalizacjiAG
 {
-	public class SampleContext
+	public class MySampleContext
     {
         #region Fields
         private int m_lastTextY = 0;
         #endregion
 
-        public SampleContext(Window gdkWindow, Window gtkWindow)
+        public MySampleContext(Window gdkWindow, Window gtkWindow)
         {
             GdkWindow = gdkWindow;
             GtkWindow = gtkWindow;

@@ -9,13 +9,13 @@ using GeneticSharp.Domain.Mutations;
 using GeneticSharp.Domain.Selections;
 using GeneticSharp.Domain.Terminations;
 using GeneticSharp.Infrastructure.Framework.Texts;
-using GeneticSharp.Runner.GtkApp.Samples;
-using Gtk;
+//using GeneticSharp.Runner.GtkApp.Samples;
+//using Gtk;
 
-namespace GeneticSharp.Runner.GtkApp
+namespace TechnikiOptymalizacjiAG
 {
 	[DisplayName("Optymizacja funkcji")]
-	public class FunctionOptimizationSampleController : SampleControllerBase
+	public class FunctionOptimizationSampleController : MySampleControllerBase
 	{
 		private FloatingPointChromosome m_bestChromosome;
 		private List<KeyValuePair<double, double[]>> m_positions;
@@ -57,7 +57,7 @@ namespace GeneticSharp.Runner.GtkApp
 				new int[] { 0, 0, 0, 0 });
 		}
 
-		public override MyICrossover CreateCrossover()
+		public override IMyICrossover CreateCrossover()
 		{
 			return new MyUniformCrossover();
             //         MyTwoPointCrossover();
@@ -70,7 +70,7 @@ namespace GeneticSharp.Runner.GtkApp
 			return new FlipBitMutation();
 		}
 
-		public override MyISelection CreateSelection()
+		public override IMyISelection CreateSelection()
 		{
 			return new MyTournamentSelection();
             //RouletteWheelSelection.()

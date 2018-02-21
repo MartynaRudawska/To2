@@ -9,7 +9,7 @@ namespace GeneticSharp.Domain.Crossovers
     /// <summary>
     /// A base class for crossovers.
     /// </summary>
-    public abstract class MyCrossoverBase : MyICrossover
+    public abstract class MyCrossoverBase : IMyICrossover
     {
         #region Constructors
         /// <summary>

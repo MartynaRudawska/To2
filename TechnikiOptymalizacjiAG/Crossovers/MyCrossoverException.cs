@@ -1,4 +1,5 @@
-﻿using System;
+﻿//using System;
+using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 using GeneticSharp.Infrastructure.Framework.Texts;
@@ -17,7 +18,7 @@ namespace GeneticSharp.Domain.Crossovers
         /// </summary>
         /// <param name="crossover">The crossover where occurred the error.</param>
         /// <param name="message">The error message.</param>
-        public MyCrossoverException(MyICrossover crossover, string message)
+        public MyCrossoverException(IMyICrossover crossover, string message)
             : base("{0}: {1}".With(crossover != null ? crossover.GetType().Name : String.Empty, message))
         {
             Crossover = crossover;
@@ -29,7 +30,7 @@ namespace GeneticSharp.Domain.Crossovers
         /// <param name="crossover">The crossover where occurred the error.</param>
         /// <param name="message">The error message.</param>
         /// <param name="innerException">The inner exception.</param>
-        public MyCrossoverException(MyICrossover crossover, string message, Exception innerException)
+        public MyCrossoverException(IMyICrossover crossover, string message, Exception innerException)
             : base("{0}: {1}".With(crossover != null ? crossover.GetType().Name : String.Empty, message), innerException)
         {
             Crossover = crossover;
@@ -77,7 +78,7 @@ namespace GeneticSharp.Domain.Crossovers
         /// Gets the crossover.
         /// </summary>
         /// <value>The crossover.</value>
-        public MyICrossover Crossover { get; private set; }
+        public IMyICrossover Crossover { get; private set; }
         #endregion
 
         #region Methods

@@ -79,7 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crossovers\MyICrossover.cs" />
+    <Compile Include="Crossovers\IMyICrossover.cs" />
     <Compile Include="Crossovers\MyCrossoverException.cs" />
     <Compile Include="Crossovers\MyCrossoverService.cs" />
     <Compile Include="Crossovers\MyCrossoverBase.cs" />
@@ -89,10 +89,10 @@
     <Compile Include="Crossovers\MyTwoPointCrossover.cs" />
     <Compile Include="Crossovers\MyUniformCrossover.cs" />
     <Compile Include="Funkcje.cs" />
+    <Compile Include="IMyISampleController.cs" />
     <Compile Include="MyGeneticAlgorithm.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="MyFunctionOptimizationSampleController.cs" />
-    <Compile Include="MyISampleController.cs" />
     <Compile Include="MySampleContext.cs" />
     <Compile Include="MySampleControllerBase.cs" />
     <Compile Include="Populacja.cs" />

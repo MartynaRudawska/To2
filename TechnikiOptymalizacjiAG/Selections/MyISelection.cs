@@ -1,3 +1,4 @@
+//using System;
 using System.Collections.Generic;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Populations;
@@ -10,7 +11,7 @@ namespace GeneticSharp.Domain.Selections
     /// <see href="http://en.wikipedia.org/wiki/Selection_(genetic_algorithm)">Wikipedia</see>
     /// <see href=" http://www.ijest.info/docs/IJEST11-03-05-190.pdf">A Review of Selection Methods in Genetic Algorithm</see>
     /// </summary>
-    public interface MyISelection
+    public interface IMyISelection
     {
         /// <summary>
         /// Selects the number of chromosomes from the generation specified.

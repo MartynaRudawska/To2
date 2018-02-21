@@ -94,8 +94,8 @@ namespace GeneticSharp.Domain
         public MyGeneticAlgorithm(
                           IPopulation population,
                           IFitness fitness,
-                          MyISelection selection,
-                          MyICrossover crossover,
+                          IMyISelection selection,
+                          IMyICrossover crossover,
                           IMutation mutation)
         {
             ExceptionHelper.ThrowIfNull("Population", population);
@@ -152,13 +152,13 @@ namespace GeneticSharp.Domain
         /// <summary>
         /// Gets or sets the selection operator.
         /// </summary>
-        public MyISelection Selection { get; set; }
+        public IMyISelection Selection { get; set; }
 
         /// <summary>
         /// Gets or sets the crossover operator.
         /// </summary>
         /// <value>The crossover.</value>
-        public MyICrossover Crossover { get; set; }
+        public IMyICrossover Crossover { get; set; }
 
         /// <summary>
         /// Gets or sets the crossover probability.

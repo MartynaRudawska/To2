@@ -7,13 +7,14 @@ using GeneticSharp.Domain.Selections;
 using GeneticSharp.Domain.Terminations;
 //using Gtk;
 using GeneticSharp.Domain;
+//using TechnikiOptymalizacjiAG;
 
-namespace GeneticSharp.Runner.GtkApp.Samples
+namespace TechnikiOptymalizacjiAG
 {
     /// <summary>
     /// Base class for sample controllers.
     /// </summary>
-    public abstract class SampleControllerBase //: ISampleController
+    public abstract class MySampleControllerBase //: IMyISampleController
     {
         #region Events
         /// <summary>
@@ -27,7 +28,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
         /// Gets or sets the context.
         /// </summary>
         /// <value>The context.</value>
-        public SampleContext Context { get; set; }
+        public MySampleContext Context { get; set; }
         #endregion
 
         #region Methods
@@ -57,7 +58,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
         /// <returns>
         /// The crossover.
         /// </returns>
-        public abstract MyICrossover CreateCrossover();
+        public abstract IMyICrossover CreateCrossover();
 
         /// <summary>
         /// Creates the mutation.
@@ -73,7 +74,7 @@ namespace GeneticSharp.Runner.GtkApp.Samples
         /// <returns>
         /// The selection.
         /// </returns>
-        public abstract MyISelection CreateSelection();
+        public abstract IMyISelection CreateSelection();
 
         /// <summary>
         /// Creates the termination.

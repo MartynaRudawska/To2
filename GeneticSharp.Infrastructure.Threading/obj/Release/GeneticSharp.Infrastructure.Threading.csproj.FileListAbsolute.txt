@@ -1,2 +1,13 @@
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\GeneticSharp.Infrastructure.Threading.xml
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\GeneticSharp.Infrastructure.Threading.dll
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\GeneticSharp.Infrastructure.Threading.pdb
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\GeneticSharp.Infrastructure.Framework.dll
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\NCalc.dll
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\SmartThreadPool.dll
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\GeneticSharp.Infrastructure.Framework.pdb
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\GeneticSharp.Infrastructure.Framework.xml
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\bin\Release\SmartThreadPool.pdb
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\obj\Release\GeneticSharp.Infrastructure.Threading.csprojResolveAssemblyReference.cache
 E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\obj\Release\GeneticSharp.Infrastructure.Threading.csproj.CoreCompileInputs.cache
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\obj\Release\GeneticSharp.Infrastructure.Threading.dll
+E:\sourcefiles\repozytoria\to2\GeneticSharp.Infrastructure.Threading\obj\Release\GeneticSharp.Infrastructure.Threading.pdb
