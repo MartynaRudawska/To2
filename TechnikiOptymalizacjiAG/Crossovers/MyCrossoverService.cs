@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.Crossovers
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public static IList<Type> GetCrossoverTypes()
         {
-            return TypeHelper.GetTypesByInterface<IMyICrossover>();
+            return TypeHelper.GetTypesByInterface<IMyCrossover>();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace GeneticSharp.Domain.Crossovers
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public static IList<string> GetCrossoverNames()
         {
-            return TypeHelper.GetDisplayNamesByInterface<IMyICrossover>();
+            return TypeHelper.GetDisplayNamesByInterface<IMyCrossover>();
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace GeneticSharp.Domain.Crossovers
         /// <returns>The crossover implementation instance.</returns>
         /// <param name="name">The crossover name.</param>
         /// <param name="constructorArgs">Constructor arguments.</param>
-        public static IMyICrossover CreateCrossoverByName(string name, params object[] constructorArgs)
+        public static IMyCrossover CreateCrossoverByName(string name, params object[] constructorArgs)
         {
-            return TypeHelper.CreateInstanceByName<IMyICrossover>(name, constructorArgs);
+            return TypeHelper.CreateInstanceByName<IMyCrossover>(name, constructorArgs);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace GeneticSharp.Domain.Crossovers
         /// <param name="name">The name of crossover.</param>
         public static Type GetCrossoverTypeByName(string name)
         {
-            return TypeHelper.GetTypeByName<IMyICrossover>(name);
+            return TypeHelper.GetTypeByName<IMyCrossover>(name);
         }
         #endregion
     }

@@ -17,7 +17,7 @@ namespace GeneticSharp.Domain.Selections
 		/// </summary>
 		/// <param name="selection">The Selection where occurred the error.</param>
 		/// <param name="message">The error message.</param>
-		public MySelectionException(IMyISelection selection, string message)
+		public MySelectionException(IMySelection selection, string message)
 			: base("{0}: {1}".With(selection != null ? selection.GetType().Name : String.Empty, message))
 		{
 			Selection = selection;
@@ -29,7 +29,7 @@ namespace GeneticSharp.Domain.Selections
 		/// <param name="selection">The Selection where occurred the error.</param>
 		/// <param name="message">The error message.</param>
 		/// <param name="innerException">The inner exception.</param>
-		public MySelectionException(IMyISelection selection, string message, Exception innerException)
+		public MySelectionException(IMySelection selection, string message, Exception innerException)
 			: base("{0}: {1}".With(selection != null ? selection.GetType().Name : String.Empty, message), innerException)
 		{
 			Selection = selection;
@@ -77,7 +77,7 @@ namespace GeneticSharp.Domain.Selections
 		/// Gets the Selection.
 		/// </summary>
 		/// <value>The Selection.</value>
-		public IMyISelection Selection { get; private set; }
+		public IMySelection Selection { get; private set; }
 		#endregion
 
 		#region Methods

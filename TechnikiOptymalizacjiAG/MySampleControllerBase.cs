@@ -58,7 +58,7 @@ namespace TechnikiOptymalizacjiAG
         /// <returns>
         /// The crossover.
         /// </returns>
-        public abstract IMyICrossover CreateCrossover();
+        public abstract IMyCrossover CreateCrossover();
 
         /// <summary>
         /// Creates the mutation.
@@ -74,7 +74,7 @@ namespace TechnikiOptymalizacjiAG
         /// <returns>
         /// The selection.
         /// </returns>
-        public abstract IMyISelection CreateSelection();
+        public abstract IMySelection CreateSelection();
 
         /// <summary>
         /// Creates the termination.

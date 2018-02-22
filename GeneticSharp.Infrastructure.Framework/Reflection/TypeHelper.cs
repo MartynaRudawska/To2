@@ -86,7 +86,7 @@ namespace GeneticSharp.Infrastructure.Framework.Reflection
 
             if (crossoverType == null)
             {
-                throw new ArgumentException("There is no {0} implementation with name '{1}'.".With(interfaceName, name), "name");
+                throw new ArgumentException("There is no {0} implementation with name {1}.".With(interfaceName, name));//, "name");
             }
 
             return crossoverType;
