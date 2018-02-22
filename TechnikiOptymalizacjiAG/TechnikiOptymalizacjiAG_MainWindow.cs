@@ -116,6 +116,13 @@ namespace TechnikiOptymalizacjiAG
             dziedzinyFunkcji.Add("Rosenbrock", new Tuple<double, double>(-2.048, 2.048));
             dziedzinyFunkcji.Add("Rastrigin)", new Tuple<double, double>(-5.12, 5.12));
 
+            ToolTip tp = new ToolTip();
+            tp.SetToolTip(SelectionCombo, "Wybierz selekcje");
+            tp.SetToolTip(CrossingCombo, "Wybierz krzyżowanie");
+            tp.SetToolTip(FunctionSelectionCombo, "Wybierz funkcje do obliczenia min");
+            tp.SetToolTip(richTextAlGenet, "Wyniki Algorytmu Genetycznego");
+            tp.SetToolTip(richTextPSO, "Wyniki PSO");
+
         }
         #endregion
 

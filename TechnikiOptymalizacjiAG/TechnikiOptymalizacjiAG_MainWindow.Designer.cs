@@ -30,6 +30,7 @@ namespace TechnikiOptymalizacjiAG
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.IterationThresholdRadioBtn = new System.Windows.Forms.RadioButton();
@@ -63,6 +64,7 @@ namespace TechnikiOptymalizacjiAG
             this.label12 = new System.Windows.Forms.Label();
             this.richTextAlGenet = new System.Windows.Forms.RichTextBox();
             this.richTextPSO = new System.Windows.Forms.RichTextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IterationThresholdUpDown)).BeginInit();
@@ -201,6 +203,7 @@ namespace TechnikiOptymalizacjiAG
             // 
             // FunctionSelectionCombo
             // 
+            this.FunctionSelectionCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FunctionSelectionCombo.FormattingEnabled = true;
             this.FunctionSelectionCombo.Items.AddRange(new object[] {
             "De Jong1",
@@ -211,7 +214,6 @@ namespace TechnikiOptymalizacjiAG
             this.FunctionSelectionCombo.Name = "FunctionSelectionCombo";
             this.FunctionSelectionCombo.Size = new System.Drawing.Size(222, 21);
             this.FunctionSelectionCombo.TabIndex = 3;
-            this.FunctionSelectionCombo.Text = "Proszę wybrać funkcję do optymalizacji";
             this.FunctionSelectionCombo.SelectedIndexChanged += new System.EventHandler(this.FunctionSelectionCombo_SelectedIndexChanged);
             // 
             // label7
@@ -276,16 +278,17 @@ namespace TechnikiOptymalizacjiAG
             // 
             // CrossingCombo
             // 
+            this.CrossingCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CrossingCombo.FormattingEnabled = true;
             this.CrossingCombo.Location = new System.Drawing.Point(56, 144);
             this.CrossingCombo.Name = "CrossingCombo";
             this.CrossingCombo.Size = new System.Drawing.Size(239, 21);
             this.CrossingCombo.TabIndex = 12;
-            this.CrossingCombo.Text = "Proszę wybrać krzyżowanie do optymalizacji";
             this.CrossingCombo.SelectedIndexChanged += new System.EventHandler(this.CrossingCombo_SelectedIndexChanged);
             // 
             // SelectionCombo
             // 
+            this.SelectionCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SelectionCombo.FormattingEnabled = true;
             this.SelectionCombo.Items.AddRange(new object[] {
             "Ruletka",
@@ -294,7 +297,6 @@ namespace TechnikiOptymalizacjiAG
             this.SelectionCombo.Name = "SelectionCombo";
             this.SelectionCombo.Size = new System.Drawing.Size(239, 21);
             this.SelectionCombo.TabIndex = 11;
-            this.SelectionCombo.Text = "Proszę wybrać selekcje do optymalizacji";
             this.SelectionCombo.SelectedIndexChanged += new System.EventHandler(this.SelectionCombo_SelectedIndexChanged);
             // 
             // PopulationMaxUpDown
@@ -468,6 +470,7 @@ namespace TechnikiOptymalizacjiAG
             // 
             this.richTextAlGenet.Location = new System.Drawing.Point(21, 399);
             this.richTextAlGenet.Name = "richTextAlGenet";
+            this.richTextAlGenet.ReadOnly = true;
             this.richTextAlGenet.Size = new System.Drawing.Size(343, 220);
             this.richTextAlGenet.TabIndex = 9;
             this.richTextAlGenet.Text = "";
@@ -476,6 +479,7 @@ namespace TechnikiOptymalizacjiAG
             // 
             this.richTextPSO.Location = new System.Drawing.Point(383, 399);
             this.richTextPSO.Name = "richTextPSO";
+            this.richTextPSO.ReadOnly = true;
             this.richTextPSO.Size = new System.Drawing.Size(338, 220);
             this.richTextPSO.TabIndex = 0;
             this.richTextPSO.Text = "";
@@ -551,6 +555,7 @@ namespace TechnikiOptymalizacjiAG
         private System.Windows.Forms.NumericUpDown ParticleQuantityUpDown;
         private System.Windows.Forms.RichTextBox richTextAlGenet;
         private System.Windows.Forms.RichTextBox richTextPSO;
+        private System.Windows.Forms.ToolTip toolTip1;
         //private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

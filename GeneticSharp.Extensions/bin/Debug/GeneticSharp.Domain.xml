@@ -960,24 +960,24 @@
             <param name="parents">The parents chromosomes.</param>
             <returns>The offspring (children) of the parents.</returns>
         </member>
-        <member name="T:GeneticSharp.Domain.Crossovers.CrossoverService">
+        <member name="T:GeneticSharp.Domain.Crossovers.MyCrossoverService">
             <summary>
             Crossover service.
             </summary>
         </member>
-        <member name="M:GeneticSharp.Domain.Crossovers.CrossoverService.GetCrossoverTypes">
+        <member name="M:GeneticSharp.Domain.Crossovers.MyCrossoverService.GetCrossoverTypes">
             <summary>
             Gets available crossover types.
             </summary>
             <returns>All available crossover types.</returns>
         </member>
-        <member name="M:GeneticSharp.Domain.Crossovers.CrossoverService.GetCrossoverNames">
+        <member name="M:GeneticSharp.Domain.Crossovers.MyCrossoverService.GetCrossoverNames">
             <summary>
             Gets the available crossover names.
             </summary>
             <returns>The crossover names.</returns>
         </member>
-        <member name="M:GeneticSharp.Domain.Crossovers.CrossoverService.CreateCrossoverByName(System.String,System.Object[])">
+        <member name="M:GeneticSharp.Domain.Crossovers.MyCrossoverService.CreateCrossoverByName(System.String,System.Object[])">
             <summary>
             Creates the ICrossover's implementation with the specified name.
             </summary>
@@ -985,7 +985,7 @@
             <param name="name">The crossover name.</param>
             <param name="constructorArgs">Constructor arguments.</param>
         </member>
-        <member name="M:GeneticSharp.Domain.Crossovers.CrossoverService.GetCrossoverTypeByName(System.String)">
+        <member name="M:GeneticSharp.Domain.Crossovers.MyCrossoverService.GetCrossoverTypeByName(System.String)">
             <summary>
             Gets the crossover type by the name.
             </summary>
@@ -2308,18 +2308,18 @@
             <param name="number">The number of chromosomes to select.</param>
             <param name="generation">The generation where the selection will be made.</param>
         </member>
-        <member name="T:GeneticSharp.Domain.Selections.SelectionBase">
+        <member name="T:GeneticSharp.Domain.Selections.MySelectionBase">
             <summary>
             A base class for selection.
             </summary>
         </member>
-        <member name="M:GeneticSharp.Domain.Selections.SelectionBase.#ctor(System.Int32)">
+        <member name="M:GeneticSharp.Domain.Selections.MySelectionBase.#ctor(System.Int32)">
             <summary>
-            Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Selections.SelectionBase"/> class.
+            Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Selections.MySelectionBase"/> class.
             </summary>
             <param name="minNumberChromosomes">Minimum number chromosomes support to be selected.</param>
         </member>
-        <member name="M:GeneticSharp.Domain.Selections.SelectionBase.SelectChromosomes(System.Int32,GeneticSharp.Domain.Populations.Generation)">
+        <member name="M:GeneticSharp.Domain.Selections.MySelectionBase.SelectChromosomes(System.Int32,GeneticSharp.Domain.Populations.Generation)">
             <summary>
             Selects the number of chromosomes from the generation specified.
             </summary>
@@ -2327,7 +2327,7 @@
             <param name="number">The number of chromosomes to select.</param>
             <param name="generation">The generation where the selection will be made.</param>
         </member>
-        <member name="M:GeneticSharp.Domain.Selections.SelectionBase.PerformSelectChromosomes(System.Int32,GeneticSharp.Domain.Populations.Generation)">
+        <member name="M:GeneticSharp.Domain.Selections.MySelectionBase.PerformSelectChromosomes(System.Int32,GeneticSharp.Domain.Populations.Generation)">
             <summary>
             Performs the selection of chromosomes from the generation specified.
             </summary>
@@ -2397,24 +2397,24 @@
               <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter" />
             </PermissionSet>
         </member>
-        <member name="T:GeneticSharp.Domain.Selections.SelectionService">
+        <member name="T:GeneticSharp.Domain.Selections.MySelectionService">
             <summary>
             Selection service.
             </summary>
         </member>
-        <member name="M:GeneticSharp.Domain.Selections.SelectionService.GetSelectionTypes">
+        <member name="M:GeneticSharp.Domain.Selections.MySelectionService.GetSelectionTypes">
             <summary>
             Gets available selection types.
             </summary>
             <returns>All available selection types.</returns>
         </member>
-        <member name="M:GeneticSharp.Domain.Selections.SelectionService.GetSelectionNames">
+        <member name="M:GeneticSharp.Domain.Selections.MySelectionService.GetSelectionNames">
             <summary>
             Gets the available selection names.
             </summary>
             <returns>The selection names.</returns>
         </member>
-        <member name="M:GeneticSharp.Domain.Selections.SelectionService.CreateSelectionByName(System.String,System.Object[])">
+        <member name="M:GeneticSharp.Domain.Selections.MySelectionService.CreateSelectionByName(System.String,System.Object[])">
             <summary>
             Creates the ISelection's implementation with the specified name.
             </summary>
@@ -2422,7 +2422,7 @@
             <param name="name">The selection name.</param>
             <param name="constructorArgs">Constructor arguments.</param>
         </member>
-        <member name="M:GeneticSharp.Domain.Selections.SelectionService.GetSelectionTypeByName(System.String)">
+        <member name="M:GeneticSharp.Domain.Selections.MySelectionService.GetSelectionTypeByName(System.String)">
             <summary>
             Gets the selection type by the name.
             </summary>
