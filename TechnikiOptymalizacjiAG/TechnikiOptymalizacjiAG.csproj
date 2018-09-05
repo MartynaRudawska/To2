@@ -79,7 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crossovers\IMyICrossover.cs" />
+    <Compile Include="Crossovers\IMyCrossover.cs" />
     <Compile Include="Crossovers\MyCrossoverException.cs" />
     <Compile Include="Crossovers\MyCrossoverService.cs" />
     <Compile Include="Crossovers\MyCrossoverBase.cs" />
@@ -88,8 +88,9 @@
     <Compile Include="Crossovers\MyThreeParentCrossover.cs" />
     <Compile Include="Crossovers\MyTwoPointCrossover.cs" />
     <Compile Include="Crossovers\MyUniformCrossover.cs" />
+    <Compile Include="DeJongSampleController.cs" />
     <Compile Include="Funkcje.cs" />
-    <Compile Include="IMyISampleController.cs" />
+    <Compile Include="IMySampleController.cs" />
     <Compile Include="MyGeneticAlgorithm.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="MyFunctionOptimizationSampleController.cs" />
@@ -97,7 +98,8 @@
     <Compile Include="MySampleControllerBase.cs" />
     <Compile Include="Populacja.cs" />
     <Compile Include="PSO.cs" />
-    <Compile Include="Selections\MyISelection.cs" />
+    <Compile Include="SchwefelSampleController.cs" />
+    <Compile Include="Selections\IMySelection.cs" />
     <Compile Include="Selections\MyRouletteWheelSelection.cs" />
     <Compile Include="Selections\MySelectionBase.cs" />
     <Compile Include="Selections\MySelectionException.cs" />

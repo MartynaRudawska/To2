@@ -19,16 +19,19 @@ namespace TechnikiOptymalizacjiAG
 	{
 		private FloatingPointChromosome m_bestChromosome;
 		private List<KeyValuePair<double, double[]>> m_positions;
-
-		#region implemented abstract members of SampleControllerBase
-		/*public override Gtk.Widget CreateConfigWidget()
+        public const double minX = -5.12;   // problem-dependent
+        public const double maxX = 5.12;
+        public const double exitError = 0.05;
+        public const double min = 0;
+        #region implemented abstract members of SampleControllerBase
+        /*public override Gtk.Widget CreateConfigWidget()
 		{
 			var container = new VBox();
 
 			return container;
 		}*/
 
-		public override IFitness CreateFitness()
+        public override IFitness CreateFitness()
 		{
 			return new FuncFitness((chromosome) =>
 			{
@@ -57,7 +60,7 @@ namespace TechnikiOptymalizacjiAG
 				new int[] { 0, 0, 0, 0 });
 		}
 
-		public override IMyICrossover CreateCrossover()
+		public override IMyCrossover CreateCrossover()
 		{
 			return new MyUniformCrossover();
             //         MyTwoPointCrossover();
@@ -70,7 +73,7 @@ namespace TechnikiOptymalizacjiAG
 			return new FlipBitMutation();
 		}
 
-		public override IMyISelection CreateSelection()
+		public override IMySelection CreateSelection()
 		{
 			return new MyTournamentSelection();
             //RouletteWheelSelection.()

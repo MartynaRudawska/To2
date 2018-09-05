@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.Selections
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public static IList<Type> GetSelectionTypes()
         {
-            return TypeHelper.GetTypesByInterface<IMyISelection>();
+            return TypeHelper.GetTypesByInterface<IMySelection>();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace GeneticSharp.Domain.Selections
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public static IList<string> GetSelectionNames()
         {
-            return TypeHelper.GetDisplayNamesByInterface<IMyISelection>();
+            return TypeHelper.GetDisplayNamesByInterface<IMySelection>();
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace GeneticSharp.Domain.Selections
         /// <returns>The selection implementation instance.</returns>
         /// <param name="name">The selection name.</param>
         /// <param name="constructorArgs">Constructor arguments.</param>
-        public static IMyISelection CreateSelectionByName(string name, params object[] constructorArgs)
+        public static IMySelection CreateSelectionByName(string name, params object[] constructorArgs)
         {
-            return TypeHelper.CreateInstanceByName<IMyISelection>(name, constructorArgs);
+            return TypeHelper.CreateInstanceByName<IMySelection>(name, constructorArgs);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace GeneticSharp.Domain.Selections
         /// <param name="name">The name of selection.</param>
         public static Type GetSelectionTypeByName(string name)
         {
-            return TypeHelper.GetTypeByName<IMyISelection>(name);
+            return TypeHelper.GetTypeByName<IMySelection>(name);
         }
         #endregion
     }

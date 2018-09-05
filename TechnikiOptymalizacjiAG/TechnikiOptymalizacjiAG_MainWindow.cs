@@ -33,14 +33,14 @@ namespace TechnikiOptymalizacjiAG
         #region pola genetyczny
         private MyGeneticAlgorithm m_ga;
         private IFitness m_fitness;
-        private IMyISelection m_selection;
-        private IMyICrossover m_crossover;
+        private IMySelection m_selection;
+        private IMyCrossover m_crossover;
         private IMutation m_mutation = new FlipBitMutation();
 
         private IReinsertion m_reinsertion;
         private ITermination m_termination;
         private IGenerationStrategy m_generationStrategy;
-        private IMyISampleController m_sampleController;
+        private IMySampleController m_sampleController;
         private MySampleContext m_sampleContext;
         private Thread m_evolvingThread;
         #endregion
@@ -375,8 +375,8 @@ namespace TechnikiOptymalizacjiAG
 
     private void PrepareSamples()
     {
-        LoadComboBox(FunctionSelectionCombo, TypeHelper.GetDisplayNamesByInterface<IMyISampleController>());
-        m_sampleController = TypeHelper.CreateInstanceByName<IMyISampleController>(FunctionSelectionCombo.SelectedText);
+        LoadComboBox(FunctionSelectionCombo, TypeHelper.GetDisplayNamesByInterface<IMySampleController>());
+        m_sampleController = TypeHelper.CreateInstanceByName<IMySampleController>(FunctionSelectionCombo.SelectedText);
 
         // Sample context.
         //var layout = new Pango.Layout(this.PangoContext);
@@ -421,7 +421,7 @@ namespace TechnikiOptymalizacjiAG
         }
 
 
-    private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<IMyICrossover> createCrossover, Action<IMyICrossover> p, object CrossingCombo)
+    private void SetSampleOperatorToCombobox(Func<IList<Type>> getCrossoverTypes, Func<IMyCrossover> createCrossover, Action<IMyCrossover> p, object CrossingCombo)
     {
         throw new NotImplementedException();
     }
@@ -470,7 +470,7 @@ namespace TechnikiOptymalizacjiAG
                 (i) => m_crossover = i);
     }
 
-        /*private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], IMyISelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
+        /*private void PrepareEditComboBox<TItem>(System.Windows.Forms.ComboBox selectionCombo, Func<IList<string>> getSelectionNames, Func<string, Type> getSelectionTypeByName, Func<string, object[], IMySelection> createSelectionByName, Func<string, object[], TItem> p1, Func<object, TItem> p2)
         {
             throw new NotImplementedException();
         }*/
@@ -680,7 +680,7 @@ namespace TechnikiOptymalizacjiAG
     private void FunctionSelectionCombo_SelectedIndexChanged(object sender, EventArgs e)
     {
             //funkcja = FunctionSelectionCombo.SelectedItem.ToString();
-            m_sampleController = TypeHelper.CreateInstanceByName<IMyISampleController>(FunctionSelectionCombo.SelectedText);
+            m_sampleController = TypeHelper.CreateInstanceByName<IMySampleController>(FunctionSelectionCombo.SelectedText);
             SetSampleOperatorsToComboboxes();
 
             m_sampleController.Context = m_sampleContext;
